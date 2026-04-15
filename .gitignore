@@ -1,0 +1,38 @@
+# Core / system crash files
+core.Microsoft*
+core.mongo*
+core.python*
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyc
+
+# Virtual environments and secrets
+.venv/
+.env
+.env*
+!.env.example
+env.py
+kaggle.json
+cloudinary_python.txt
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Machine learning artifacts
+*.pkl
+*.joblib
+
+# Project outputs
+outputs/
+
+# BUT allow required ML files for deployment
+!outputs/ml_pipeline/
+!outputs/ml_pipeline/**
+
+# Frontend / JS
+node_modules/
+
+# OS files
+.DS_Store
