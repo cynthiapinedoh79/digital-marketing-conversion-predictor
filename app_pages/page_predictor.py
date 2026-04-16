@@ -216,18 +216,47 @@ def page_predictor_body():
 
             with col_prob:
                 st.markdown("**Conversion Probability**")
+
+                score_color = "#198754" if probability >= 0.75 else "#b8860b" if probability >= 0.40 else "#5a6268"
+
                 st.markdown(f"""
                 <div style='
                     font-size:48px;
                     font-weight:800;
                     text-align:center;
                     margin-bottom:10px;
+                    color:{score_color};
                 '>
                     {probability*100:.0f}%
                 </div>
                 """, unsafe_allow_html=True)
 
                 st.markdown(f"**{probability:.1%}** probability")
+
+                lead_label = (
+                    "🔥 High-Value Lead" if probability >= 0.75
+                    else "⚡ Potential Lead" if probability >= 0.40
+                    else "🧊 Cold Lead"
+                )
+
+                lead_bg = (
+                    "#d4edda" if probability >= 0.75
+                    else "#fff3cd" if probability >= 0.40
+                    else "#e2e3e5"
+                )
+
+                st.markdown(f"""
+                <div style='
+                    background-color:{lead_bg};
+                    padding:8px 14px;
+                    border-radius:20px;
+                    display:inline-block;
+                    font-weight:600;
+                    margin:0 auto 14px auto;
+                '>
+                    {lead_label}
+                </div>
+                """, unsafe_allow_html=True)
 
                 if probability >= 0.75:
                     st.success("High confidence — prioritise this lead.")
@@ -330,9 +359,13 @@ def page_predictor_body():
                 </div>
                 """, unsafe_allow_html=True)
 
+                st.markdown("#### 🎯 Suggested Next Best Actions")
+
                 if actions:
                     for action in actions[:3]:
                         st.markdown(f"- {action}")
+                else:
+                    st.markdown("- No immediate corrective action is needed. Maintain the current conversion strategy.")
 
             elif probability < 0.75:
                 st.markdown("""
@@ -357,9 +390,13 @@ def page_predictor_body():
                 </div>
                 """, unsafe_allow_html=True)
 
+                st.markdown("#### 🎯 Suggested Next Best Actions")
+
                 if actions:
-                    for action in actions[:4]:
+                    for action in actions[:3]:
                         st.markdown(f"- {action}")
+                else:
+                    st.markdown("- No immediate corrective action is needed. Maintain the current conversion strategy.")
 
             else:
                 st.markdown("""
@@ -381,9 +418,13 @@ def page_predictor_body():
                 </div>
                 """, unsafe_allow_html=True)
 
+                st.markdown("#### 🎯 Suggested Next Best Actions")
+
                 if actions:
                     for action in actions[:2]:
                         st.markdown(f"- {action}")
+                else:
+                    st.markdown("- No immediate corrective action is needed. Maintain the current conversion strategy.")
 
         except Exception as e:
             st.error(f"Prediction failed: {e}")
