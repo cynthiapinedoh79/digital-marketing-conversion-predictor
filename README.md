@@ -1,4 +1,44 @@
-# Digital Marketing Conversion Predictor
+# 📊 Digital Marketing Conversion Predictor
+
+**Live Application:** https://tu-app.herokuapp.com/
+
+This project is a **Data Analytics and Machine Learning application**
+developed to support data-driven decision-making in digital marketing.
+
+The application analyses customer behaviour and campaign data to identify
+conversion patterns and predict which leads are most likely to convert.
+
+It combines exploratory data analysis, statistical validation, and a
+machine learning model deployed through an interactive Streamlit dashboard.
+
+---
+
+## 🚀 Key Features
+
+- 📈 **Customer Behaviour Analysis:**  
+  Identify patterns and correlations between user engagement and conversion  
+
+- 🤖 **Conversion Prediction Model:**  
+  Predict conversion likelihood using a trained ML pipeline  
+
+- 💰 **Campaign ROI Analysis:**  
+  Evaluate marketing performance and optimise budget allocation  
+
+- 📊 **Interactive Dashboard:**  
+  Real-time insights and predictions via Streamlit  
+
+---
+
+## 🧩 Technologies Used
+
+![Python](https://img.shields.io/badge/Python-3.12-blue)
+![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-purple)
+![Scikit-learn](https://img.shields.io/badge/Scikit--learn-ML-orange)
+![Streamlit](https://img.shields.io/badge/Streamlit-App-red)
+![Plotly](https://img.shields.io/badge/Plotly-Visualization-blue)
+![Heroku](https://img.shields.io/badge/Heroku-Deploy-purple)
+
+---
 
 ## Table of Contents
 
@@ -11,17 +51,23 @@
 7. [Hypothesis and Validation](#hypothesis-and-validation)
 8. [Rationale to Map Business Requirements](#rationale-to-map-business-requirements)
 9. [ML Business Case](#ml-business-case)
-10. [Dashboard Design](#dashboard-design)
-11. [Testing](#testing)
-12. [Additional Documentation](#additional-documentation)
-13. [Unfixed Bugs](#unfixed-bugs)
-14. [Deployment](#deployment)
-15. [Main Libraries](#main-libraries)
-16. [Credits](#credits)
+10. [Ethical Considerations](#ethical-considerations)
+11. [Limitations](#limitations)
+12. [Dashboard Design](#dashboard-design)
+13. [Testing](#testing)
+14. [Additional Documentation](#additional-documentation)
+15. [Unfixed Bugs](#unfixed-bugs)
+16. [Deployment](#deployment)
+17. [Main Libraries](#main-libraries)
+18. [Credits](#credits)
 
 ---
 
 ## Project Overview
+
+This project demonstrates an end-to-end data science workflow, from exploratory data analysis to the deployment of a machine learning solution.
+
+It showcases how data science and machine learning can be leveraged to solve real-world business problems and enable data-driven decision-making.
 
 ConvertIQ is a digital marketing agency that aims to improve lead conversion rates and optimise campaign performance through data-driven decision making.
 
@@ -29,15 +75,11 @@ This project analyses customer behaviour and marketing campaign data to identify
 
 The project combines exploratory data analysis, statistical validation, and predictive modelling to support three main business goals:
 
-- Identify behavioural patterns associated with conversion
-- Predict which leads are most likely to convert
-- Evaluate campaign performance and return on investment (ROI)
+- Identify behavioural patterns associated with conversion  
+- Predict which leads are most likely to convert  
+- Evaluate campaign performance and return on investment (ROI)  
 
 The final solution is delivered as an interactive Streamlit dashboard, allowing users to explore insights and generate real-time predictions.
-
-This project demonstrates end-to-end data science workflow, from data analysis to deployment of a machine learning solution.
-
-This project demonstrates how data science and machine learning can be applied to solve real-world business problems and support data-driven decision-making.
 
 ---
 
@@ -337,7 +379,20 @@ This directly addresses **Business Requirement 2 (Conversion Prediction)**.
 ### Learning Method
 
 Supervised machine learning — binary classification using a  
-**Random Forest Classifier**, optimised through **RandomizedSearchCV**.
+Random Forest Classifier, optimised through RandomizedSearchCV.
+
+Random Forest was selected due to its ability to handle nonlinear relationships, robustness to overfitting, and strong performance with mixed data types (categorical and numerical features).
+
+---
+
+### Model Selection Rationale
+
+Random Forest was chosen due to:
+
+- Its ability to handle complex, non-linear relationships  
+- Robustness to noise and overfitting  
+- Strong performance with tabular data  
+- Interpretability through feature importance  
 
 ---
 
@@ -402,23 +457,25 @@ was applied during training.
 
 ---
 
-### Results Achieved
+### Business Impact
 
-- **Test Recall (Converted):** 0.8395 ✅ (≥ 0.75 requirement)  
-- **Test F1-score (Converted):** 0.8767 ✅ (≥ 0.80 target)  
-- **ROC-AUC:** 0.7339  
-- **Train Accuracy:** 0.8405  
-- **Test Accuracy:** 0.7931  
+The model enables ConvertIQ to prioritise high-value leads,
+significantly improving sales efficiency and reducing wasted outreach.
 
-The model successfully meets the defined business performance thresholds.
+By focusing on high-probability conversions, the company can:
+
+- Increase marketing ROI  
+- Optimise budget allocation  
+- Improve conversion rates  
+- Reduce acquisition costs  
+
+This transforms raw data into actionable business intelligence.
 
 ---
 
-### Business Impact
+### Model Performance
 
-The model enables ConvertIQ to prioritise high-value leads, improving sales efficiency and reducing wasted outreach efforts. By focusing on high-probability conversions, the company can optimise resource allocation and maximise ROI.
-
-This demonstrates how machine learning can directly support strategic decision-making and deliver measurable business value.
+The model demonstrates strong predictive capability in identifying converting leads, with a high recall and balanced F1-score. Performance was evaluated on both training and test sets to ensure generalisation.
 
 ---
 
@@ -430,27 +487,15 @@ This demonstrates how machine learning can directly support strategic decision-m
 
 ---
 
-### Limitations
+### Results Achieved
 
-**Model-related limitations:**
+- **Test Recall (Converted):** 0.8395 ✅ (≥ 0.75 requirement)  
+- **Test F1-score (Converted):** 0.8767 ✅ (≥ 0.80 target)  
+- **ROC-AUC:** 0.7339  
+- **Train Accuracy:** 0.8405  
+- **Test Accuracy:** 0.7931  
 
-- Moderate overfitting:  
-  Training accuracy exceeds test accuracy, indicating some loss of generalisation  
-
-- Minority class performance:  
-  Recall for non-converted leads = 0.4646  
-
-- Model sensitivity:  
-  Performance may vary depending on threshold selection  
-
-**Data-related limitations:**
-
-- Model performance depends on dataset quality and feature representativeness  
-- Synthetic data (SMOTE) may introduce bias and affect generalisation  
-
-**Deployment limitations:**
-
-- Real-world performance may vary due to unseen data patterns and distribution shifts   
+The model successfully meets the defined business performance thresholds. 
 
 ---
 
@@ -472,6 +517,31 @@ This demonstrates how machine learning can directly support strategic decision-m
 - **ROC-AUC:** Measures the model’s ability to distinguish between classes  
 - **Feature Importance:** Indicates which variables most influence predictions  
 - **Hyperparameter Optimisation:** Process of tuning model parameters to maximise performance
+
+---
+
+## Ethical Considerations
+
+- The dataset does not include personally identifiable information (PII)  
+- Predictions should support, not replace, human decision-making  
+- Behavioural data may introduce bias into the model  
+- Continuous monitoring is recommended to ensure fairness and reliability  
+
+---
+
+## ⚠️ Limitations
+
+**Model-related limitations:**
+- Moderate overfitting: training accuracy exceeds test accuracy  
+- Minority class performance: recall for non-converted leads = 0.4646  
+- Model sensitivity: performance depends on threshold selection  
+
+**Data-related limitations:**
+- Model performance depends on dataset quality and feature representativeness  
+- SMOTE may introduce synthetic bias and affect generalisation  
+
+**Deployment limitations:**
+- Real-world performance may vary due to unseen data patterns and data drift    
 
 ---
 
@@ -812,8 +882,8 @@ These are managed securely via Heroku Config Vars.
 ---
 
 ### Live App
-<!-- [View Live Application](https://tu-app.herokuapp.com) -->
-sed -i 's|https://tu-app.herokuapp.com|*[Add Heroku URL after deployment]*|' README.md
+
+[View Live Application](https://your-real-app.herokuapp.com)
 
 ---
 
