@@ -74,3 +74,10 @@ def page_summary_body():
     * **F1-Score**: Harmonic mean of precision and recall
     * **SMOTE**: Synthetic Minority Oversampling Technique — addresses class imbalance
     """)
+
+    st.markdown(
+        "For a complete overview, please refer to the [Project README](https://github.com/cynthiapinedoh79/digital-marketing-conversion-predictor)."
+    )
+
+
+   
