@@ -186,15 +186,6 @@ def page_predictor_body():
 
         try:
             probability = float(pipeline.predict_proba(input_data)[0][1])
-            
-            st.write("DEBUG probability:", probability)
-
-            if probability < 0.40:
-                bar_color = "#6c757d"
-            elif probability < 0.75:
-                bar_color = "#ffc107"
-            else:
-                bar_color = "#28a745"
 
             st.markdown("---")
             st.subheader("Prediction Result")
@@ -261,6 +252,27 @@ def page_predictor_body():
             </div>
             """, unsafe_allow_html=True)
 
+            # -------------------------------
+            # 🎯 DYNAMIC ACTIONS (PLAYBOOK)
+            # -------------------------------
+
+            actions = []
+
+            if time_on_site < 5:
+                actions.append("Increase engagement through landing page optimisation or better content.")
+
+            if email_clicks == 0:
+                actions.append("Send targeted email campaigns to stimulate interest.")
+
+            if pages_per_visit < 3:
+                actions.append("Improve website navigation or highlight key offers more clearly.")
+
+            if previous_purchases == 0:
+                actions.append("Build trust with testimonials, reviews, or introductory offers.")
+
+            if ctr < 0.05:
+                actions.append("Refine ad creatives or targeting strategy to improve click-through rate.")
+
             # Build dynamic factor list based on actual inputs
             positive_factors = []
             risk_factors = []
@@ -313,10 +325,14 @@ def page_predictor_body():
                 st.markdown("### Recommended Action")
                 st.markdown("""
                 <div style='background-color:#e7f1ff; padding:15px; border-radius:10px;'>
-                Focus on nurturing first. Build trust with educational content, remarketing,
-                or softer follow-up before using a direct conversion-focused approach.
+                Focus on nurturing first. This profile lacks strong engagement signals. 
+                Prioritise trust-building strategies before attempting conversion.
                 </div>
                 """, unsafe_allow_html=True)
+
+                if actions:
+                    for action in actions[:3]:
+                        st.markdown(f"- {action}")
 
             elif probability < 0.75:
                 st.markdown("""
@@ -336,10 +352,14 @@ def page_predictor_body():
                 st.markdown("### Recommended Action")
                 st.markdown("""
                 <div style='background-color:#fff3cd; padding:15px; border-radius:10px;'>
-                Use retargeting, personalised messaging, and stronger value propositions to
-                improve conversion likelihood. This lead is worth following up.
+                This lead shows potential. Reinforce value proposition and remove friction 
+                through personalised messaging or targeted campaigns.
                 </div>
                 """, unsafe_allow_html=True)
+
+                if actions:
+                    for action in actions[:4]:
+                        st.markdown(f"- {action}")
 
             else:
                 st.markdown("""
@@ -356,10 +376,14 @@ def page_predictor_body():
                 st.markdown("### Recommended Action")
                 st.markdown("""
                 <div style='background-color:#d4edda; padding:15px; border-radius:10px;'>
-                Prioritise immediate conversion actions such as direct offers, fast follow-up,
-                and closing strategies. This lead is a strong candidate for immediate outreach.
+                This is a high-value lead. Prioritise immediate conversion actions such as 
+                direct offers, urgency triggers, and fast follow-up.
                 </div>
                 """, unsafe_allow_html=True)
+
+                if actions:
+                    for action in actions[:2]:
+                        st.markdown(f"- {action}")
 
         except Exception as e:
             st.error(f"Prediction failed: {e}")
