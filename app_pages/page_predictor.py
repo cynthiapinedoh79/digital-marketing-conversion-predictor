@@ -22,7 +22,10 @@ def page_predictor_body():
     to receive an instant prediction from the trained ML pipeline.
     """)
 
-    # Small responsive styling for result cards and spacing
+    st.info(
+        "This tool helps prioritise leads based on predicted conversion probability."
+    )
+
     st.markdown("""
     <style>
     .prediction-card {
@@ -183,11 +186,19 @@ def page_predictor_body():
 
         try:
             probability = float(pipeline.predict_proba(input_data)[0][1])
+            
+            st.write("DEBUG probability:", probability)
+
+            if probability < 0.40:
+                bar_color = "#6c757d"
+            elif probability < 0.75:
+                bar_color = "#ffc107"
+            else:
+                bar_color = "#28a745"
 
             st.markdown("---")
             st.subheader("Prediction Result")
 
-            # Equal-width columns are more reliable across tablet sizes
             col_pred, col_prob = st.columns(2)
 
             with col_pred:
@@ -214,15 +225,141 @@ def page_predictor_body():
 
             with col_prob:
                 st.markdown("**Conversion Probability**")
-                st.progress(probability)
+                st.markdown(f"""
+                <div style='
+                    font-size:48px;
+                    font-weight:800;
+                    text-align:center;
+                    margin-bottom:10px;
+                '>
+                    {probability*100:.0f}%
+                </div>
+                """, unsafe_allow_html=True)
+
                 st.markdown(f"**{probability:.1%}** probability")
 
-                if probability >= 0.80:
+                if probability >= 0.75:
                     st.success("High confidence — prioritise this lead.")
-                elif probability >= 0.60:
+                elif probability >= 0.40:
                     st.warning("Moderate confidence — worth following up.")
                 else:
                     st.info("Low probability — consider nurturing first.")
+
+            st.markdown("---")
+            st.markdown("""
+            <div style='
+                background-color:#eef2f7;
+                padding:20px;
+                border-radius:12px;
+                margin-bottom:15px;
+            '>
+                <h4>🧠 Model Insight</h4>
+                <p>
+                    This prediction combines engagement metrics, campaign interaction,
+                    and historical conversion patterns to support data-driven decision-making.
+                </p>
+            </div>
+            """, unsafe_allow_html=True)
+
+            # Build dynamic factor list based on actual inputs
+            positive_factors = []
+            risk_factors = []
+
+            if time_on_site >= 10:
+                positive_factors.append("Higher time on site suggests stronger engagement.")
+            else:
+                risk_factors.append("Lower time on site suggests weaker engagement.")
+
+            if pages_per_visit >= 4:
+                positive_factors.append("More pages per visit indicates deeper exploration of the offer.")
+            else:
+                risk_factors.append("Fewer pages per visit suggests limited exploration.")
+
+            if email_clicks >= 2:
+                positive_factors.append("Email clicks indicate active interest in campaign content.")
+            else:
+                risk_factors.append("Limited email clicks reduce evidence of active campaign interest.")
+
+            if previous_purchases >= 1:
+                positive_factors.append("Previous purchases may reflect existing brand trust.")
+            else:
+                risk_factors.append("No previous purchases means there is less evidence of prior loyalty.")
+
+            if loyalty_points >= 1000:
+                positive_factors.append("Higher loyalty points suggest a stronger brand relationship.")
+
+            if ctr >= 0.10:
+                positive_factors.append("A higher click-through rate reflects stronger campaign responsiveness.")
+            else:
+                risk_factors.append("Lower click-through rate suggests weaker campaign responsiveness.")
+
+            if ad_spend >= 1000:
+                positive_factors.append("Higher ad spend may have increased campaign exposure.")
+
+            # Dynamic interpretation by probability band
+            if probability < 0.40:
+                st.markdown("""
+                This lead shows a **low likelihood of conversion**. The overall profile indicates
+                weaker engagement and lower alignment with the behaviour patterns most commonly
+                associated with converted leads.
+                """)
+
+                st.markdown("### Key Factors Considered")
+                for factor in risk_factors[:4]:
+                    st.markdown(f"- {factor}")
+                if not risk_factors:
+                    st.markdown("- Engagement signals are currently limited or mixed.")
+
+                st.markdown("### Recommended Action")
+                st.markdown("""
+                <div style='background-color:#e7f1ff; padding:15px; border-radius:10px;'>
+                Focus on nurturing first. Build trust with educational content, remarketing,
+                or softer follow-up before using a direct conversion-focused approach.
+                </div>
+                """, unsafe_allow_html=True)
+
+            elif probability < 0.75:
+                st.markdown("""
+                This lead shows a **moderate likelihood of conversion**. There are clear signs
+                of interest, but the profile still shows a mix of encouraging and weaker signals.
+                Conversion may improve with more targeted follow-up.
+                """)
+
+                st.markdown("### Key Factors Considered")
+                shown_factors = positive_factors[:2] + risk_factors[:2]
+                if shown_factors:
+                    for factor in shown_factors:
+                        st.markdown(f"- {factor}")
+                else:
+                    st.markdown("- This lead shows a mixed profile with moderate engagement.")
+
+                st.markdown("### Recommended Action")
+                st.markdown("""
+                <div style='background-color:#fff3cd; padding:15px; border-radius:10px;'>
+                Use retargeting, personalised messaging, and stronger value propositions to
+                improve conversion likelihood. This lead is worth following up.
+                </div>
+                """, unsafe_allow_html=True)
+
+            else:
+                st.markdown("""
+                This lead shows a **high likelihood of conversion**. The profile aligns strongly
+                with engagement and behaviour patterns historically associated with converted leads.
+                """)
+
+                st.markdown("### Key Factors Considered")
+                for factor in positive_factors[:4]:
+                    st.markdown(f"- {factor}")
+                if not positive_factors:
+                    st.markdown("- This lead shows several strong engagement indicators overall.")
+
+                st.markdown("### Recommended Action")
+                st.markdown("""
+                <div style='background-color:#d4edda; padding:15px; border-radius:10px;'>
+                Prioritise immediate conversion actions such as direct offers, fast follow-up,
+                and closing strategies. This lead is a strong candidate for immediate outreach.
+                </div>
+                """, unsafe_allow_html=True)
 
         except Exception as e:
             st.error(f"Prediction failed: {e}")
