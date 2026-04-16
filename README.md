@@ -1,16 +1,43 @@
 # Digital Marketing Conversion Predictor
 
 ## Table of Contents
-1. [Dataset Content](#dataset-content)
-2. [Business Requirements](#business-requirements)
-3. [Hypothesis and Validation](#hypothesis-and-validation)
-4. [Rationale to Map Business Requirements](#rationale-to-map-business-requirements)
-5. [ML Business Case](#ml-business-case)
-6. [Dashboard Design](#dashboard-design)
-7. [Unfixed Bugs](#unfixed-bugs)
-8. [Deployment](#deployment)
-9. [Main Libraries](#main-libraries)
-10. [Credits](#credits)
+
+1. [Project Overview](#project-overview)
+2. [Dataset Content](#dataset-content)
+3. [Business Requirements](#business-requirements)
+4. [Agile Planning](#agile-planning)
+5. [Data Analysis Overview](#data-analysis-overview)
+6. [Feature Engineering](#feature-engineering)
+7. [Hypothesis and Validation](#hypothesis-and-validation)
+8. [Rationale to Map Business Requirements](#rationale-to-map-business-requirements)
+9. [ML Business Case](#ml-business-case)
+10. [Dashboard Design](#dashboard-design)
+11. [Testing](#testing)
+12. [Additional Documentation](#additional-documentation)
+13. [Unfixed Bugs](#unfixed-bugs)
+14. [Deployment](#deployment)
+15. [Main Libraries](#main-libraries)
+16. [Credits](#credits)
+
+---
+
+## Project Overview
+
+ConvertIQ is a digital marketing agency that aims to improve lead conversion rates and optimise campaign performance through data-driven decision making.
+
+This project analyses customer behaviour and marketing campaign data to identify the key factors that influence whether a lead converts. Additionally, a machine learning model is developed to predict conversion likelihood, enabling the business to prioritise high-value leads.
+
+The project combines exploratory data analysis, statistical validation, and predictive modelling to support three main business goals:
+
+- Identify behavioural patterns associated with conversion
+- Predict which leads are most likely to convert
+- Evaluate campaign performance and return on investment (ROI)
+
+The final solution is delivered as an interactive Streamlit dashboard, allowing users to explore insights and generate real-time predictions.
+
+This project demonstrates end-to-end data science workflow, from data analysis to deployment of a machine learning solution.
+
+This project demonstrates how data science and machine learning can be applied to solve real-world business problems and support data-driven decision-making.
 
 ---
 
@@ -42,6 +69,8 @@ Source: [Kaggle](https://www.kaggle.com/datasets/rabieelkharoua/predict-conversi
 | PreviousPurchases | Numeric | Number of prior purchases |
 | LoyaltyPoints | Numeric | Loyalty programme points |
 | **Conversion** | **Target** | **1 = Converted, 0 = Not Converted** |
+
+These variables provide a mix of demographic, behavioural, and campaign-related features, enabling a comprehensive analysis of conversion drivers.
 
 **Note:** `AdvertisingPlatform` and `AdvertisingTool` were dropped —
 both contained only confidential placeholder values with no predictive value.
@@ -76,7 +105,90 @@ categories to support budget allocation decisions.
 
 ---
 
+## Agile Planning
+
+This project was developed using Agile methodology, focusing on iterative development, continuous validation, and alignment with business requirements.
+
+---
+
+### User Stories
+
+- As a marketing analyst, I want to identify which leads are likely to convert so that I can prioritise high-value prospects.
+- As a business stakeholder, I want to understand which campaign attributes influence conversion so that I can optimise marketing strategies.
+- As a decision-maker, I want to evaluate campaign performance metrics so that I can allocate budget efficiently.
+
+---
+
+### Acceptance Criteria
+
+- The application must allow users to input lead and campaign data  
+- The system must return a prediction of conversion likelihood  
+- The dashboard must provide visual insights into customer behaviour and campaign performance  
+- The model performance must be evaluated using appropriate metrics (e.g., accuracy, recall, precision)
+
+---
+
+### Development Tracking
+
+Development progress was managed using GitHub Issues and commits, following an iterative workflow aligned with Agile principles.
+
+Full development tracking:  
+https://github.com/cynthiapinedoh79/digital-marketing-conversion-predictor
+
+---
+
+## Data Analysis Overview
+
+This section summarises the exploratory data analysis performed to understand customer behaviour and campaign performance.
+
+Key steps included:
+- Identifying correlations between behavioural features and conversion
+- Comparing distributions of key variables across converted and non-converted leads
+- Analysing campaign performance across channels and types
+- Validating hypotheses using statistical testing
+
+Detailed analysis and results are presented in the following sections.
+
+### Key Insights
+
+- Engagement features such as **TimeOnSite** and **PagesPerVisit** show the strongest relationship with conversion
+- Campaign channel has no statistically significant impact on conversion outcomes
+- Behavioural metrics outperform financial variables such as AdSpend in predictive power
+- High-engagement users are significantly more likely to convert
+
+These insights directly informed feature selection and model design.
+
+---
+
+## Feature Engineering
+
+The following preprocessing steps were applied:
+
+- Removal of non-informative and confidential variables  
+- Encoding of categorical features using OrdinalEncoder  
+- Handling of missing values  
+- Application of SMOTE to address class imbalance  
+
+These steps improved model performance and ensured better generalisation.
+
+Feature engineering decisions were guided by insights obtained during exploratory data analysis.
+
+Feature engineering was implemented as part of a reusable preprocessing pipeline integrated into the machine learning workflow.
+
+### Summary of Transformations
+
+| Step | Technique | Purpose |
+|------|----------|--------|
+| Cleaning | Remove confidential variables | Avoid data leakage |
+| Encoding | OrdinalEncoder | Convert categorical data |
+| Missing Values | Imputation | Ensure model stability |
+| Class Imbalance | SMOTE | Improve minority class recall |
+
+---
+
 ## Hypothesis and Validation
+
+---
 
 ### Hypothesis 1 — Engagement Depth Predicts Conversion
 
@@ -160,6 +272,8 @@ rather than increasing raw advertising spend.
 ---
 
 ## Rationale to Map Business Requirements
+
+---
 
 ### BR1 — Customer Behaviour Analysis
 
@@ -300,6 +414,14 @@ The model successfully meets the defined business performance thresholds.
 
 ---
 
+### Business Impact
+
+The model enables ConvertIQ to prioritise high-value leads, improving sales efficiency and reducing wasted outreach efforts. By focusing on high-probability conversions, the company can optimise resource allocation and maximise ROI.
+
+This demonstrates how machine learning can directly support strategic decision-making and deliver measurable business value.
+
+---
+
 ### Model Evaluation
 
 - Strong performance in identifying converting leads (high recall)  
@@ -310,15 +432,25 @@ The model successfully meets the defined business performance thresholds.
 
 ### Limitations
 
-- **Moderate overfitting:**  
+**Model-related limitations:**
+
+- Moderate overfitting:  
   Training accuracy exceeds test accuracy, indicating some loss of generalisation  
 
-- **Minority class performance:**  
+- Minority class performance:  
   Recall for non-converted leads = 0.4646  
-  This reflects the challenge of class imbalance  
 
-- **Model sensitivity:**  
+- Model sensitivity:  
   Performance may vary depending on threshold selection  
+
+**Data-related limitations:**
+
+- Model performance depends on dataset quality and feature representativeness  
+- Synthetic data (SMOTE) may introduce bias and affect generalisation  
+
+**Deployment limitations:**
+
+- Real-world performance may vary due to unseen data patterns and distribution shifts   
 
 ---
 
@@ -348,6 +480,14 @@ The model successfully meets the defined business performance thresholds.
 The Streamlit dashboard is structured into six interactive pages,
 each designed to address a specific business requirement and guide
 the user from data exploration to actionable insights.
+
+---
+
+### Dashboard Preview
+
+![Project Summary](docs/screenshots/dashboard/page_summary.png)
+![Behaviour Analysis](docs/screenshots/dashboard/page_analysis.png)
+![Prediction Page](docs/screenshots/dashboard/page_predictor.png)
 
 ---
 
@@ -456,6 +596,157 @@ are supported by statistical evidence rather than assumptions.
 
 ---
 
+## Testing
+
+Testing was conducted throughout the development of this project to ensure reliability, correctness, and alignment with business requirements.
+
+---
+
+### Automated Testing
+
+Automated unit tests were not required for this project, as reliability is ensured through model validation and evaluation techniques.
+
+---
+
+### Manual Testing
+
+The application was manually tested across all dashboard pages to validate functionality and user interaction.
+
+| Feature | Test Case | Expected Outcome | Result |
+|--------|----------|----------------|--------|
+| Navigation | Select each page from sidebar | Correct page loads | ✅ Pass |
+| Project Summary | Click README link | Opens GitHub repository | ✅ Pass |
+| Behaviour Analysis | Select different features | Plots update correctly | ✅ Pass |
+| Conversion Predictor | Input valid data | Prediction returned | ✅ Pass |
+| Conversion Predictor | Input extreme values | Model still returns prediction | ✅ Pass |
+| Model Performance | Load page | Metrics and plots display correctly | ✅ Pass |
+| ROI Analysis | Filter data | Charts update dynamically | ✅ Pass |
+
+---
+
+### Model Testing
+
+The machine learning model was evaluated using a hold-out test set.
+
+| Metric | Result |
+|-------|--------|
+| Recall (Converted) | 0.8395 |
+| F1-score (Converted) | 0.8767 |
+| ROC-AUC | 0.7339 |
+
+**Interpretation:**
+- The model meets the defined success criteria (Recall ≥ 0.75, F1 ≥ 0.80)
+- Strong performance in identifying converting leads
+- Lower recall for non-converted class due to class imbalance
+
+---
+
+### Data Validation
+
+- Checked for missing values and handled appropriately  
+- Verified correct data types for all features  
+- Removed or excluded irrelevant/confidential columns  
+- Validated feature distributions before modelling  
+
+---
+
+### Browser Testing
+
+The application was tested in:
+
+- Google Chrome  
+- Microsoft Edge  
+
+All core functionalities worked as expected.
+
+---
+
+### Responsiveness
+
+The dashboard layout was tested on different screen sizes.  
+Streamlit’s responsive design ensured usability across devices.
+
+---
+
+### Edge Case Testing
+
+| Scenario | Expected Behaviour | Result |
+|----------|------------------|--------|
+| Missing inputs | Validation message shown | ✅ Pass |
+| Extremely high values | Model still predicts | ✅ Pass |
+| Invalid categorical values | Handled safely | ✅ Pass |
+
+---
+
+### Bugs and Fixes
+
+All identified bugs were addressed where possible.  
+Remaining issues are documented in the **Unfixed Bugs** section.
+
+---
+
+
+## 📎 Additional Documentation
+
+---
+
+### Project Structure
+
+The project follows a clear and organised folder structure to separate application logic, data analysis, outputs, and documentation:
+
+project-root/
+│
+├── app.py
+├── app_pages/
+├── jupyter_notebooks/
+├── inputs/
+├── outputs/
+├── src/
+│
+├── docs/
+│   └── screenshots/
+│       ├── dashboard/
+│       ├── python-linter/
+│       └── testing/
+│
+├── .devcontainer/
+├── .ona/
+├── .venv/              (not committed)
+├── .env                (not committed)
+│
+├── .gitignore
+├── .python-version
+├── requirements.txt
+├── requirements-dev.txt
+├── kaggle.json         (not committed)
+├── README.md
+
+This structure ensures clear separation between data processing, model development, application logic, and documentation, improving maintainability and scalability.
+
+---
+
+### Code Validation
+
+All Python files in this project were rigorously validated using the  
+Code Institute Python Linter:
+
+https://pep8ci.herokuapp.com/
+
+Each file was checked to ensure full compliance with PEP8 standards, improving code readability, consistency, and maintainability.
+
+Screenshots of the validation results are available in the `docs/screenshots/python-linter/` folder.
+
+![Python Linter Validation](docs/screenshots/python-linter/page_summary.png)
+
+**Results:**
+- No major errors detected  
+- Minor warnings (e.g., line length) were resolved where possible  
+- Code follows best practices for readability and structure  
+
+This validation process ensures a clean, professional, and maintainable codebase aligned with industry standards.
+
+---
+
 ## Unfixed Bugs
 
 - **Matplotlib / Seaborn compatibility (Python 3.14):**  
@@ -480,12 +771,27 @@ are supported by statistical evidence rather than assumptions.
 
   ```python
   warnings.filterwarnings("ignore")
+  ```
 
 ---
 
 ## Deployment
 
 The app is deployed to **Heroku** using the following configuration:
+
+---
+
+### Environment Variables
+
+No sensitive data is stored in the repository.
+
+Environment variables are used for:
+- API keys (if applicable)
+- Configuration settings
+
+These are managed securely via Heroku Config Vars.
+
+---
 
 ### Files required for deployment
 - `Procfile` — defines the web process:
@@ -494,6 +800,8 @@ The app is deployed to **Heroku** using the following configuration:
 - `.python-version` — specifies Python version: `3.12`
 - `requirements.txt` — lists all production dependencies
 
+---
+
 ### Deployment steps
 1. Create a new app on [Heroku](https://heroku.com)
 2. Connect the GitHub repository to the Heroku app
@@ -501,8 +809,19 @@ The app is deployed to **Heroku** using the following configuration:
 4. Set Heroku stack to `heroku-22`
 5. Trigger a manual deploy
 
-### Live app
-*[Add your Heroku URL here after deployment]*
+---
+
+### Live App
+<!-- [View Live Application](https://tu-app.herokuapp.com) -->
+sed -i 's|https://tu-app.herokuapp.com|*[Add Heroku URL after deployment]*|' README.md
+
+---
+
+### Notes
+
+- The app is deployed using a production-ready environment
+- All dependencies are defined in requirements.txt
+- The app has been tested after deployment to ensure full functionality
 
 ---
 
@@ -527,18 +846,26 @@ The app is deployed to **Heroku** using the following configuration:
 
 ## Credits
 
+---
+
 ### Data Sources
 - Dataset 1: [Rabie El Kharoua on Kaggle](https://www.kaggle.com/datasets/rabieelkharoua/predict-conversion-in-digital-marketing-dataset)
-- Dataset 2: [sinderpreet on Kaggle](https://www.kaggle.com/datasets/sinderpreet/analyze-the-marketing-spending)
+- Dataset 2: [Sinderpreet on Kaggle](https://www.kaggle.com/datasets/sinderpreet/analyze-the-marketing-spending)
+
+---
 
 ### Code References
-- Project structure inspired by Code Institute Predictive Analytics
-  walkthroughs: Malaria Detector and Churnometer
-- Streamlit MultiPage class pattern adapted from Code Institute
-  Churnometer walkthrough project
+- Project structure inspired by Code Institute Predictive Analytics walkthroughs:
+  - Malaria Detector  
+  - Churnometer  
+- Streamlit MultiPage class pattern adapted from the Churnometer project
 
-### Tools
-- [Streamlit](https://streamlit.io) — dashboard framework
-- [Scikit-learn](https://scikit-learn.org) — machine learning
-- [Plotly](https://plotly.com) — interactive visualisations
+---
+
+### Tools & Technologies
+- [Streamlit](https://streamlit.io) — dashboard framework  
+- [Scikit-learn](https://scikit-learn.org) — machine learning  
+- [Plotly](https://plotly.com) — interactive visualisations  
 - [Heroku](https://heroku.com) — cloud deployment
+
+---
