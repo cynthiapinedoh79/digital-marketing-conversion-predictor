@@ -359,7 +359,11 @@ def page_predictor_body():
                 </div>
                 """, unsafe_allow_html=True)
 
-                st.markdown("#### 🎯 Suggested Next Best Actions")
+                st.markdown("""
+                <div style='margin-top:25px;'>
+                    <h4>🎯 Suggested Next Best Actions</h4>
+                </div>
+                """, unsafe_allow_html=True)
 
                 if actions:
                     for action in actions[:3]:
@@ -390,7 +394,11 @@ def page_predictor_body():
                 </div>
                 """, unsafe_allow_html=True)
 
-                st.markdown("#### 🎯 Suggested Next Best Actions")
+                st.markdown("""
+                <div style='margin-top:25px;'>
+                    <h4>🎯 Suggested Next Best Actions</h4>
+                </div>
+                """, unsafe_allow_html=True)
 
                 if actions:
                     for action in actions[:3]:
@@ -418,7 +426,11 @@ def page_predictor_body():
                 </div>
                 """, unsafe_allow_html=True)
 
-                st.markdown("#### 🎯 Suggested Next Best Actions")
+                st.markdown("""
+                <div style='margin-top:25px;'>
+                    <h4>🎯 Suggested Next Best Actions</h4>
+                </div>
+                """, unsafe_allow_html=True)
 
                 if actions:
                     for action in actions[:2]:
