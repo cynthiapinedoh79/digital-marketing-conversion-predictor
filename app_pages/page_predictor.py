@@ -165,7 +165,7 @@ def page_predictor_body():
 
     st.markdown("---")
 
-    if st.button("Predict Conversion", type="primary", use_container_width=True):
+    if st.button("🚀 Predict Conversion", type="primary", use_container_width=True):
         input_data = pd.DataFrame({
             "Age": [age],
             "Gender": [gender],
@@ -188,7 +188,7 @@ def page_predictor_body():
             probability = float(pipeline.predict_proba(input_data)[0][1])
 
             st.markdown("---")
-            st.subheader("Prediction Result")
+            st.subheader(" 📊 Prediction Result")
 
             col_pred, col_prob = st.columns(2)
 
@@ -287,20 +287,23 @@ def page_predictor_body():
 
             actions = []
 
-            if time_on_site < 5:
-                actions.append("Increase engagement through landing page optimisation or better content.")
+            # Solo generar acciones si hay señales débiles
+            if probability < 0.75:
 
-            if email_clicks == 0:
-                actions.append("Send targeted email campaigns to stimulate interest.")
+                if time_on_site < 5:
+                    actions.append("Increase engagement through landing page optimisation or better content.")
 
-            if pages_per_visit < 3:
-                actions.append("Improve website navigation or highlight key offers more clearly.")
+                if email_clicks == 0:
+                    actions.append("Send targeted email campaigns to stimulate interest.")
 
-            if previous_purchases == 0:
-                actions.append("Build trust with testimonials, reviews, or introductory offers.")
+                if pages_per_visit < 3:
+                    actions.append("Improve website navigation or highlight key offers more clearly.")
 
-            if ctr < 0.05:
-                actions.append("Refine ad creatives or targeting strategy to improve click-through rate.")
+                if previous_purchases == 0:
+                    actions.append("Build trust with testimonials, reviews, or introductory offers.")
+
+                if ctr < 0.05:
+                    actions.append("Refine ad creatives or targeting strategy to improve click-through rate.")
 
             # Build dynamic factor list based on actual inputs
             positive_factors = []
@@ -359,17 +362,15 @@ def page_predictor_body():
                 </div>
                 """, unsafe_allow_html=True)
 
-                st.markdown("""
-                <div style='margin-top:25px;'>
-                    <h4>🎯 Suggested Next Best Actions</h4>
-                </div>
-                """, unsafe_allow_html=True)
-
                 if actions:
+
+                    st.markdown("""
+                    <div style='margin-top:40px;'>
+                        <h4 style='margin-bottom:10px; font-weight:700;'>🎯 Suggested Next Best Actions</h4>
+                    </div>
+                    """, unsafe_allow_html=True)
                     for action in actions[:3]:
                         st.markdown(f"- {action}")
-                else:
-                    st.markdown("- No immediate corrective action is needed. Maintain the current conversion strategy.")
 
             elif probability < 0.75:
                 st.markdown("""
@@ -394,17 +395,16 @@ def page_predictor_body():
                 </div>
                 """, unsafe_allow_html=True)
 
-                st.markdown("""
-                <div style='margin-top:25px;'>
-                    <h4>🎯 Suggested Next Best Actions</h4>
-                </div>
-                """, unsafe_allow_html=True)
-
                 if actions:
+
+                    st.markdown("""
+                    <div style='margin-top:40px;'>
+                        <h4 style='margin-bottom:10px; font-weight:700;'>🎯 Suggested Next Best Actions</h4>
+                    </div>
+                    """, unsafe_allow_html=True)
+
                     for action in actions[:3]:
                         st.markdown(f"- {action}")
-                else:
-                    st.markdown("- No immediate corrective action is needed. Maintain the current conversion strategy.")
 
             else:
                 st.markdown("""
@@ -426,17 +426,16 @@ def page_predictor_body():
                 </div>
                 """, unsafe_allow_html=True)
 
-                st.markdown("""
-                <div style='margin-top:25px;'>
-                    <h4>🎯 Suggested Next Best Actions</h4>
-                </div>
-                """, unsafe_allow_html=True)
-
                 if actions:
-                    for action in actions[:2]:
+
+                    st.markdown("""
+                    <div style='margin-top:40px;'>
+                        <h4 style='margin-bottom:10px; font-weight:700;'>🎯 Suggested Next Best Actions</h4>
+                    </div>
+                    """, unsafe_allow_html=True)
+
+                    for action in actions[:3]:
                         st.markdown(f"- {action}")
-                else:
-                    st.markdown("- No immediate corrective action is needed. Maintain the current conversion strategy.")
 
         except Exception as e:
             st.error(f"Prediction failed: {e}")
