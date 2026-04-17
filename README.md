@@ -630,10 +630,6 @@ the user from data exploration to actionable insights.
 
 ### Dashboard Preview
 
-![Project Summary](docs/screenshots/dashboard/page_summary.png)
-![Behaviour Analysis](docs/screenshots/dashboard/page_analysis.png)
-![Prediction Page](docs/screenshots/dashboard/page_predictor.png)
-
 ---
 
 ### Page 1 — Project Summary
@@ -643,6 +639,12 @@ the user from data exploration to actionable insights.
 - Displays dataset description with an expandable variable table
 - Defines key terminology (Conversion, CTR, ROI, Recall, F1-score)
 - Includes links to original data sources
+
+![Project Summary](docs/screenshots/dashboard/ps-web1.png)
+![Project Summary](docs/screenshots/dashboard/ps-web2.png)
+![Project Summary](docs/screenshots/dashboard/ps-web2a.png)
+![Project Summary](docs/screenshots/dashboard/ps-web2b.png)
+![Project Summary](docs/screenshots/dashboard/ps-web3.png)
 
 **Business Value:**  
 Establishes context and ensures users understand the problem,
@@ -660,6 +662,11 @@ data, and objectives before interacting with the analysis.
 - Interactive feature selection for exploratory analysis
 - Written interpretation provided for each visualisation
 
+![Customer Behaviour Analysis](docs/screenshots/dashboard/cba-web1.png)
+![Customer Behaviour Analysis](docs/screenshots/dashboard/cba-web2.png)
+![Customer Behaviour Analysis](docs/screenshots/dashboard/cba-web3.png)
+![Customer Behaviour Analysis](docs/screenshots/dashboard/cba-web4.png)
+
 **Business Value:**  
 Enables identification of key behavioural drivers of conversion,
 supporting data-driven targeting and campaign optimisation.
@@ -676,6 +683,12 @@ supporting data-driven targeting and campaign optimisation.
   - Probability score displayed via progress bar
 - Dynamic interpretation message based on prediction confidence
 - Explanation of how the model supports decision-making
+
+![Conversion Predictor](docs/screenshots/dashboard/cp-web1.png)
+![Conversion Predictor](docs/screenshots/dashboard/cp-web2.png)
+![Conversion Predictor](docs/screenshots/dashboard/cp-web3.png)
+![Conversion Predictor](docs/screenshots/dashboard/cp-web4.png)
+![Conversion Predictor](docs/screenshots/dashboard/cp-web5.png)
 
 **Business Value:**  
 Allows the sales team to prioritise leads in real time,
@@ -697,6 +710,11 @@ improving efficiency and increasing conversion rates.
 - Hyperparameter tuning summary
 - Clear explanation of model limitations
 
+![Model Performance](docs/screenshots/dashboard/mp-web1.png)
+![Model Performance](docs/screenshots/dashboard/mp-web2.png)
+![Model Performance](docs/screenshots/dashboard/mp-web3.png)
+![Model Performance](docs/screenshots/dashboard/mp-web4.png)
+
 **Business Value:**  
 Builds trust in the model by providing transparency,
 validation, and clear communication of strengths and limitations.
@@ -706,15 +724,15 @@ validation, and clear communication of strengths and limitations.
 ### Page 5 — Campaign ROI Analysis
 
 - Addresses **BR3 — Campaign ROI Intelligence**
-- Summary KPIs:
-  - Total spend
-  - Total revenue
-  - ROI
-  - Number of orders
+- Summary KPIs: Total spend, Total revenue, ROI, Number of orders
 - Scatter plot: marketing spend vs revenue by campaign category
 - Bar chart: average ROI per category
-- Line chart: monthly revenue trends with interactive filters
+- Daily revenue trend with interactive filters
 - Written insights and budget optimisation recommendations
+
+![Campaign ROI Analysis](docs/screenshots/dashboard/cROIa-web1.png)
+![Campaign ROI Analysis](docs/screenshots/dashboard/cROIa-web2.png)
+![Campaign ROI Analysis](docs/screenshots/dashboard/cROIa-web3.png)
 
 **Business Value:**  
 Supports strategic decision-making by identifying
@@ -728,12 +746,13 @@ which campaigns deliver the highest return on investment.
 - Clearly defined hypotheses with corresponding validation methods
 - Statistical results displayed (correlations, p-values, chi-square)
 - Each hypothesis confirmed or rejected with evidence
-- Visual support:
-  - Violin plots (H1)
-  - Bar charts (H2)
-  - Correlation comparison (H3)
 - Summary table consolidating findings
 - Business recommendations derived from each result
+
+![Project Hypotheses](docs/screenshots/dashboard/ph-web1.png)
+![Project Hypotheses](docs/screenshots/dashboard/ph-web2.png)
+![Project Hypotheses](docs/screenshots/dashboard/ph-web3.png)
+
 
 **Business Value:**  
 Demonstrates analytical rigour and ensures that conclusions
@@ -814,7 +833,7 @@ The application was tested using Google Lighthouse on Desktop mode.
 
 | Category | Score |
 |---|---|
-| Performance | 81 |
+| Performance | 83 |
 | Accessibility | 88 |
 | Best Practices | 100 |
 | SEO | 82 |
