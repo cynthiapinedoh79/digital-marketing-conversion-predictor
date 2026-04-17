@@ -188,6 +188,9 @@ These variables provide a mix of demographic, behavioural, and campaign-related 
 both contained only confidential placeholder values with no predictive value.
 `ConversionRate` was dropped to prevent data leakage.
 
+**Important note on engagement variables:**  
+Metrics such as `EmailOpens`, `EmailClicks`, and `WebsiteVisits` are recorded as cumulative values per lead in the source dataset. The dataset does not define a fixed time window (e.g. daily, weekly, or monthly). For business interpretation, these variables should therefore be understood as lead-level engagement summaries across the campaign journey. In practice, they are best used within a consistent operational timeframe, such as the first 2–4 weeks after lead acquisition.
+
 **Dataset 2 — Digital Marketing KPIs**
 Source: [Kaggle](https://www.kaggle.com/datasets/sinderpreet/analyze-the-marketing-spending)
 - 308 rows and 11 columns (13 after cleaning)

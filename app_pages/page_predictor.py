@@ -14,21 +14,22 @@ def load_pipeline():
 
 
 def page_predictor_body():
-    st.title("Conversion Predictor")
+    st.markdown("# Conversion Predictor")
     st.subheader("Business Requirement 2 — Will this lead convert?")
 
-    st.markdown("""
-    Enter the profile of a lead below and click **Predict Conversion**
-    to receive an instant prediction from the trained ML pipeline.
-    """)
+    st.markdown("Enter lead details and click **Predict Conversion** to estimate conversion probability.")
+    st.caption("Supports data-driven decision making in marketing campaigns.")
 
-    st.info("""
-    This tool helps prioritise leads based on predicted conversion probability.
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.info("Prioritise leads by predicting conversion probability based on engagement and campaign data.")
 
-    **Note on input values:** Engagement metrics such as Email Opens, Email Clicks
-    and Website Visits represent cumulative counts per lead as recorded in the
-    campaign dataset. They do not correspond to a specific time window but reflect
-    the overall engagement level of each lead across their campaign exposure.
+    with st.expander("ℹ️ How to interpret input values"):
+        st.markdown("""
+    **Engagement metrics** (Email Opens, Clicks, Website Visits) represent cumulative interactions per lead.
+
+    These values are not tied to a fixed timeframe. Instead, they reflect engagement across the typical lifecycle of a lead.
+
+    **Business tip:** Compare leads within a consistent campaign window (e.g. first 2–4 weeks).
     """)
 
     st.markdown("""
@@ -74,12 +75,15 @@ def page_predictor_body():
         return
 
     st.markdown("---")
-    st.subheader("Lead Profile Input")
+    st.markdown("## 🧾 Lead Profile Input")
+
+    st.caption("📊 Inputs represent cumulative engagement per lead across a typical campaign cycle.")
+    st.caption("💡 Compare leads using consistent campaign stages (e.g. first 2–4 weeks).")
 
     col1, col2, col3 = st.columns(3)
 
     with col1:
-        st.markdown("**Demographics**")
+        st.markdown("#### 👤 Demographics")
         age = st.slider("Age", min_value=18, max_value=70, value=35)
         gender = st.selectbox("Gender", options=["Female", "Male"])
         income = st.slider(
@@ -91,7 +95,7 @@ def page_predictor_body():
         )
 
     with col2:
-        st.markdown("**Campaign Details**")
+        st.markdown("#### 📈 Campaign Details")
         campaign_channel = st.selectbox(
             "Campaign Channel",
             options=["Email", "SEO", "PPC", "Social Media", "Referral"],
@@ -116,7 +120,7 @@ def page_predictor_body():
         )
 
     with col3:
-        st.markdown("**Engagement Metrics**")
+        st.markdown("#### 📊 Engagement Metrics")
         website_visits = st.slider(
             "Website Visits",
             min_value=0,
@@ -220,34 +224,62 @@ def page_predictor_body():
                     )
 
             with col_prob:
-                st.markdown("**Conversion Probability**")
+  
+                st.markdown("#### Conversion Probability")
 
-                score_color = "#198754" if probability >= 0.75 else "#b8860b" if probability >= 0.40 else "#5a6268"
+                percentage = probability * 100
+
+                if probability >= 0.75:
+                    score_color = "#198754"
+                    likelihood_label = "🟢 High likelihood to convert"
+                    lead_label = "🔥 High-Value Lead"
+                    lead_bg = "#d4edda"
+                elif probability >= 0.40:
+                    score_color = "#b8860b"
+                    likelihood_label = "🟡 Moderate likelihood to convert"
+                    lead_label = "⚡ Potential Lead"
+                    lead_bg = "#fff3cd"
+                else:
+                    score_color = "#dc3545"
+                    likelihood_label = "🔴 Low likelihood to convert"
+                    lead_label = "🧊 Cold Lead"
+                    lead_bg = "#e2e3e5"
 
                 st.markdown(f"""
                 <div style='
-                    font-size:48px;
+                    font-size:52px;
                     font-weight:800;
                     text-align:center;
-                    margin-bottom:10px;
+                    margin-bottom:6px;
                     color:{score_color};
                 '>
-                    {probability*100:.0f}%
+                    {percentage:.0f}%
                 </div>
                 """, unsafe_allow_html=True)
 
-                st.markdown(f"**{probability:.1%}** probability")
+                st.markdown(f"""
+                <div style="
+                    width:100%;
+                    background-color:#e9ecef;
+                    border-radius:10px;
+                    height:14px;
+                    margin:6px 0 12px 0;
+                ">
+                    <div style="
+                        width:{percentage}%;
+                        background-color:{score_color};
+                        height:14px;
+                        border-radius:10px;
+                        transition: width 0.5s ease-in-out;
+                        box-shadow: 0 0 8px {score_color};
+                    "></div>
+                </div>
+                """, unsafe_allow_html=True)
+                st.markdown("<div style='margin-bottom:10px;'></div>", unsafe_allow_html=True)
 
-                lead_label = (
-                    "🔥 High-Value Lead" if probability >= 0.75
-                    else "⚡ Potential Lead" if probability >= 0.40
-                    else "🧊 Cold Lead"
-                )
-
-                lead_bg = (
-                    "#d4edda" if probability >= 0.75
-                    else "#fff3cd" if probability >= 0.40
-                    else "#e2e3e5"
+                st.markdown(
+                    f"<div style='text-align:center; font-size:20px; font-weight:700; color:{score_color}; margin-bottom:12px;'>{likelihood_label}</div>",
+                    unsafe_allow_html=True,
                 )
 
                 st.markdown(f"""
@@ -255,21 +287,27 @@ def page_predictor_body():
                     background-color:{lead_bg};
                     padding:8px 14px;
                     border-radius:20px;
-                    display:inline-block;
-                    font-weight:600;
+                    display:block;
+                    width:fit-content;
                     margin:0 auto 14px auto;
+                    font-weight:600;
                 '>
                     {lead_label}
                 </div>
                 """, unsafe_allow_html=True)
-
-                if probability >= 0.75:
-                    st.success("High confidence — prioritise this lead.")
-                elif probability >= 0.40:
-                    st.warning("Moderate confidence — worth following up.")
-                else:
-                    st.info("Low probability — consider nurturing first.")
-
+            
+                st.markdown(f"""
+                <div style="
+                    text-align:center;
+                    font-size:14px;
+                    color:gray;
+                    margin-top:4px;
+                    margin-bottom:20px;
+                ">
+                    {probability:.2%} probability
+                </div>
+                """, unsafe_allow_html=True)
+                
             st.markdown("""
             <div style='
                 background-color:#eef2f7;
