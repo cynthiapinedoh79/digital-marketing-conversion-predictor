@@ -3,7 +3,8 @@
 **Live Application:** https://digital-marketing-conversion-p-baa19eafc972.herokuapp.com/
 
 This project is a **Data Analytics and Machine Learning application**
-developed to support data-driven decision-making in digital marketing.
+designed to support data-driven decision-making in digital marketing,
+helping businesses identify high-value leads and optimise campaign ROI.
 
 The application analyses customer behaviour and campaign data to identify
 conversion patterns and predict which leads are most likely to convert.
@@ -16,16 +17,32 @@ machine learning model deployed through an interactive Streamlit dashboard.
 ## 🚀 Key Features
 
 - 📈 **Customer Behaviour Analysis:**  
-  Identify patterns and correlations between user engagement and conversion  
+  Identify behavioural patterns and correlations associated with conversion
 
 - 🤖 **Conversion Prediction Model:**  
-  Predict conversion likelihood using a trained ML pipeline  
+  Predict conversion likelihood using a trained Random Forest pipeline to prioritise high-value leads
 
 - 💰 **Campaign ROI Analysis:**  
-  Evaluate marketing performance and optimise budget allocation  
+  Evaluate marketing efficiency and support budget allocation decisions
+
+- 📱 **Social Media Platform Insight:**  
+  Compare platform-level performance within social media campaigns using KPI data
 
 - 📊 **Interactive Dashboard:**  
-  Real-time insights and predictions via Streamlit  
+  Explore real-time insights and predictions through a Streamlit interface
+
+---
+
+## 🚀 How to Use
+
+1. Open the live application or run the app locally
+2. Navigate through the dashboard pages using the sidebar
+3. Review customer behaviour and campaign ROI insights
+4. Use the Conversion Predictor to input a lead profile
+5. Generate a prediction and review the recommended business actions
+6. Use the model performance and hypothesis pages to understand the reliability of the analysis
+
+The dashboard is designed to be intuitive and accessible for both technical and non-technical users.
 
 ---
 
@@ -43,28 +60,27 @@ machine learning model deployed through an interactive Streamlit dashboard.
 ## Table of Contents
 
 1. [Project Overview](#project-overview)
-2. [Dataset Content](#dataset-content)
-3. [Business Requirements](#business-requirements)
-4. [Agile Planning](#agile-planning)
-5. [Data Analysis Overview](#data-analysis-overview)
-6. [Feature Engineering](#feature-engineering)
-7. [Hypothesis and Validation](#hypothesis-and-validation)
-8. [Rationale to Map Business Requirements](#rationale-to-map-business-requirements)
-9. [ML Business Case](#ml-business-case)
-10. [Ethical Considerations](#ethical-considerations)
-11. [Limitations](#limitations)
-12. [Dashboard Design](#dashboard-design)
-13. [Testing](#testing)
-14. [Additional Documentation](#additional-documentation)
-15. [Unfixed Bugs](#unfixed-bugs)
-16. [Deployment](#deployment)
-17. [Main Libraries](#main-libraries)
-18. [Credits](#credits)
-19. [Acknowledgements](#acknowledgements)
+2. [Target Users](#target-users)
+3. [Dataset Content](#dataset-content)
+4. [Business Requirements](#business-requirements)
+5. [Agile Planning](#agile-planning)
+6. [Data Analysis Overview](#data-analysis-overview)
+7. [Feature Engineering](#feature-engineering)
+8. [Hypothesis and Validation](#hypothesis-and-validation)
+9. [Rationale to Map Business Requirements](#rationale-to-map-business-requirements)
+10. [ML Business Case](#ml-business-case)
+11. [Ethical Considerations](#ethical-considerations)
+12. [Limitations](#limitations)
+13. [Dashboard Design](#dashboard-design)
+14. [Testing](#testing)
+15. [Additional Documentation](#additional-documentation)
+16. [Unfixed Bugs](#unfixed-bugs)
+17. [Deployment](#deployment)
+18. [Main Libraries](#main-libraries)
+19. [Credits](#credits)
+20. [Acknowledgements](#acknowledgements)
 
 ---
-
-## Project Overview
 
 ## Project Overview
 
@@ -117,7 +133,27 @@ The final solution is delivered as an interactive Streamlit dashboard, enabling 
 
 ---
 
+## Target Users
+
+This application is designed for:
+
+- Digital marketing analysts seeking data-driven insights
+- Marketing managers optimising campaign budgets
+- Sales teams prioritising high-value leads
+- Business stakeholders interested in ROI and conversion performance
+
+The tool supports both technical and non-technical users by combining
+historical analysis, machine learning predictions, and actionable business insights.
+
+---
+
 ## Dataset Content
+
+These datasets allow the project to combine predictive analytics with business performance evaluation.
+
+This project combines two complementary datasets: one for conversion modelling
+and customer behaviour analysis, and a second one for campaign ROI and platform-level KPI evaluation.
+Together, they support both predictive modelling and business decision-making.
 
 The project uses two datasets sourced from Kaggle:
 
@@ -392,6 +428,16 @@ rather than increasing raw advertising spend.
 
 ---
 
+### Business Requirements Mapping
+
+| Business Requirement | Feature | Outcome |
+|---------------------|--------|--------|
+| BR1 | Customer Behaviour Analysis | Identify key conversion drivers |
+| BR2 | Conversion Predictor | Prioritise high-value leads |
+| BR3 | ROI Analysis Dashboard | Optimise budget allocation |
+
+---
+
 ### BR1 — Customer Behaviour Analysis
 
 **User Story:**  
@@ -628,10 +674,6 @@ the user from data exploration to actionable insights.
 
 ---
 
-### Dashboard Preview
-
----
-
 ### Page 1 — Project Summary
 
 - Provides an overview of the project and business context (ConvertIQ agency)
@@ -786,6 +828,9 @@ The application was manually tested across all dashboard pages to validate funct
 | Model Performance | Load page | Metrics and plots display correctly | ✅ Pass |
 | ROI Analysis | Filter data | Charts update dynamically | ✅ Pass |
 
+All features were tested against the defined business requirements (BR1, BR2, BR3)
+to ensure full alignment between functionality and business objectives.
+
 ---
 
 ### Model Testing
@@ -931,28 +976,54 @@ project-root/
 │
 ├── app.py
 ├── app_pages/
+│   ├── multipage.py
+│   ├── page_summary.py
+│   ├── page_data_analysis.py
+│   ├── page_predictor.py
+│   ├── page_model_performance.py
+│   ├── page_roi_analysis.py
+│   └── page_hypothesis.py
+│
 ├── jupyter_notebooks/
+│   ├── 01_DataCollection.ipynb
+│   ├── 02_DataAnalysis.ipynb
+│   ├── 03_DataCleaning.ipynb
+│   ├── 04_FeatureEngineering.ipynb
+│   └── 05_Modelling.ipynb
+│
 ├── inputs/
+│   └── datasets/
+│       ├── raw/
+│       ├── cleaned/
+│       └── featured/
+│
 ├── outputs/
+│   └── ml_pipeline/
+│       └── v1/
+│
 ├── src/
 │
 ├── docs/
 │   └── screenshots/
 │       ├── dashboard/
 │       ├── python-linter/
+│       │   └── app_pages/
+│       ├── jsHint/
+│       ├── lighthouse/
 │       └── testing/
 │
 ├── .devcontainer/
-├── .ona/
 ├── .venv/              (not committed)
-├── .env                (not committed - contains sensitive credentials)
+├── .env                (not committed)
 │
 ├── .gitignore
 ├── .python-version
 ├── requirements.txt
 ├── requirements-dev.txt
 ├── kaggle.json         (not committed)
-├── README.md
+├── Procfile
+├── setup.sh
+└── README.md
 ```
 
 This structure ensures clear separation between data processing, model development, application logic, and documentation, improving maintainability and scalability.
@@ -961,29 +1032,73 @@ This structure ensures clear separation between data processing, model developme
 
 ### Code Validation
 
-All Python files in this project were rigorously validated using the  
-Code Institute Python Linter:
+#### Python — PEP8
 
+All Python files were validated using the Code Institute Python Linter:
 https://pep8ci.herokuapp.com/
 
-Each file was checked to ensure full compliance with PEP8 standards, improving code readability, consistency, and maintainability.
+**`app.py`** — Main Streamlit entry point. Initialises the multipage app and registers all pages.
+![app.py](docs/screenshots/python-linter/pl-app.py.png)
 
-Screenshots of the validation results are available in the `docs/screenshots/python-linter/` folder.
+**`multipage.py`** — Multipage class that handles page registration and navigation.
+![multipage.py](docs/screenshots/python-linter/app_pages/pl-multipage.py.png)
 
-![Python Linter Validation](docs/screenshots/python-linter/page_summary.png)
+**`page_summary.py`** — Project Summary page. Displays business context, dataset descriptions, key terms and business conclusions.
+![page_summary.py](docs/screenshots/python-linter/app_pages/pl-page_summary.py.png)
 
-**Results:**
-- No major errors detected  
-- Minor warnings (e.g., line length) were resolved where possible  
-- Code follows best practices for readability and structure  
+**`page_data_analysis.py`** — Customer Behaviour Analysis page. Displays correlation heatmap, box plots, scatter plot and conversion rate charts (BR1).
+![page_data_analysis.py](docs/screenshots/python-linter/app_pages/pl-page_data_analysis.py.png)
 
-This validation process ensures a clean, professional, and maintainable codebase aligned with industry standards.
+**`page_predictor.py`** — Conversion Predictor page. Loads the trained ML pipeline and returns real-time conversion predictions with probability scores (BR2).
+![page_predictor.py](docs/screenshots/python-linter/app_pages/pl-page_predictor.py.png)
+
+**`page_model_performance.py`** — Model Performance page. Displays confusion matrices, ROC curve, feature importance and hyperparameter tuning summary (BR2).
+![page_model_performance.py](docs/screenshots/python-linter/app_pages/pl-page_model_performance.py.png)
+
+**`page_roi_analysis.py`** — Campaign ROI Analysis page. Displays spend vs revenue scatter, ROI bar chart and daily revenue trend by category (BR3).
+![page_roi_analysis.py](docs/screenshots/python-linter/app_pages/pl-page_roi_analysis.py.png)
+
+**`page_hypothesis.py`** — Project Hypotheses page. Validates three statistical hypotheses using correlation tests and chi-square analysis.
+![page_hypothesis.py](docs/screenshots/python-linter/app_pages/pl-page_hypothesis.py.png)
+
+**Results:** No errors detected. Code follows PEP8 standards for readability and maintainability.
+
+---
+
+#### JSON — JSHint
+
+Configuration JSON files were validated using JSHint:
+https://jshint.com/
+
+**`devcontainer.json`** — Development container configuration for the ONA/VS Code environment.
+![devcontainer.json](docs/screenshots/jsHint/jsHint-devcontainer.json.png)
+
+**`settings.json`** — VS Code workspace settings configuration.
+![settings.json](docs/screenshots/jsHint/jsHint-settings.json.png)
+
+**Results:** No errors detected in configuration files.
+
+---
+
+#### Jupyter Notebooks
+
+All data analysis and model development was conducted in Jupyter Notebooks, available in the `jupyter_notebooks/` folder of this repository.
+
+| Notebook | Purpose |
+|---|---|
+| [01_DataCollection.ipynb](jupyter_notebooks/01_DataCollection.ipynb) | Load and inspect both datasets, confirm validity for further processing |
+| [02_DataAnalysis.ipynb](jupyter_notebooks/02_DataAnalysis.ipynb) | Exploratory data analysis, correlation study, hypothesis validation and visualisations (BR1) |
+| [03_DataCleaning.ipynb](jupyter_notebooks/03_DataCleaning.ipynb) | Remove irrelevant columns, handle missing values, standardise categorical variables |
+| [04_FeatureEngineering.ipynb](jupyter_notebooks/04_FeatureEngineering.ipynb) | Encode categorical features, apply transformations and SMOTE for class imbalance |
+| [05_Modelling.ipynb](jupyter_notebooks/05_Modelling.ipynb) | Train Random Forest pipeline, RandomizedSearchCV optimisation, model evaluation and saving (BR2) |
+
+Each notebook was executed in order and outputs are saved to `inputs/datasets/` and `outputs/ml_pipeline/v1/`.
 
 ---
 
 ## Unfixed Bugs
 
-There are no known unresolved bugs affecting the deployed application.
+There are no known unresolved bugs affecting the deployed application at the time of submission.
 
 During development, the following environment-specific considerations were identified:
 
@@ -1004,12 +1119,17 @@ During development, the following environment-specific considerations were ident
   This is a known upstream library issue and does not affect application functionality or predictions.
 
 These issues are environment-specific and do not impact the deployed application.
+No functional or user-impacting issues remain in the deployed application.
 
 ---
 
 ## Deployment
 
 The app is deployed to **Heroku**.
+
+The deployment uses a Streamlit-compatible Heroku setup with a `Procfile`,
+a `setup.sh` configuration script, and a defined Python version to ensure
+consistent production behaviour.
 
 **Live App:** [Digital Marketing Conversion Predictor](https://digital-marketing-conversion-p-baa19eafc972.herokuapp.com/)
 
@@ -1030,10 +1150,12 @@ enableCORS = false\n\
 ```
 
 **`Procfile`** — defines the web process:
-web: sh setup.sh && streamlit run app.py
+
+    web: sh setup.sh && streamlit run app.py
 
 **`.python-version`** — specifies Python version:
-3.12
+
+    3.12
 
 **`requirements.txt`** — lists all production dependencies.
 
@@ -1131,7 +1253,7 @@ To clone this repository locally:
 
 ## Acknowledgements
 
-- I would like to thank my mentor, **[Mentor Name]**, at Code Institute for their guidance and feedback throughout this project. Their advice on machine learning evaluation and dashboard design provided valuable direction at key stages of development.
+- I would like to thank my mentor, **[Mo Shami]**, at Code Institute for their guidance and feedback throughout this project. Their advice on machine learning evaluation and dashboard design provided valuable direction at key stages of development.
 - I would like to thank the Code Institute tutor support team for their assistance with environment configuration and dependency issues during development.
 - I would like to thank the Code Institute Slack community for their support and shared knowledge throughout the Predictive Analytics module.
 - Project structure and methodology were inspired by the Code Institute Predictive Analytics walkthroughs: **Malaria Detector** and **Churnometer**.
