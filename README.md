@@ -60,14 +60,11 @@ machine learning model deployed through an interactive Streamlit dashboard.
 16. [Deployment](#deployment)
 17. [Main Libraries](#main-libraries)
 18. [Credits](#credits)
+19. [Acknowledgements](#acknowledgements)
 
 ---
 
 ## Project Overview
-
-This project demonstrates an end-to-end data science workflow, from exploratory data analysis to the deployment of a machine learning solution.
-
-It showcases how data science and machine learning can be leveraged to solve real-world business problems and enable data-driven decision-making.
 
 ConvertIQ is a digital marketing agency that aims to improve lead conversion rates and optimise campaign performance through data-driven decision making.
 
@@ -124,6 +121,20 @@ Source: [Kaggle](https://www.kaggle.com/datasets/sinderpreet/analyze-the-marketi
 - Daily campaign performance metrics per campaign
 - Used for supplementary ROI analysis (BR3)
 
+| Variable | Type | Description |
+|---|---|---|
+| c_date | Date | Date of campaign activity |
+| campaign_name | Categorical | Name of the campaign |
+| category | Categorical | Campaign category (social, search, etc.) |
+| impressions | Numeric | Total ad impressions |
+| mark_spent | Numeric | Marketing spend in USD |
+| clicks | Numeric | Total clicks |
+| leads | Numeric | Number of leads generated |
+| orders | Numeric | Number of orders placed |
+| revenue | Numeric | Revenue generated in USD |
+| **roi** | **Derived** | **(revenue - mark_spent) / mark_spent × 100** |
+| **month** | **Derived** | **Month extracted from c_date** |
+
 ---
 
 ## Business Requirements
@@ -149,35 +160,62 @@ categories to support budget allocation decisions.
 
 ## Agile Planning
 
-This project was developed using Agile methodology, focusing on iterative development, continuous validation, and alignment with business requirements.
+This project was developed using Agile methodology, organised into Epics and User Stories tracked via GitHub Issues. All 8 User Stories were completed and closed.
+
+Full development tracking: https://github.com/cynthiapinedoh79/digital-marketing-conversion-predictor/issues
 
 ---
 
-### User Stories
+### Epic 1 — Information Gathering and Data Collection
 
-- As a marketing analyst, I want to identify which leads are likely to convert so that I can prioritise high-value prospects.
-- As a business stakeholder, I want to understand which campaign attributes influence conversion so that I can optimise marketing strategies.
-- As a decision-maker, I want to evaluate campaign performance metrics so that I can allocate budget efficiently.
-
----
-
-### Acceptance Criteria
-
-- The application must allow users to input lead and campaign data  
-- The system must return a prediction of conversion likelihood  
-- The dashboard must provide visual insights into customer behaviour and campaign performance  
-- The model performance must be evaluated using appropriate metrics (e.g., accuracy, recall, precision)
+**Issue #7 — USER STORY: Data Collection and Initial Inspection**
+As a data analyst, I can load and inspect both datasets so that I can confirm they are valid and ready for further processing.
 
 ---
 
-### Development Tracking
+### Epic 2 — Data Visualisation, Cleaning and Preparation
 
-Development progress was managed using GitHub Issues and commits, following an iterative workflow aligned with Agile principles.
+**Issue #2 — USER STORY: Customer Behaviour Analysis**
+As a marketing analyst, I can explore interactive visualisations of customer behaviour so that I can identify the key drivers of conversion (BR1).
 
-Full development tracking:  
-https://github.com/cynthiapinedoh79/digital-marketing-conversion-predictor
+**Issue #6 — USER STORY: Project Hypotheses Validation**
+As an evaluator, I can view the project hypotheses and their statistical validation so that I can confirm conclusions are evidence-based.
 
 ---
+
+### Epic 3 — Model Training, Optimisation and Validation
+
+**Issue #4 — USER STORY: Model Performance**
+As a technical user, I can view model performance metrics, confusion matrices and feature importance so that I can validate the model meets the business success criteria (BR2).
+
+---
+
+### Epic 4 — Dashboard Planning, Design and Development
+
+**Issue #1 — USER STORY: Project Summary Page**
+As a non-technical user, I can view a project summary that describes the business context, datasets and requirements so that I can understand the project at a glance.
+
+**Issue #3 — USER STORY: Conversion Predictor**
+As a sales manager, I can input a lead profile and receive an instant conversion prediction so that my team can prioritise outreach efficiently (BR2).
+
+**Issue #5 — USER STORY: Campaign ROI Analysis**
+As a marketing director, I can analyse campaign ROI across categories so that I can make informed budget allocation decisions (BR3).
+
+**Issue #8 — USER STORY: Social Media Platform Insight**
+As a marketing analyst, I can see platform-level social media performance data when Social Media is selected so that I can understand which platform delivers the best ROI.
+
+---
+
+### Epic 5 — Deployment and Release
+
+**Issue #9 — USER STORY: Live Application Access**
+As a user, I can access the project dashboard on a live deployed Heroku application so that I can interact with it from any browser.
+
+**Issue #10 — USER STORY: Repository Fork and Clone**
+As a technical user, I can follow the README instructions to fork and clone the repository so that I can deploy the project independently.
+
+---
+
 
 ## Data Analysis Overview
 
@@ -750,7 +788,44 @@ Streamlit’s responsive design ensured usability across devices.
 
 ### Bugs and Fixes
 
-All identified bugs were addressed where possible.  
+There were no unresolved bugs after manual testing. The following bugs were identified and fixed during development:
+
+**1. Seaborn RecursionError — Python 3.14 Incompatibility**
+- Bug: The ONA environment used Python 3.14, which caused a `RecursionError` when rendering Seaborn heatmaps via `ax.set()` with tick parameters.
+- Fix: Migrated all visualisations to Plotly, which is fully compatible with Python 3.14 and provides improved interactivity in Streamlit.
+
+**2. Kaleido Version Conflict — Plotly Image Export Failing**
+- Bug: `kaleido 1.x` was incompatible with Plotly 5.24.1, causing `.png` exports from notebooks to fail silently.
+- Fix: Downgraded kaleido to version `0.2.1`, which is the stable version compatible with Plotly 5.x.
+
+**3. FutureWarning — OrdinalEncoder Chained Assignment**
+- Bug: `feature-engine`'s OrdinalEncoder triggered a `FutureWarning` related to chained assignment in pandas 2.x during feature engineering.
+- Fix: Suppressed with `warnings.filterwarnings("ignore")` in the modelling notebook. This is a known upstream issue that does not affect functionality.
+
+**4. Virtual Environment Not Found After ONA Container Reset**
+- Bug: After ONA restarted the container, the `.venv` kernel was no longer available in VS Code and Python was not recognised.
+- Fix: Installed Python 3.12.3 via `apt-get`, recreated the `.venv` virtual environment, reinstalled all dependencies from `requirements.txt`, and reregistered the kernel using `ipykernel install --user`.
+
+**5. Heroku Deployment — Missing `setup.sh` Configuration**
+- Bug: Initial Heroku deployment failed because Streamlit required server configuration not present by default.
+- Fix: Added `setup.sh` with the required Streamlit server settings and updated `Procfile` to run `sh setup.sh && streamlit run app.py`.
+
+**6. Bar Charts Too Wide in Streamlit — Social Media Insight**
+- Bug: Using `st.bar_chart()` produced oversized bars that were not visually proportional when displaying platform comparison data.
+- Fix: Replaced `st.bar_chart()` with Plotly `px.bar()` and adjusted `bargap=0.25` for better proportions and readability.
+
+**7. Model File Not Found — Deployment Path Issue**
+- Bug: The application failed to load the trained model (`.pkl`) in production due to incorrect relative file paths when deployed on Heroku.
+- Fix: Updated the file loading logic to use robust relative paths based on the project root, ensuring compatibility across local and deployment environments.
+
+**8. Probability Threshold Logic — Incorrect Output Classification**
+- Bug: All predictions were being classified as low probability due to incorrect threshold logic in the conditional statements.
+- Fix: Corrected the conditional structure to properly evaluate probability bands (<0.40, 0.40–0.75, >0.75), ensuring accurate classification and corresponding recommendations.
+
+**9. Streamlit Rendering Order — Layout Inconsistency**
+- Bug: Certain UI components (insights and action sections) were rendered in an inconsistent order due to misplaced code blocks within the try/except structure.
+- Fix: Reorganised the code to ensure a logical flow: prediction → insight → channel analysis → recommendations.
+
 Remaining issues are documented in the **Unfixed Bugs** section.
 
 ---
@@ -835,71 +910,96 @@ This validation process ensures a clean, professional, and maintainable codebase
 
 ## Unfixed Bugs
 
+There are no known unresolved bugs affecting the deployed application.
+
+During development, the following environment-specific considerations were identified:
+
 - **Matplotlib / Seaborn compatibility (Python 3.14):**  
-  The ONA development environment initially used Python 3.14, which caused a  
-  known `RecursionError` when rendering Seaborn heatmaps.  
+  The ONA development environment caused a `RecursionError` when rendering Seaborn heatmaps.
 
   **Resolution:**  
-  All visualisations were migrated to **Plotly**, which is fully compatible  
-  with Streamlit and provides improved interactivity.  
-
-  This issue is environment-specific and does not affect the deployed application.
-
----
+  All visualisations were migrated to Plotly, ensuring full compatibility and improved interactivity.
 
 - **FutureWarning — Pandas Chained Assignment:**  
   The `OrdinalEncoder` from *feature-engine* triggers a `FutureWarning`  
   related to chained assignment in pandas 2.x.
-
-  **Resolution:**  
-  This is a known upstream issue and does not impact functionality.  
-  Warnings were suppressed in the modelling notebook using:
-
   ```python
   warnings.filterwarnings("ignore")
   ```
+
+  **Note:**  
+  This is a known upstream library issue and does not affect application functionality or predictions.
+
+These issues are environment-specific and do not impact the deployed application.
 
 ---
 
 ## Deployment
 
-The app is deployed to **Heroku** using the following configuration:
+The app is deployed to **Heroku**.
+
+**Live App:** [Digital Marketing Conversion Predictor](https://digital-marketing-conversion-p-baa19eafc972.herokuapp.com/)
 
 ---
 
-### Environment Variables
+### Files Required for Deployment
 
-No sensitive data is stored in the repository.
+**`setup.sh`** — configures Streamlit server settings for Heroku:
+```bash
+mkdir -p ~/.streamlit/
+echo "\
+[server]\n\
+headless = true\n\
+port = $PORT\n\
+enableCORS = false\n\
+\n\
+" > ~/.streamlit/config.toml
+```
 
-Environment variables are used for:
-- API keys (if applicable)
-- Configuration settings
+**`Procfile`** — defines the web process:
+web: sh setup.sh && streamlit run app.py
 
-These are managed securely via Heroku Config Vars.
+**`.python-version`** — specifies Python version:
+3.12
 
----
-
-### Files required for deployment
-- `Procfile` — defines the web process:
-  `web: sh setup.sh && streamlit run app.py`
-- `setup.sh` — configures Streamlit server settings for Heroku
-- `.python-version` — specifies Python version: `3.12`
-- `requirements.txt` — lists all production dependencies
-
----
-
-### Deployment steps
-1. Create a new app on [Heroku](https://heroku.com)
-2. Connect the GitHub repository to the Heroku app
-3. Enable automatic deploys from the `main` branch
-4. Set Heroku stack to `heroku-22`
-5. Trigger a manual deploy
+**`requirements.txt`** — lists all production dependencies.
 
 ---
 
-### Live App
+### Deployment Steps
 
-[View Live Application](https://digital-marketing-conversion-p-baa19eafc972.herokuapp.com/)
+1. Add `setup.sh`, `Procfile`, `.python-version` and `requirements.txt` to the working directory
+2. Log in to [Heroku](https://heroku.com) and create a new app
+3. At the **Deploy** tab, select **GitHub** as the deployment method
+4. Search for your repository name and click **Connect**
+5. Select the `main` branch and click **Deploy Branch**
+6. Once the build completes, click **Open App** to access the live application
+7. If the slug size is too large, add large files not required for the app to a `.slugignore` file
+8. Troubleshoot any build errors by reviewing the build log
+
+---
+
+### Forking
+
+To fork this repository:
+
+1. On the main repository page, click **Fork** in the top-right corner
+2. Choose the desired owner from the dropdown
+3. Optionally rename the repository and add a description
+4. Ensure **"Copy the main branch only"** is checked
+5. Click **Create fork**
+
+---
+
+### Cloning
+
+To clone this repository locally:
+
+1. On the main repository page, click **Code**
+2. Copy the HTTPS URL
+3. Open your terminal and navigate to your desired directory
+4. Run: `git clone <paste-the-copied-URL>`
+5. Press **Enter** to clone the repository
 
 ---
 
@@ -955,3 +1055,10 @@ These are managed securely via Heroku Config Vars.
 - [Heroku](https://heroku.com) — cloud deployment
 
 ---
+
+## Acknowledgements
+
+- I would like to thank my mentor, **[Mentor Name]**, at Code Institute for their guidance and feedback throughout this project. Their advice on machine learning evaluation and dashboard design provided valuable direction at key stages of development.
+- I would like to thank the Code Institute tutor support team for their assistance with environment configuration and dependency issues during development.
+- I would like to thank the Code Institute Slack community for their support and shared knowledge throughout the Predictive Analytics module.
+- Project structure and methodology were inspired by the Code Institute Predictive Analytics walkthroughs: **Malaria Detector** and **Churnometer**.

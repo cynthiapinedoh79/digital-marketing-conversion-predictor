@@ -59,10 +59,30 @@ def page_summary_body():
         """)
 
     st.markdown("""
-    **Dataset 2 — Digital Marketing KPIs**
-    * Source: [Kaggle](https://www.kaggle.com/datasets/sinderpreet/analyze-the-marketing-spending)
-    * 308 rows — daily campaign performance metrics
-    * Used for Campaign ROI Analysis (BR3)
+        **Dataset 2 — Digital Marketing KPIs**
+        * Source: [Kaggle](https://www.kaggle.com/datasets/sinderpreet/analyze-the-marketing-spending)
+        * 308 rows — daily campaign performance metrics
+        * Used for Campaign ROI Analysis (BR3)
+        """)
+
+    with st.expander("View variable definitions"):
+        st.markdown("""
+        | Variable | Type | Description |
+        |---|---|---|
+        | c_date | Date | Date of campaign activity |
+        | campaign_name | Categorical | Name of the campaign |
+        | category | Categorical | Campaign category (social, search, etc.) |
+        | impressions | Numeric | Total ad impressions |
+        | mark_spent | Numeric | Marketing spend in USD |
+        | clicks | Numeric | Total clicks |
+        | leads | Numeric | Number of leads generated |
+        | orders | Numeric | Number of orders placed |
+        | revenue | Numeric | Revenue generated in USD |
+        | **roi** | **Derived** | **(revenue - mark_spent) / mark_spent × 100** |
+        | **month** | **Derived** | **Month extracted from c_date** |
+        """)
+
+    st.markdown("""
 
     ---
     ### Key Terms
