@@ -314,15 +314,35 @@ def page_predictor_body():
                     / platform_df["Spent"].replace(0, pd.NA) * 100
                 ).round(1)
 
+                import plotly.express as px
+
                 col_s1, col_s2 = st.columns(2)
 
                 with col_s1:
-                    st.markdown("**Orders by Platform**")
-                    st.bar_chart(platform_df.set_index("platform")["Orders"])
+                    fig1 = px.bar(
+                        platform_df, x="platform", y="Orders",
+                        title="Orders by Platform",
+                        color="platform",
+                    )
+                    fig1.update_layout(
+                        showlegend=False, bargap=0.25,
+                        xaxis=dict(tickfont=dict(size=14, color="black")),
+                        yaxis=dict(tickfont=dict(size=12, color="black"))
+                    )
+                    st.plotly_chart(fig1, use_container_width=True)
 
                 with col_s2:
-                    st.markdown("**ROI (%) by Platform**")
-                    st.bar_chart(platform_df.set_index("platform")["ROI (%)"])
+                    fig2 = px.bar(
+                        platform_df, x="platform", y="ROI (%)",
+                        title="ROI (%) by Platform",
+                        color="platform",
+                    )
+                    fig2.update_layout(
+                        showlegend=False, bargap=0.25,
+                        xaxis=dict(tickfont=dict(size=14, color="black")),
+                        yaxis=dict(tickfont=dict(size=12, color="black"))
+                    )
+                    st.plotly_chart(fig2, use_container_width=True)
 
                 st.dataframe(
                     platform_df[["platform", "Orders", "Revenue", "Spent", "ROI (%)"]],
