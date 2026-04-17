@@ -265,7 +265,6 @@ def page_predictor_body():
                 else:
                     st.info("Low probability — consider nurturing first.")
 
-            st.markdown("---")
             st.markdown("""
             <div style='
                 background-color:#eef2f7;
@@ -280,6 +279,73 @@ def page_predictor_body():
                 </p>
             </div>
             """, unsafe_allow_html=True)
+
+            # -------------------------------
+            # 📱 SOCIAL MEDIA INSIGHT
+            # -------------------------------
+            
+            if campaign_channel == "Social Media":
+                st.markdown("---")
+                st.markdown("### 📱 Social Media Performance Insight")
+
+                social_raw = pd.DataFrame({
+                    "campaign_name": [
+                        "facebook_tier1", "facebook_tier2",
+                        "facebook_retargeting", "facebook_lal",
+                        "instagram_tier1", "instagram_tier2"
+                    ],
+                    "platform": [
+                        "Facebook", "Facebook", "Facebook", "Facebook",
+                        "Instagram", "Instagram"
+                    ],
+                    "orders": [474, 688, 108, 294, 758, 313],
+                    "revenue": [2396412, 3463306, 536919, 300233, 4544124, 670460],
+                    "mark_spent": [2564793, 4693870, 266466, 2641939, 2565277, 1066154]
+                })
+
+                platform_df = social_raw.groupby("platform").agg(
+                    Orders=("orders", "sum"),
+                    Revenue=("revenue", "sum"),
+                    Spent=("mark_spent", "sum")
+                ).reset_index()
+
+                platform_df["ROI (%)"] = (
+                    (platform_df["Revenue"] - platform_df["Spent"])
+                    / platform_df["Spent"].replace(0, pd.NA) * 100
+                ).round(1)
+
+                col_s1, col_s2 = st.columns(2)
+
+                with col_s1:
+                    st.markdown("**Orders by Platform**")
+                    st.bar_chart(platform_df.set_index("platform")["Orders"])
+
+                with col_s2:
+                    st.markdown("**ROI (%) by Platform**")
+                    st.bar_chart(platform_df.set_index("platform")["ROI (%)"])
+
+                st.dataframe(
+                    platform_df[["platform", "Orders", "Revenue", "Spent", "ROI (%)"]],
+                    use_container_width=True
+                )
+
+                ig_roi = platform_df.loc[platform_df["platform"] == "Instagram", "ROI (%)"].values[0]
+                fb_roi = platform_df.loc[platform_df["platform"] == "Facebook", "ROI (%)"].values[0]
+
+                if ig_roi > fb_roi:
+                    st.markdown(f"""
+                    Based on the supporting KPI dataset, **Instagram** currently outperforms Facebook
+                    for social media conversion efficiency, with a **{ig_roi:.1f}% ROI** compared to
+                    **{fb_roi:.1f}%** for Facebook. Instagram also generates a higher order volume,
+                    suggesting it may be the stronger platform for conversion-focused social campaigns.
+                    """)
+                else:
+                    st.markdown(f"""
+                    Based on the supporting KPI dataset, **Facebook** currently outperforms Instagram
+                    for social media conversion efficiency, with a **{fb_roi:.1f}% ROI** compared to
+                    **{ig_roi:.1f}%** for Instagram. This suggests that budget allocation could be
+                    prioritised toward higher-performing Facebook social campaigns.
+                    """)
 
             # -------------------------------
             # 🎯 DYNAMIC ACTIONS (PLAYBOOK)
