@@ -806,6 +806,23 @@ All core functionalities worked as expected.
 
 ---
 
+### Lighthouse Testing
+
+The application was tested using Google Lighthouse on Desktop mode.
+
+![Lighthouse Report](docs/screenshots/lighthouse/lighthouse_project_summary.png)
+
+| Category | Score |
+|---|---|
+| Performance | 81 |
+| Accessibility | 88 |
+| Best Practices | 100 |
+| SEO | 82 |
+
+Performance score is expected to be lower for Streamlit applications due to the framework's rendering approach. A score of 100 for Best Practices confirms the application meets modern web standards.
+
+---
+
 ### Responsiveness
 
 The dashboard layout was tested on different screen sizes.  
