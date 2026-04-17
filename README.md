@@ -762,8 +762,23 @@ Remaining issues are documented in the **Unfixed Bugs** section.
 
 ### Project Structure
 
-The project follows a clear and organised folder structure to separate application logic, data analysis, outputs, and documentation:
+The project follows a clear and well-organised folder structure to separate application logic, data analysis, outputs, and documentation.
 
+The structure is designed to support both data science workflows and production-ready application deployment. It follows best practices by separating data processing, model development, and application logic, ensuring modularity, scalability, and maintainability.
+
+#### Key Components
+
+- `app.py`: main Streamlit entry point  
+- `app_pages/`: modular UI pages  
+- `jupyter_notebooks/`: exploratory data analysis and model development  
+- `inputs/`: raw datasets  
+- `outputs/`: trained models and processed data  
+- `src/`: reusable data processing and ML logic  
+- `docs/`: project documentation and validation evidence  
+
+#### Folder Structure
+
+```bash
 project-root/
 │
 ├── app.py
@@ -782,7 +797,7 @@ project-root/
 ├── .devcontainer/
 ├── .ona/
 ├── .venv/              (not committed)
-├── .env                (not committed)
+├── .env                (not committed - contains sensitive credentials)
 │
 ├── .gitignore
 ├── .python-version
@@ -790,6 +805,7 @@ project-root/
 ├── requirements-dev.txt
 ├── kaggle.json         (not committed)
 ├── README.md
+```
 
 This structure ensures clear separation between data processing, model development, application logic, and documentation, improving maintainability and scalability.
 
