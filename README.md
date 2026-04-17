@@ -1,6 +1,6 @@
 # 📊 Digital Marketing Conversion Predictor
 
-**Live Application:** https://tu-app.herokuapp.com/
+**Live Application:** https://digital-marketing-conversion-p-baa19eafc972.herokuapp.com/
 
 This project is a **Data Analytics and Machine Learning application**
 developed to support data-driven decision-making in digital marketing.
@@ -529,7 +529,7 @@ The model successfully meets the defined business performance thresholds.
 
 ---
 
-## ⚠️ Limitations
+## Limitations
 
 **Model-related limitations:**
 - Moderate overfitting: training accuracy exceeds test accuracy  
@@ -756,7 +756,7 @@ Remaining issues are documented in the **Unfixed Bugs** section.
 ---
 
 
-## 📎 Additional Documentation
+## Additional Documentation
 
 ---
 
@@ -883,7 +883,7 @@ These are managed securely via Heroku Config Vars.
 
 ### Live App
 
-[View Live Application](https://your-real-app.herokuapp.com)
+[View Live Application](https://digital-marketing-conversion-p-baa19eafc972.herokuapp.com/)
 
 ---
 
