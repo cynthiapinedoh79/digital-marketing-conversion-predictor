@@ -2,7 +2,9 @@ import streamlit as st
 import pandas as pd
 import os
 import joblib
+import plotly.express as px
 from PIL import Image
+
 
 
 def page_model_performance_body():
@@ -191,13 +193,39 @@ def page_model_performance_body():
     st.markdown("---")
     st.subheader("Feature Importance")
 
-    fi_path = f"{base_path}/feature_importance.png"
-    if os.path.exists(fi_path):
-        st.image(
-            Image.open(fi_path),
-            caption="Feature Importances — Random Forest",
-            use_container_width=True
-        )
+    pipeline_obj = joblib.load(pipeline_path)
+    rf_classifier = pipeline_obj.named_steps['classifier']
+    importances = rf_classifier.feature_importances_
+
+    import pandas as pd
+    feature_names = [
+        'Age', 'Gender', 'Income', 'CampaignChannel', 'CampaignType',
+        'AdSpend', 'ClickThroughRate', 'WebsiteVisits', 'PagesPerVisit',
+        'TimeOnSite', 'SocialShares', 'EmailOpens', 'EmailClicks',
+        'PreviousPurchases', 'LoyaltyPoints'
+    ]
+
+    fi_df = pd.DataFrame({
+        'Feature': feature_names[:len(importances)],
+        'Importance': importances
+    }).sort_values('Importance', ascending=True)
+
+    fig_fi = px.bar(
+        fi_df,
+        x='Importance',
+        y='Feature',
+        orientation='h',
+        title='Feature Importance — Random Forest Classifier',
+        labels={'Importance': 'Mean Decrease in Impurity'},
+        color='Importance',
+        color_continuous_scale='Blues'
+    )
+    fig_fi.update_layout(
+        coloraxis_showscale=False,
+        height=500,
+        font=dict(size=12)
+    )
+    st.plotly_chart(fig_fi, use_container_width=True)
 
     st.markdown("""
     **Interpretation:**  
@@ -237,15 +265,42 @@ def page_model_performance_body():
     st.markdown("---")
     st.subheader("Final Conclusions")
 
-    st.markdown("""
-    The Random Forest model achieved the main business objective of identifying customers likely to convert,
-    meeting the required recall and F1-score thresholds for the positive class.
-
-    However, the evaluation revealed two important limitations:
-
-    - The model shows overfitting, with higher performance on the training set than on the test set.
-    - Performance on the minority class ("Not Converted") remains limited due to class imbalance.
-
-    Overall, the model is suitable as an initial predictive solution for business decision support,
-    but further optimisation is recommended before production deployment.
+    st.success("""
+    ✅ **The model meets both business success criteria:**
+    - Test Recall (Converted): 0.8395 — exceeds the minimum requirement of 0.75
+    - Test F1-score (Converted): 0.8767 — exceeds the target of 0.80
+    - ROC-AUC: 0.7339 — acceptable discrimination ability on unseen data
     """)
+
+    st.markdown("""
+    **What this means for ConvertIQ:**
+
+    The Random Forest pipeline can reliably identify leads likely to convert,
+    enabling the sales team to prioritise outreach and reduce wasted effort.
+    In practical terms:
+
+    - A lead scoring **above 75% probability** should receive immediate
+      direct follow-up from the sales team
+    - A lead scoring **between 40–75%** should be enrolled in a targeted
+      nurture campaign to build engagement before direct contact
+    - A lead scoring **below 40%** should be deprioritised and moved to
+      long-term awareness campaigns
+
+    **Known limitations to consider:**
+
+    - The model shows moderate overfitting — train accuracy (0.8405) is higher
+      than test accuracy (0.7931). Performance on genuinely new data may be
+      slightly lower than test results suggest.
+    - Recall for the "Not Converted" class is 0.4646 — the model is less
+      reliable at identifying leads who will not convert. False positives
+      (leads predicted to convert but who do not) should be expected.
+
+    **Recommended next steps:**
+
+    - Adjust the classification threshold (currently 0.50) to optimise the
+      precision/recall trade-off based on business priorities
+    - Test Gradient Boosting or XGBoost as alternative classifiers
+    - Collect additional behavioural features to improve minority class detection
+    - Monitor model performance over time and retrain as new campaign data arrives
+    """)
+
