@@ -331,10 +331,22 @@ def page_hypothesis_body():
     })
     st.dataframe(summary, use_container_width=True, hide_index=True)
 
-    st.info("""
-    All hypotheses were investigated with statistical evidence.
+    st.info(f"""
+    **Key Business Conclusions from Hypothesis Testing:**
 
-    H1 and H3 were supported by the data, while H2 was rejected in this dataset.
-    This honest reporting of both confirmed and rejected hypotheses demonstrates
-    rigorous analytical practice.
+    * **H1 CONFIRMED** — Engagement depth is a statistically significant
+      predictor of conversion. Converted leads spend {diff_pct:.1f}% more
+      time on site. ConvertIQ should prioritise content strategies that
+      increase dwell time and page exploration over broad reach campaigns.
+
+    * **H2 REJECTED** — Campaign channel alone does not determine conversion
+      outcome (p={p_chi:.3f} > 0.05). Budget reallocation decisions should
+      not be based on channel selection alone — engagement quality matters more
+      than the acquisition channel.
+
+    * **H3 CONFIRMED** — Advertising spend is a weaker predictor than
+      behavioural signals. A lead showing high engagement but moderate spend
+      exposure is more likely to convert than one with high spend but low
+      interaction. ConvertIQ should use engagement-based lead scoring rather
+      than spend-based targeting.
     """)
