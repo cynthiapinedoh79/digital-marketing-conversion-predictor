@@ -102,16 +102,21 @@ def page_data_analysis_body():
     st.markdown("---")
     st.subheader("3. Time on Site vs Pages Per Visit")
 
+    df_sample = df_plot.sample(n=min(1000, len(df_plot)), random_state=42)
     fig3 = px.scatter(
-        df_plot, x='TimeOnSite', y='PagesPerVisit',
+        df_sample, x='TimeOnSite', y='PagesPerVisit',
         color='Outcome',
         color_discrete_map={
             'Not Converted': '#d62728', 'Converted': '#2ca02c'},
-        opacity=0.4,
+        opacity=0.6,
         title='Time on Site vs Pages Per Visit by Conversion Outcome',
         labels={
             'TimeOnSite': 'Time on Site (min)',
             'PagesPerVisit': 'Pages Per Visit'}
+    )
+    fig3.update_layout(
+        font=dict(size=13),
+        legend=dict(font=dict(size=13))
     )
     st.plotly_chart(fig3, use_container_width=True)
 
@@ -167,11 +172,26 @@ def page_data_analysis_body():
     # ── Summary ─────────────────────────────────────────────────────
     st.markdown("---")
     st.subheader("Key Findings — BR1 Summary")
+    
     st.info("""
-    The top 5 variables most associated with Conversion are:
-    **CampaignType**, **EmailClicks**, **PreviousPurchases**,
-    **TimeOnSite** and **AdSpend**.
+    **Key Findings — BR1 Summary:**
 
-    Campaign channel does not show a statistically significant effect
-    on conversion rate (chi-square test: p = 0.59).
+    * The top 5 variables most associated with Conversion are:
+      **TimeOnSite**, **EmailClicks**, **EmailOpens**,
+      **AdSpend** and **ClickThroughRate**
+
+    * Converted leads spend **26.6% more time on site** on average
+      and click emails more frequently — engagement depth is the
+      strongest behavioural signal
+
+    * Campaign type shows meaningful variation — Conversion-type
+      campaigns achieve 93.4% vs Awareness at 85.6%
+
+    * Campaign channel does not significantly affect conversion rate
+      (chi-square p = 0.59) — channel selection alone should not
+      drive budget decisions
+
+    * No single variable perfectly separates converters from
+      non-converters — the ML model is required to combine all
+      features for reliable prediction
     """)

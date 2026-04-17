@@ -66,17 +66,54 @@ machine learning model deployed through an interactive Streamlit dashboard.
 
 ## Project Overview
 
-ConvertIQ is a digital marketing agency that aims to improve lead conversion rates and optimise campaign performance through data-driven decision making.
+## Project Overview
 
-This project analyses customer behaviour and marketing campaign data to identify the key factors that influence whether a lead converts. Additionally, a machine learning model is developed to predict conversion likelihood, enabling the business to prioritise high-value leads.
+**ConvertIQ** is a fictional digital marketing agency that runs campaigns across five channels — Email, SEO, PPC, Social Media, and Referral — for a diverse client base.
 
-The project combines exploratory data analysis, statistical validation, and predictive modelling to support three main business goals:
+### The Problem
 
-- Identify behavioural patterns associated with conversion  
-- Predict which leads are most likely to convert  
-- Evaluate campaign performance and return on investment (ROI)  
+Without a data-driven approach, the sales team spends equal time on every lead regardless of conversion likelihood. This creates three measurable business problems:
 
-The final solution is delivered as an interactive Streamlit dashboard, allowing users to explore insights and generate real-time predictions.
+- **Wasted sales effort:** Representatives contact leads that statistically will not convert
+- **Missed revenue:** High-probability leads do not receive timely follow-up
+- **Poor ROI visibility:** Budget is allocated across campaigns without understanding which channels and types actually deliver returns
+
+### The Solution
+
+This application provides three capabilities that directly address these problems:
+
+**1. Conversion Prediction (BR2)**
+A trained Random Forest model predicts whether a lead will convert based on 15 features. The sales team inputs a lead profile and receives an instant probability score:
+- **High-value lead (>75%)** — prioritise immediate direct outreach
+- **Potential lead (40–75%)** — send targeted follow-up campaigns to nurture interest
+- **Cold lead (<40%)** — deprioritise and move to long-term nurture sequences
+
+**2. Customer Behaviour Analysis (BR1)**
+Statistical analysis of 8,000 leads reveals the following actionable guidance for ConvertIQ:
+
+- **Prioritise engagement over spend** — TimeOnSite (r=0.13) and EmailClicks (r=0.13) are stronger predictors than AdSpend (r=0.12). A lead that spends more time on site and clicks emails is more likely to convert than one simply exposed to high ad spend.
+- **Focus on content depth** — Converted leads spend 47% more time on site on average. Campaigns should drive leads to explore multiple pages rather than land and leave.
+- **Channel does not determine outcome** — Chi-square testing (p=0.594) confirms that Email, SEO, PPC, Social Media and Referral channels produce statistically equivalent conversion rates. ConvertIQ should not reallocate budget based on channel alone.
+- **Engagement-based lead scoring** — The combination of EmailOpens, EmailClicks, TimeOnSite and PagesPerVisit provides a reliable behavioural signal. Leads showing all four signals should be fast-tracked to the sales team.
+
+**3. Campaign ROI Intelligence (BR3)**
+Analysis of the marketing KPIs dataset provides budget allocation guidance:
+
+- **Instagram outperforms Facebook** with a 43.6% ROI compared to Facebook's -34.1% within social media spend. Budget reallocation from Facebook to Instagram social campaigns is recommended.
+- **Search campaigns** generate consistent revenue with controlled spend.
+- Monthly revenue trends reveal seasonal patterns that can inform campaign timing decisions.
+
+### Measurable Business Value
+
+| Without the App | With the App |
+|---|---|
+| Equal time spent on all 8,000 leads | Sales effort focused on predicted converters |
+| No visibility into what drives conversion | Ranked behavioural predictors with statistical evidence |
+| Budget allocated by assumption | ROI-driven decisions backed by real KPI data |
+| Reactive campaign adjustments | Proactive targeting based on engagement signals |
+| 87.65% baseline conversion treated equally | High/medium/low lead segmentation with probability scores |
+
+The final solution is delivered as an interactive Streamlit dashboard, enabling marketing analysts, sales managers, and business directors to explore insights and generate real-time predictions without technical expertise.
 
 ---
 
