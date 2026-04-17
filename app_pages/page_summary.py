@@ -20,10 +20,18 @@ def page_summary_body():
     """)
 
     st.info("""
-    * **BR1** — Understand which customer and campaign attributes
-      correlate with conversion
-    * **BR2** — Predict whether a given lead will convert
-    * **BR3** — Analyse marketing spend efficiency across campaign categories
+    * **BR1 — Customer Behaviour Analysis:**
+      Understand which customer attributes and campaign engagement metrics
+      correlate most strongly with conversion, with supporting data visualisations.
+
+    * **BR2 — Conversion Prediction:**
+      Predict whether a given lead will convert based on their demographic
+      profile and behavioural engagement data, so the sales team can
+      prioritise outreach efficiently.
+
+    * **BR3 — Campaign ROI Intelligence:**
+      Analyse marketing spend efficiency across campaign categories
+      to support budget allocation decisions.
     """)
 
     st.markdown("---")
@@ -85,6 +93,7 @@ def page_summary_body():
     st.markdown("""
 
     ---
+                
     ### Key Terms
 
     * **Conversion**: A lead who completes the desired action
@@ -93,6 +102,38 @@ def page_summary_body():
     * **Recall**: Proportion of actual converters correctly identified
     * **F1-Score**: Harmonic mean of precision and recall
     * **SMOTE**: Synthetic Minority Oversampling Technique — addresses class imbalance
+    """)
+
+    st.markdown("---")
+    st.subheader("📌 Key Business Conclusions")
+
+    st.success("""
+    **What drives conversion at ConvertIQ:**
+
+    * Leads that spend more time on site and click more emails are
+      significantly more likely to convert — prioritise engagement signals
+      over demographic data when qualifying leads.
+
+    * Campaign channel alone does not determine conversion outcome.
+      Email, SEO, PPC, Social Media and Referral channels produce
+      statistically equivalent conversion rates (p = 0.594).
+      Do not reallocate budget based on channel alone.
+
+    * Advertising spend is a weak standalone predictor (r = 0.12).
+      A lead with high engagement but low ad exposure is more likely
+      to convert than one with high spend but low interaction.
+    """)
+
+    st.info("""
+    **How to use this dashboard:**
+
+    * 📊 Go to **Customer Behaviour Analysis** to explore which features
+      correlate most with conversion
+    * 🤖 Go to **Conversion Predictor** to input a lead profile and get
+      an instant prediction
+    * 💰 Go to **Campaign ROI Analysis** to evaluate which campaigns
+      deliver the best return
+    * 📈 Go to **Model Performance** to review how well the ML model performs
     """)
 
     st.markdown(
