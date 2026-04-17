@@ -724,13 +724,34 @@ supporting data-driven targeting and campaign optimisation.
   - Binary prediction (Converted / Not Converted) with visual indicator
   - Probability score displayed via progress bar
 - Dynamic interpretation message based on prediction confidence
+- Social Media platform insight displayed when Social Media channel is selected
 - Explanation of how the model supports decision-making
 
-![Conversion Predictor](docs/screenshots/dashboard/cp-web1.png)
-![Conversion Predictor](docs/screenshots/dashboard/cp-web2.png)
-![Conversion Predictor](docs/screenshots/dashboard/cp-web3.png)
-![Conversion Predictor](docs/screenshots/dashboard/cp-web4.png)
-![Conversion Predictor](docs/screenshots/dashboard/cp-web5.png)
+**Lead Profile Input Form**
+![Conversion Predictor - Input Form](docs/screenshots/dashboard/cp-web0.png)
+
+**Prediction Example 1 — Not Converted (7% probability)**  
+Low engagement profile: minimal email interaction, low time on site.
+Model correctly identifies this as a **Cold lead** and recommends a nurture strategy.
+
+![Conversion Predictor - Input Form](docs/screenshots/dashboard/cp-web1.png)
+![Conversion Predictor - Input Form](docs/screenshots/dashboard/cp-web2.png)
+
+**Prediction Example 2 — Moderate Conversion (72% probability)**  
+Mixed engagement profile: some email clicks, moderate time on site.
+Model identifies this as a **Potential lead** and recommends targeted follow-up.
+Social Media platform insight is displayed showing Instagram vs Facebook ROI.
+
+![Conversion Predictor - Not Converted](docs/screenshots/dashboard/cp-web3.png)
+![Conversion Predictor - Not Converted with Social Media Insight](docs/screenshots/dashboard/cp-web4.png)
+
+**Prediction Example 3 — High Conversion (83% probability)**  
+Strong engagement profile: high time on site, multiple email clicks, previous purchases.
+Model identifies this as a **High-value lead** and recommends immediate direct outreach.
+
+![Conversion Predictor - Moderate](docs/screenshots/dashboard/cp-web5.png)
+![Conversion Predictor - Moderate with Social Media](docs/screenshots/dashboard/cp-web6.png)
+![Conversion Predictor - Moderate Recommendations](docs/screenshots/dashboard/cp-web7.png)
 
 **Business Value:**  
 Allows the sales team to prioritise leads in real time,

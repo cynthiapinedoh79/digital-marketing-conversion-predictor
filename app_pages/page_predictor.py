@@ -22,9 +22,14 @@ def page_predictor_body():
     to receive an instant prediction from the trained ML pipeline.
     """)
 
-    st.info(
-        "This tool helps prioritise leads based on predicted conversion probability."
-    )
+    st.info("""
+    This tool helps prioritise leads based on predicted conversion probability.
+
+    **Note on input values:** Engagement metrics such as Email Opens, Email Clicks
+    and Website Visits represent cumulative counts per lead as recorded in the
+    campaign dataset. They do not correspond to a specific time window but reflect
+    the overall engagement level of each lead across their campaign exposure.
+    """)
 
     st.markdown("""
     <style>
