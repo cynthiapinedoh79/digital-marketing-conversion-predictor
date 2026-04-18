@@ -119,6 +119,42 @@ def page_model_performance_body():
         to generate the metadata file.
         """)
 
+    # ── Pipeline Steps ───────────────────────────────────────────────
+    st.markdown("---")
+    st.subheader("ML Pipeline Steps")
+
+    st.markdown("""
+    The trained pipeline consists of the following sequential steps:
+    """)
+
+    col_p1, col_p2 = st.columns(2)
+
+    with col_p1:
+        st.info("""
+        **Step 1 — OrdinalEncoder**
+        Encodes categorical features (Gender, CampaignChannel, CampaignType)
+        into numerical values using feature-engine's OrdinalEncoder.
+        """)
+
+        st.info("""
+        **Step 2 — SMOTE**
+        Applies Synthetic Minority Oversampling Technique to address class
+        imbalance (87.65% converted vs 12.35% not converted) during training.
+        """)
+
+    with col_p2:
+        st.info("""
+        **Step 3 — RandomizedSearchCV**
+        Optimises 7 hyperparameters across 30 iterations with 5-fold
+        cross-validation to find the best model configuration.
+        """)
+
+        st.info("""
+        **Step 4 — RandomForestClassifier**
+        Ensemble of decision trees that predicts conversion probability
+        based on 15 input features using the best hyperparameters found.
+        """)
+    
     # ── Confusion Matrices ───────────────────────────────────────────
     st.markdown("---")
     st.subheader("Confusion Matrices")
@@ -197,7 +233,7 @@ def page_model_performance_body():
     rf_classifier = pipeline_obj.named_steps['classifier']
     importances = rf_classifier.feature_importances_
 
-    import pandas as pd
+
     feature_names = [
         'Age', 'Gender', 'Income', 'CampaignChannel', 'CampaignType',
         'AdSpend', 'ClickThroughRate', 'WebsiteVisits', 'PagesPerVisit',
@@ -267,9 +303,9 @@ def page_model_performance_body():
 
     st.success("""
     ✅ **The model meets both business success criteria:**
-    - Test Recall (Converted): 0.8395 — exceeds the minimum requirement of 0.75
-    - Test F1-score (Converted): 0.8767 — exceeds the target of 0.80
-    - ROC-AUC: 0.7339 — acceptable discrimination ability on unseen data
+    - Test Recall (Converted): 0.8381 — exceeds the minimum requirement of 0.75
+    - Test F1-score (Converted): 0.8762 — exceeds the target of 0.80
+    - ROC-AUC: 0.7331 — acceptable discrimination ability on unseen data
     """)
 
     st.markdown("""
@@ -288,10 +324,10 @@ def page_model_performance_body():
 
     **Known limitations to consider:**
 
-    - The model shows moderate overfitting — train accuracy (0.8405) is higher
-      than test accuracy (0.7931). Performance on genuinely new data may be
+    - The model shows moderate overfitting — train accuracy (0.8528) is higher
+      than test accuracy (0.7925). Performance on genuinely new data may be
       slightly lower than test results suggest.
-    - Recall for the "Not Converted" class is 0.4646 — the model is less
+    - Recall for the "Not Converted" class is 0.4697 — the model is less
       reliable at identifying leads who will not convert. False positives
       (leads predicted to convert but who do not) should be expected.
 
