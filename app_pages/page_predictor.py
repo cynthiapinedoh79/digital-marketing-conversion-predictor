@@ -526,6 +526,8 @@ def page_predictor_body():
             if ad_spend >= 1000:
                 positive_factors.append("Higher ad spend may have increased campaign exposure.")
 
+            st.markdown("<br>", unsafe_allow_html=True)
+            
             # Dynamic interpretation by probability band
             if probability < 0.40:
                 st.markdown("""
@@ -534,6 +536,7 @@ def page_predictor_body():
                 associated with converted leads.
                 """)
 
+                st.markdown("<br>", unsafe_allow_html=True)
                 st.markdown("### Key Factors Considered")
                 for factor in risk_factors[:4]:
                     st.markdown(f"- {factor}")
@@ -618,6 +621,7 @@ def page_predictor_body():
                     for action in actions[:3]:
                         st.markdown(f"- {action}")
 
+            st.markdown("<br>", unsafe_allow_html=True)
             st.markdown("### 🤖 Prediction Drivers")
             if probability >= 0.75:
                 explanation_points = positive_factors[:3]
@@ -655,6 +659,7 @@ def page_predictor_body():
             for point in explanation_points:
                 st.markdown(f"- {point}")
 
+            st.markdown("<br>", unsafe_allow_html=True)
             st.markdown("### Recommended Action")
             st.markdown(f"""
             <div style='
