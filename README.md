@@ -1120,6 +1120,24 @@ Each notebook was executed in order and outputs are saved to `inputs/datasets/` 
 
 ---
 
+---
+
+#### Data Cleaning and Feature Engineering Spreadsheet
+
+As part of the data preparation workflow, a spreadsheet was created to document all variables, their data types, missing value analysis, and the feature engineering transformations considered for each variable.
+
+**Data Cleaning**
+
+![Data Cleaning](docs/screenshots/data_cleaning_spreadsheet.png)
+
+**Feature Engineering**
+
+![Feature Engineering](docs/screenshots/feature_engineering_spreadsheet.png)
+
+[📊 Download Spreadsheet](docs/data_cleaning_and_feature_engineering.xlsx)
+
+---
+
 ## Unfixed Bugs
 
 There are no known unresolved bugs affecting the deployed application at the time of submission.
