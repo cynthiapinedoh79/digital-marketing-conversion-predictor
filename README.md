@@ -2,15 +2,9 @@
 
 **Live Application:** https://digital-marketing-conversion-p-baa19eafc972.herokuapp.com/
 
-This project is a **Data Analytics and Machine Learning application**
-designed to support data-driven decision-making in digital marketing,
-helping businesses identify high-value leads and optimise campaign ROI.
+**Digital Marketing Conversion Predictor** is a data-driven application designed to help marketing teams prioritise leads based on their likelihood to convert. Using machine learning, the system analyses customer demographics, campaign attributes, and engagement behaviour to estimate conversion probability in real time.
 
-The application analyses customer behaviour and campaign data to identify
-conversion patterns and predict which leads are most likely to convert.
-
-It combines exploratory data analysis, statistical validation, and a
-machine learning model deployed through an interactive Streamlit dashboard.
+👉 **Key Value:** Focus resources on leads most likely to convert, increasing ROI and campaign performance.
 
 ---
 
@@ -60,22 +54,63 @@ The dashboard is designed to be intuitive and accessible for both technical and 
 ## Table of Contents
 
 1. [Project Overview](#project-overview)
+   - [The Problem](#the-problem)
+   - [The Solution](#the-solution)
+   - [Measurable Business Value](#measurable-business-value)
 2. [Target Users](#target-users)
 3. [Dataset Content](#dataset-content)
 4. [Business Requirements](#business-requirements)
 5. [Agile Planning](#agile-planning)
+   - [Epic 1 — Information Gathering and Data Collection](#epic-1--information-gathering-and-data-collection)
+   - [Epic 2 — Data Visualisation, Cleaning and Preparation](#epic-2--data-visualisation-cleaning-and-preparation)
+   - [Epic 3 — Model Training, Optimisation and Validation](#epic-3--model-training-optimisation-and-validation)
+   - [Epic 4 — Dashboard Planning, Design and Development](#epic-4--dashboard-planning-design-and-development)
+   - [Epic 5 — Deployment and Release](#epic-5--deployment-and-release)
 6. [Data Analysis Overview](#data-analysis-overview)
 7. [Feature Engineering](#feature-engineering)
 8. [Hypothesis and Validation](#hypothesis-and-validation)
+   - [Hypothesis 1 — Engagement Depth Predicts Conversion](#hypothesis-1--engagement-depth-predicts-conversion)
+   - [Hypothesis 2 — Campaign Channel Affects Conversion Rate](#hypothesis-2--campaign-channel-affects-conversion-rate)
+   - [Hypothesis 3 — Ad Spend Alone is a Weak Predictor](#hypothesis-3--ad-spend-alone-is-a-weak-predictor)
 9. [Rationale to Map Business Requirements](#rationale-to-map-business-requirements)
 10. [ML Business Case](#ml-business-case)
+    - [Learning Method](#learning-method)
+    - [Model Selection Rationale](#model-selection-rationale)
+    - [Success Metrics](#success-metrics)
+    - [Model Output](#model-output)
+    - [Baseline Heuristic Comparison](#baseline-heuristic-comparison)
+    - [Training Data](#training-data)
+    - [Hyperparameter Optimisation](#hyperparameter-optimisation)
+    - [Results Achieved](#results-achieved)
+    - [Key ML Terminology](#key-ml-terminology)
 11. [Ethical Considerations](#ethical-considerations)
 12. [Limitations](#limitations)
 13. [Dashboard Design](#dashboard-design)
+    - [Page 1 — Project Summary](#page-1--project-summary)
+    - [Page 2 — Customer Behaviour Analysis](#page-2--customer-behaviour-analysis)
+    - [Page 3 — Conversion Predictor](#page-3--conversion-predictor)
+    - [Page 4 — Model Performance](#page-4--model-performance)
+    - [Page 5 — Campaign ROI Analysis](#page-5--campaign-roi-analysis)
+    - [Page 6 — Project Hypotheses](#page-6--project-hypotheses)
 14. [Testing](#testing)
+    - [Manual Testing](#manual-testing)
+    - [Model Testing](#model-testing)
+    - [Data Validation](#data-validation)
+    - [Browser Testing](#browser-testing)
+    - [Lighthouse Testing](#lighthouse-testing)
+    - [Edge Case Testing](#edge-case-testing)
+    - [Bugs and Fixes](#bugs-and-fixes)
 15. [Additional Documentation](#additional-documentation)
+    - [Project Structure](#project-structure)
+    - [Code Validation](#code-validation)
+    - [Jupyter Notebooks](#jupyter-notebooks)
+    - [Data Cleaning and Feature Engineering Spreadsheet](#data-cleaning-and-feature-engineering-spreadsheet)
 16. [Unfixed Bugs](#unfixed-bugs)
 17. [Deployment](#deployment)
+    - [Files Required for Deployment](#files-required-for-deployment)
+    - [Deployment Steps](#deployment-steps)
+    - [Forking](#forking)
+    - [Cloning](#cloning)
 18. [Main Libraries](#main-libraries)
 19. [Credits](#credits)
 20. [Acknowledgements](#acknowledgements)
@@ -131,6 +166,8 @@ Analysis of the marketing KPIs dataset provides budget allocation guidance:
 
 The final solution is delivered as an interactive Streamlit dashboard, enabling marketing analysts, sales managers, and business directors to explore insights and generate real-time predictions without technical expertise.
 
+[🔝 Back to Table of Contents](#table-of-contents)
+
 ---
 
 ## Target Users
@@ -145,6 +182,8 @@ This application is designed for:
 The tool supports both technical and non-technical users by combining
 historical analysis, machine learning predictions, and actionable business insights.
 
+[🔝 Back to Table of Contents](#table-of-contents)
+
 ---
 
 ## Dataset Content
@@ -156,6 +195,8 @@ and customer behaviour analysis, and a second one for campaign ROI and platform-
 Together, they support both predictive modelling and business decision-making.
 
 The project uses two datasets sourced from Kaggle:
+
+---
 
 **Dataset 1 — Digital Marketing Campaign Dataset**
 Source: [Kaggle](https://www.kaggle.com/datasets/rabieelkharoua/predict-conversion-in-digital-marketing-dataset)
@@ -191,6 +232,8 @@ both contained only confidential placeholder values with no predictive value.
 **Important note on engagement variables:**  
 Metrics such as `EmailOpens`, `EmailClicks`, and `WebsiteVisits` are recorded as cumulative values per lead in the source dataset. The dataset does not define a fixed time window (e.g. daily, weekly, or monthly). For business interpretation, these variables should therefore be understood as lead-level engagement summaries across the campaign journey. In practice, they are best used within a consistent operational timeframe, such as the first 2–4 weeks after lead acquisition.
 
+---
+
 **Dataset 2 — Digital Marketing KPIs**
 Source: [Kaggle](https://www.kaggle.com/datasets/sinderpreet/analyze-the-marketing-spending)
 - 308 rows and 11 columns (13 after cleaning)
@@ -210,6 +253,8 @@ Source: [Kaggle](https://www.kaggle.com/datasets/sinderpreet/analyze-the-marketi
 | revenue | Numeric | Revenue generated in USD |
 | **roi** | **Derived** | **(revenue - mark_spent) / mark_spent × 100** |
 | **month** | **Derived** | **Month extracted from c_date** |
+
+[🔝 Back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -231,6 +276,8 @@ team can prioritise outreach.
 **BR3 — Campaign ROI Intelligence:**
 The client wants to analyse marketing spend efficiency across campaign
 categories to support budget allocation decisions.
+
+[🔝 Back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -290,6 +337,8 @@ As a user, I can access the project dashboard on a live deployed Heroku applicat
 **Issue #10 — USER STORY: Repository Fork and Clone**
 As a technical user, I can follow the README instructions to fork and clone the repository so that I can deploy the project independently.
 
+[🔝 Back to Table of Contents](#table-of-contents)
+
 ---
 
 
@@ -313,6 +362,8 @@ Detailed analysis and results are presented in the following sections.
 - High-engagement users are significantly more likely to convert
 
 These insights directly informed feature selection and model design.
+
+[🔝 Back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -340,11 +391,11 @@ Feature engineering was implemented as part of a reusable preprocessing pipeline
 | Missing Values | Imputation | Ensure model stability |
 | Class Imbalance | SMOTE | Improve minority class recall |
 
+[🔝 Back to Table of Contents](#table-of-contents)
+
 ---
 
 ## Hypothesis and Validation
-
----
 
 ### Hypothesis 1 — Engagement Depth Predicts Conversion
 
@@ -425,11 +476,11 @@ into customer intent.
 ConvertIQ should prioritise **engagement-based targeting strategies**
 rather than increasing raw advertising spend.
 
+[🔝 Back to Table of Contents](#table-of-contents)
+
 ---
 
 ## Rationale to Map Business Requirements
-
----
 
 ### Business Requirements Mapping
 
@@ -487,11 +538,11 @@ translates into revenue so I can optimise budget allocation.
 - Analyse monthly revenue trends
 - Provide actionable business recommendations
 
+[🔝 Back to Table of Contents](#table-of-contents)
+
 ---
 
 ## ML Business Case
-
----
 
 ### Conversion Classifier
 
@@ -666,6 +717,8 @@ By focusing on high-probability **predictions**, the company can:
 - **Feature Importance:** Indicates which variables most influence predictions
 - **Hyperparameter Optimisation:** Tuning model parameters to maximise performance metrics
 
+[🔝 Back to Table of Contents](#table-of-contents)
+
 ---
 
 ## Ethical Considerations
@@ -674,6 +727,8 @@ By focusing on high-probability **predictions**, the company can:
 - Predictions should support, not replace, human decision-making  
 - Behavioural data may introduce bias into the model  
 - Continuous monitoring is recommended to ensure fairness and reliability  
+
+[🔝 Back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -693,6 +748,8 @@ By focusing on high-probability **predictions**, the company can:
 - Real-world performance may vary due to unseen data patterns and distribution shifts over time
 - The model was trained on a static dataset and may require periodic retraining as campaign behaviour evolves
 - Predictions should support, not replace, human decision-making 
+
+[🔝 Back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -838,6 +895,10 @@ receive an instant conversion prediction with probability score and recommended 
 
 ![Model Performance](docs/screenshots/dashboard/mp-web4.png)
 
+![Model Performance](docs/screenshots/dashboard/mp-web5.png)
+
+![Model Performance](docs/screenshots/dashboard/mp-web6.png)
+
 **Business Value:**  
 This page supports **BR2** by providing full transparency into the ML model's
 performance, confirming it meets the defined success criteria (Recall ≥ 0.75,
@@ -887,6 +948,8 @@ ROI-driven allocation decisions backed by real KPI data.
 This page supports **BR1 and BR2** by validating three project hypotheses
 with statistical evidence, ensuring that conclusions about conversion drivers
 are grounded in data rather than assumptions.
+
+[🔝 Back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -1034,12 +1097,11 @@ There were no unresolved bugs after manual testing. The following bugs were iden
 
 Remaining issues are documented in the **Unfixed Bugs** section.
 
----
+[🔝 Back to Table of Contents](#table-of-contents)
 
+---
 
 ## Additional Documentation
-
----
 
 ### Project Structure
 
@@ -1206,6 +1268,8 @@ As part of the data preparation workflow, a spreadsheet was created to document 
 
 [📊 Download Spreadsheet](docs/data_cleaning_and_feature_engineering.xlsx)
 
+[🔝 Back to Table of Contents](#table-of-contents)
+
 ---
 
 ## Unfixed Bugs
@@ -1232,6 +1296,8 @@ During development, the following environment-specific considerations were ident
 
 These issues are environment-specific and do not impact the deployed application.
 No functional or user-impacting issues remain in the deployed application.
+
+[🔝 Back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -1316,6 +1382,8 @@ To clone this repository locally:
 - All dependencies are defined in requirements.txt
 - The app has been tested after deployment to ensure full functionality
 
+[🔝 Back to Table of Contents](#table-of-contents)
+
 ---
 
 ## Main Libraries
@@ -1337,11 +1405,11 @@ To clone this repository locally:
 | nbformat | ≥4.2.0 | Jupyter notebook format support for rendering plots in notebooks |
 | openpyxl | 3.1.5 | Excel file creation for data cleaning and feature engineering spreadsheet |
 
+[🔝 Back to Table of Contents](#table-of-contents)
+
 ---
 
 ## Credits
-
----
 
 ### Data Sources
 - Dataset 1: [Rabie El Kharoua on Kaggle](https://www.kaggle.com/datasets/rabieelkharoua/predict-conversion-in-digital-marketing-dataset)
@@ -1363,6 +1431,8 @@ To clone this repository locally:
 - [Plotly](https://plotly.com) — interactive visualisations  
 - [Heroku](https://heroku.com) — cloud deployment
 
+[🔝 Back to Table of Contents](#table-of-contents)
+
 ---
 
 ## Acknowledgements
@@ -1371,3 +1441,5 @@ To clone this repository locally:
 - I would like to thank the Code Institute tutor support team for their assistance with environment configuration and dependency issues during development.
 - I would like to thank the Code Institute Slack community for their support and shared knowledge throughout the Predictive Analytics module.
 - Project structure and methodology were inspired by the Code Institute Predictive Analytics walkthroughs: **Malaria Detector** and **Churnometer**.
+
+[🔝 Back to Table of Contents](#table-of-contents)
