@@ -80,6 +80,23 @@ def page_roi_analysis_body():
     """)
 
     fig1 = px.scatter(
+            df,
+            x="mark_spent",
+            y="revenue",
+            color="category",
+            hover_data=["campaign_name", "c_date", "orders"],
+            title="Marketing Spend vs Revenue by Category",
+            labels={
+                "mark_spent": "Marketing Spend (USD)",
+                "revenue": "Revenue (USD)",
+                "category": "Category",
+            },
+            opacity=0.75,
+            size_max=12,
+            color_discrete_sequence=px.colors.qualitative.Set2,
+        )
+
+    fig1 = px.scatter(
         df,
         x="mark_spent",
         y="revenue",
@@ -101,6 +118,12 @@ def page_roi_analysis_body():
         mode="lines",
         line=dict(color="gray", dash="dash"),
         name="Break-even",
+    )
+
+    fig1.update_traces(marker=dict(size=8))
+
+    fig1.update_layout(
+        xaxis=dict(range=[0, 1000000]),
     )
 
     st.plotly_chart(fig1, use_container_width=True)
