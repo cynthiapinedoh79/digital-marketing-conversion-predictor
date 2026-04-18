@@ -718,9 +718,13 @@ the user from data exploration to actionable insights.
 - Includes links to original data sources
 
 ![Project Summary](docs/screenshots/dashboard/ps-web1.png)
+
 ![Project Summary](docs/screenshots/dashboard/ps-web2.png)
+
 ![Project Summary](docs/screenshots/dashboard/ps-web2a.png)
+
 ![Project Summary](docs/screenshots/dashboard/ps-web2b.png)
+
 ![Project Summary](docs/screenshots/dashboard/ps-web3.png)
 
 **Business Value:**  
@@ -740,8 +744,11 @@ data, and objectives before interacting with the analysis.
 - Written interpretation provided for each visualisation
 
 ![Customer Behaviour Analysis](docs/screenshots/dashboard/cba-web1.png)
+
 ![Customer Behaviour Analysis](docs/screenshots/dashboard/cba-web2.png)
+
 ![Customer Behaviour Analysis](docs/screenshots/dashboard/cba-web3.png)
+
 ![Customer Behaviour Analysis](docs/screenshots/dashboard/cba-web4.png)
 
 **Business Value:**  
@@ -770,23 +777,39 @@ Low engagement profile: minimal email interaction, low time on site.
 Model correctly identifies this as a **Cold lead** and recommends a nurture strategy.
 
 ![Conversion Predictor - Input Form](docs/screenshots/dashboard/cp-web1.png)
+
 ![Conversion Predictor - Input Form](docs/screenshots/dashboard/cp-web2.png)
 
-**Prediction Example 2 — Moderate Conversion (72% probability)**  
+![Conversion Predictor - Input Form](docs/screenshots/dashboard/cp-web3.png)
+
+![Conversion Predictor - Input Form](docs/screenshots/dashboard/cp-web4.png)
+
+![Conversion Predictor - Input Form](docs/screenshots/dashboard/cp-web5.png)
+
+**Prediction Example 2 — Moderate Conversion (73% probability)**  
 Mixed engagement profile: some email clicks, moderate time on site.
 Model identifies this as a **Potential lead** and recommends targeted follow-up.
-Social Media platform insight is displayed showing Instagram vs Facebook ROI.
 
-![Conversion Predictor - Not Converted](docs/screenshots/dashboard/cp-web3.png)
-![Conversion Predictor - Not Converted with Social Media Insight](docs/screenshots/dashboard/cp-web4.png)
+![Conversion Predictor - Not Converted](docs/screenshots/dashboard/cp-web6.png)
 
-**Prediction Example 3 — High Conversion (83% probability)**  
+![Conversion Predictor - Not Converted](docs/screenshots/dashboard/cp-web7.png)
+
+![Conversion Predictor - Not Converted](docs/screenshots/dashboard/cp-web8.png)
+
+
+**Prediction Example 3 — High Conversion (85% probability)**  
 Strong engagement profile: high time on site, multiple email clicks, previous purchases.
 Model identifies this as a **High-value lead** and recommends immediate direct outreach.
+Social Media platform insight is displayed showing Instagram vs Facebook ROI.
 
-![Conversion Predictor - Moderate](docs/screenshots/dashboard/cp-web5.png)
-![Conversion Predictor - Moderate with Social Media](docs/screenshots/dashboard/cp-web6.png)
-![Conversion Predictor - Moderate Recommendations](docs/screenshots/dashboard/cp-web7.png)
+![Conversion Predictor - Moderate](docs/screenshots/dashboard/cp-web9.png)
+
+![Conversion Predictor - Moderate with Social Media](docs/screenshots/dashboard/cp-web10.png)
+
+![Conversion Predictor - Not Converted with Social Media Insight](docs/screenshots/dashboard/cp-web11.png)
+
+![Conversion Predictor - Moderate Recommendations](docs/screenshots/dashboard/cp-web12.png)
+
 
 **Business Value:**  
 Allows the sales team to prioritise leads in real time,
@@ -809,8 +832,11 @@ improving efficiency and increasing conversion rates.
 - Clear explanation of model limitations
 
 ![Model Performance](docs/screenshots/dashboard/mp-web1.png)
+
 ![Model Performance](docs/screenshots/dashboard/mp-web2.png)
+
 ![Model Performance](docs/screenshots/dashboard/mp-web3.png)
+
 ![Model Performance](docs/screenshots/dashboard/mp-web4.png)
 
 **Business Value:**  
@@ -829,7 +855,9 @@ validation, and clear communication of strengths and limitations.
 - Written insights and budget optimisation recommendations
 
 ![Campaign ROI Analysis](docs/screenshots/dashboard/cROIa-web1.png)
+
 ![Campaign ROI Analysis](docs/screenshots/dashboard/cROIa-web2.png)
+
 ![Campaign ROI Analysis](docs/screenshots/dashboard/cROIa-web3.png)
 
 **Business Value:**  
@@ -848,7 +876,9 @@ which campaigns deliver the highest return on investment.
 - Business recommendations derived from each result
 
 ![Project Hypotheses](docs/screenshots/dashboard/ph-web1.png)
+
 ![Project Hypotheses](docs/screenshots/dashboard/ph-web2.png)
+
 ![Project Hypotheses](docs/screenshots/dashboard/ph-web3.png)
 
 
@@ -1094,27 +1124,35 @@ All Python files were validated using the Code Institute Python Linter:
 https://pep8ci.herokuapp.com/
 
 **`app.py`** — Main Streamlit entry point. Initialises the multipage app and registers all pages.
+
 ![app.py](docs/screenshots/python-linter/pl-app.py.png)
 
 **`multipage.py`** — Multipage class that handles page registration and navigation.
+
 ![multipage.py](docs/screenshots/python-linter/app_pages/pl-multipage.py.png)
 
 **`page_summary.py`** — Project Summary page. Displays business context, dataset descriptions, key terms and business conclusions.
+
 ![page_summary.py](docs/screenshots/python-linter/app_pages/pl-page_summary.py.png)
 
 **`page_data_analysis.py`** — Customer Behaviour Analysis page. Displays correlation heatmap, box plots, scatter plot and conversion rate charts (BR1).
+
 ![page_data_analysis.py](docs/screenshots/python-linter/app_pages/pl-page_data_analysis.py.png)
 
 **`page_predictor.py`** — Conversion Predictor page. Loads the trained ML pipeline and returns real-time conversion predictions with probability scores (BR2).
+
 ![page_predictor.py](docs/screenshots/python-linter/app_pages/pl-page_predictor.py.png)
 
 **`page_model_performance.py`** — Model Performance page. Displays confusion matrices, ROC curve, feature importance and hyperparameter tuning summary (BR2).
+
 ![page_model_performance.py](docs/screenshots/python-linter/app_pages/pl-page_model_performance.py.png)
 
 **`page_roi_analysis.py`** — Campaign ROI Analysis page. Displays spend vs revenue scatter, ROI bar chart and daily revenue trend by category (BR3).
+
 ![page_roi_analysis.py](docs/screenshots/python-linter/app_pages/pl-page_roi_analysis.py.png)
 
 **`page_hypothesis.py`** — Project Hypotheses page. Validates three statistical hypotheses using correlation tests and chi-square analysis.
+
 ![page_hypothesis.py](docs/screenshots/python-linter/app_pages/pl-page_hypothesis.py.png)
 
 **Results:** No errors detected. Code follows PEP8 standards for readability and maintainability.
