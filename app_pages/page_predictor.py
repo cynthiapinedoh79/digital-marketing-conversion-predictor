@@ -3,6 +3,7 @@ import os
 import joblib
 import pandas as pd
 import streamlit as st
+import plotly.express as px
 
 
 @st.cache_resource
@@ -230,7 +231,7 @@ def page_predictor_body():
                 if probability >= 0.75:
                     score_color = "#065f46"
                     bar_gradient = "linear-gradient(90deg, #10b981, #059669)"
-                    bar_shadow = " 0 0 4px rgba(16, 185, 129, 0.25)"
+                    bar_shadow = "0 0 4px rgba(16, 185, 129, 0.25)"
 
                     likelihood_label = "🟢 High likelihood to convert"
                     lead_label = "🔥 High-Value Lead"
@@ -361,9 +362,9 @@ def page_predictor_body():
                 '>
                     {msg}
                 </div>
-                """, unsafe_allow_html=True)
+                """, unsafe_allow_html=True)           
 
-            st.markdown("### 📌 Interpretation")
+            st.markdown("### 🧠 Model Insight")
             st.markdown("""
             <div style='
                 background-color:#f9fafb;
@@ -374,7 +375,6 @@ def page_predictor_body():
                 box-shadow:0 4px 12px rgba(0,0,0,0.05);
                 border:1px solid #e5e7eb;
             '>
-                <h4 style='color:#111827; margin-bottom:8px;'>🧠 Model Insight</h4>
                 <p style='color:#374151; font-size:15px; line-height:1.6; margin:0;'>
                     This prediction combines engagement metrics, campaign interaction,
                     and historical conversion patterns to support data-driven decision-making.
@@ -415,8 +415,6 @@ def page_predictor_body():
                     (platform_df["Revenue"] - platform_df["Spent"])
                     / platform_df["Spent"].replace(0, pd.NA) * 100
                 ).round(1)
-
-                import plotly.express as px
 
                 col_s1, col_s2 = st.columns(2)
 
@@ -619,6 +617,43 @@ def page_predictor_body():
                     """, unsafe_allow_html=True)
                     for action in actions[:3]:
                         st.markdown(f"- {action}")
+
+            st.markdown("### 🤖 Prediction Drivers")
+            if probability >= 0.75:
+                explanation_points = positive_factors[:3]
+                explanation_intro = (
+                    "This lead shows strong behavioural signals typically associated with successful conversions."
+                )
+
+            elif probability >= 0.40:
+                explanation_points = (positive_factors[:2] + risk_factors[:2])[:4]
+                explanation_intro = (
+                    "This lead shows a mix of positive engagement signals and weaker indicators."
+                )
+
+            else:
+                explanation_points = risk_factors[:3]
+                explanation_intro = (
+                    "This lead shows limited engagement and weaker conversion signals."
+                )
+
+            st.markdown(f"""
+            <div style='
+                background-color:#f9fafb;
+                padding:18px;
+                border-radius:12px;
+                margin-top:10px;
+                margin-bottom:15px;
+                border:1px solid #e5e7eb;
+            '>
+                <p style='margin:0; color:#374151; font-size:14px; line-height:1.6;'>
+                    {explanation_intro}
+                </p>
+            </div>
+            """, unsafe_allow_html=True)
+
+            for point in explanation_points:
+                st.markdown(f"- {point}")
 
             st.markdown("### Recommended Action")
             st.markdown(f"""
