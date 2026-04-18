@@ -723,8 +723,10 @@ the user from data exploration to actionable insights.
 ![Project Summary](docs/screenshots/dashboard/ps-web3.png)
 
 **Business Value:**  
-Establishes context and ensures users understand the problem,
-data, and objectives before interacting with the analysis.
+This page satisfies the project's overall context requirement by establishing
+the business problem, datasets and requirements before the user interacts
+with any analysis. It ensures evaluators and non-technical users can
+understand the purpose of the dashboard at a glance.
 
 ---
 
@@ -747,8 +749,9 @@ data, and objectives before interacting with the analysis.
 ![Customer Behaviour Analysis](docs/screenshots/dashboard/cba-web4.png)
 
 **Business Value:**  
-Enables identification of key behavioural drivers of conversion,
-supporting data-driven targeting and campaign optimisation.
+This page directly satisfies **BR1** because it provides data visualisations
+of the variables most correlated with conversion, enabling marketing analysts
+to identify high-quality leads based on statistical evidence rather than assumptions.
 
 ---
 
@@ -807,8 +810,9 @@ Social Media platform insight is displayed showing Instagram vs Facebook ROI.
 
 
 **Business Value:**  
-Allows the sales team to prioritise leads in real time,
-improving efficiency and increasing conversion rates.
+This page directly satisfies **BR2** because it deploys the trained ML pipeline
+as an interactive tool, enabling the sales team to input a lead profile and
+receive an instant conversion prediction with probability score and recommended action.
 
 ---
 
@@ -835,8 +839,9 @@ improving efficiency and increasing conversion rates.
 ![Model Performance](docs/screenshots/dashboard/mp-web4.png)
 
 **Business Value:**  
-Builds trust in the model by providing transparency,
-validation, and clear communication of strengths and limitations.
+This page supports **BR2** by providing full transparency into the ML model's
+performance, confirming it meets the defined success criteria (Recall ≥ 0.75,
+F1 ≥ 0.80), and communicating its limitations clearly to build user trust.
 
 ---
 
@@ -856,8 +861,9 @@ validation, and clear communication of strengths and limitations.
 ![Campaign ROI Analysis](docs/screenshots/dashboard/cROIa-web3.png)
 
 **Business Value:**  
-Supports strategic decision-making by identifying
-which campaigns deliver the highest return on investment.
+This page directly satisfies **BR3** because it analyses marketing spend
+efficiency across campaign categories, enabling budget owners to make
+ROI-driven allocation decisions backed by real KPI data.
 
 ---
 
@@ -878,8 +884,9 @@ which campaigns deliver the highest return on investment.
 
 
 **Business Value:**  
-Demonstrates analytical rigour and ensures that conclusions
-are supported by statistical evidence rather than assumptions.
+This page supports **BR1 and BR2** by validating three project hypotheses
+with statistical evidence, ensuring that conclusions about conversion drivers
+are grounded in data rather than assumptions.
 
 ---
 
