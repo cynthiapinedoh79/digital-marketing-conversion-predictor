@@ -613,11 +613,11 @@ The model demonstrates strong predictive capability in identifying converting le
 
 ### Results Achieved
 
-- **Test Recall (Converted):** 0.8395 ✅ (≥ 0.75 requirement)  
-- **Test F1-score (Converted):** 0.8767 ✅ (≥ 0.80 target)  
-- **ROC-AUC:** 0.7339  
+- **Test Recall (Converted):** 0.8381 ✅ (≥ 0.75 requirement)  
+- **Test F1-score (Converted):** 0.8762 ✅ (≥ 0.80 target)  
+- **ROC-AUC:** 0.7331 
 - **Train Accuracy:** 0.8405  
-- **Test Accuracy:** 0.7931  
+- **Test Accuracy:** 0.7925
 
 The model successfully meets the defined business performance thresholds. 
 
@@ -863,9 +863,9 @@ The machine learning model was evaluated using a hold-out test set.
 
 | Metric | Result |
 |-------|--------|
-| Recall (Converted) | 0.8395 |
-| F1-score (Converted) | 0.8767 |
-| ROC-AUC | 0.7339 |
+| Recall (Converted) | 0.8381 |
+| F1-score (Converted) | 0.8762 |
+| ROC-AUC | 0.7331 |
 
 **Interpretation:**
 - The model meets the defined success criteria (Recall ≥ 0.75, F1 ≥ 0.80)
