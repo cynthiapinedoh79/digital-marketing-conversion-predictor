@@ -616,7 +616,7 @@ The model demonstrates strong predictive capability in identifying converting le
 - **Test Recall (Converted):** 0.8381 ✅ (≥ 0.75 requirement)  
 - **Test F1-score (Converted):** 0.8762 ✅ (≥ 0.80 target)  
 - **ROC-AUC:** 0.7331 
-- **Train Accuracy:** 0.8405  
+- **Train Accuracy:** 0.8528  
 - **Test Accuracy:** 0.7925
 
 The model successfully meets the defined business performance thresholds. 
@@ -1120,8 +1120,6 @@ Each notebook was executed in order and outputs are saved to `inputs/datasets/` 
 
 ---
 
----
-
 #### Data Cleaning and Feature Engineering Spreadsheet
 
 As part of the data preparation workflow, a spreadsheet was created to document all variables, their data types, missing value analysis, and the feature engineering transformations considered for each variable.
@@ -1295,7 +1293,7 @@ To clone this repository locally:
 
 ## Acknowledgements
 
-- I would like to thank my mentor, **[Mo Shami]**, at Code Institute for their guidance and feedback throughout this project. Their advice on machine learning evaluation and dashboard design provided valuable direction at key stages of development.
+- I would like to thank my mentor, **Mo Shami**, at Code Institute for their guidance and feedback throughout this project. Their advice on machine learning evaluation and dashboard design provided valuable direction at key stages of development.
 - I would like to thank the Code Institute tutor support team for their assistance with environment configuration and dependency issues during development.
 - I would like to thank the Code Institute Slack community for their support and shared knowledge throughout the Predictive Analytics module.
 - Project structure and methodology were inspired by the Code Institute Predictive Analytics walkthroughs: **Malaria Detector** and **Churnometer**.
