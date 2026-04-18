@@ -641,14 +641,6 @@ By focusing on high-probability **predictions**, the company can:
 
 ---
 
-### Limitations
-
-- **Moderate overfitting:** train accuracy (0.8528) exceeds test accuracy (0.7925)
-- **Minority label performance:** recall for Not Converted = 0.4697
-- **Model sensitivity:** performance may vary depending on threshold selection
-
----
-
 ### Future Improvements
 
 - Adjust classification threshold to optimise the precision/recall trade-off
@@ -687,17 +679,20 @@ By focusing on high-probability **predictions**, the company can:
 
 ## Limitations
 
-**Model-related limitations:**
-- Moderate overfitting: training accuracy exceeds test accuracy  
-- Minority class performance: recall for non-converted leads = 0.4646  
-- Model sensitivity: performance depends on threshold selection  
+### Model Limitations
+- **Moderate overfitting:** train accuracy (0.8528) exceeds test accuracy (0.7925), indicating some loss of generalisation on unseen data
+- **Minority class performance:** recall for Not Converted = 0.4697, reflecting the challenge of class imbalance despite SMOTE
+- **Threshold sensitivity:** model performance may vary depending on the classification threshold selected
 
-**Data-related limitations:**
-- Model performance depends on dataset quality and feature representativeness  
-- SMOTE may introduce synthetic bias and affect generalisation  
+### Data Limitations
+- Model performance depends on dataset quality and feature representativeness
+- SMOTE generates synthetic samples which may introduce bias and affect real-world generalisation
+- Engagement metrics (EmailOpens, EmailClicks, WebsiteVisits) lack a defined time window, limiting direct business comparability
 
-**Deployment limitations:**
-- Real-world performance may vary due to unseen data patterns and data drift    
+### Deployment Limitations
+- Real-world performance may vary due to unseen data patterns and distribution shifts over time
+- The model was trained on a static dataset and may require periodic retraining as campaign behaviour evolves
+- Predictions should support, not replace, human decision-making 
 
 ---
 
