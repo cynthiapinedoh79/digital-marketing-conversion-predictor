@@ -491,32 +491,38 @@ translates into revenue so I can optimise budget allocation.
 
 ## ML Business Case
 
+---
+
 ### Conversion Classifier
 
-**Objective:**  
+**Objective:**
 Develop a binary classification model to predict whether a lead will
-convert (`Conversion = 1`) based on demographic and behavioural features.  
+convert (`Conversion = 1`) based on demographic and behavioural features.
 This directly addresses **Business Requirement 2 (Conversion Prediction)**.
 
 ---
 
 ### Learning Method
 
-Supervised machine learning — binary classification using a  
-Random Forest Classifier, optimised through RandomizedSearchCV.
+The **learning method** is supervised machine learning — specifically a
+**binary classification task** using a **Random Forest Classifier**,
+optimised through **RandomizedSearchCV**.
 
-Random Forest was selected due to its ability to handle nonlinear relationships, robustness to overfitting, and strong performance with mixed data types (categorical and numerical features).
+Random Forest was selected due to its ability to handle nonlinear
+relationships, robustness to overfitting, and strong performance with
+mixed data types (categorical and numerical **features**).
 
 ---
 
 ### Model Selection Rationale
 
-Random Forest was chosen due to:
+Random Forest was chosen as the **machine learning task** for this
+classification problem due to:
 
-- Its ability to handle complex, non-linear relationships  
-- Robustness to noise and overfitting  
-- Strong performance with tabular data  
-- Interpretability through feature importance  
+- Its ability to handle complex, non-linear relationships between **features** and the **target**
+- Robustness to noise and overfitting via ensemble learning
+- Strong performance with tabular data containing both numerical and categorical **attributes**
+- Interpretability through **feature importance** scores
 
 ---
 
@@ -524,17 +530,19 @@ Random Forest was chosen due to:
 
 A model that:
 
-- Maximises **recall for the positive class (Converted)** to capture
-  as many potential customers as possible  
-- Maintains a strong balance between precision and recall  
-- Enables the sales team to prioritise high-probability leads efficiently  
+- Maximises **recall** for the positive **label** (Converted) to capture
+  as many potential customers as possible
+- Maintains a strong balance between precision and recall
+- Enables the sales team to prioritise high-probability leads efficiently
 
 ---
 
 ### Success Metrics
 
-- **Minimum requirement:** Recall ≥ 0.75 (Converted class)  
-- **Target performance:** F1-score ≥ 0.80 (Converted class)  
+The following **model metrics** define success:
+
+- **Minimum requirement:** Recall ≥ 0.75 for the positive **label** (Converted class)
+- **Target performance:** F1-score ≥ 0.80 for the positive **label** (Converted class)
 
 These thresholds ensure the model prioritises **business impact over pure accuracy**.
 
@@ -542,20 +550,22 @@ These thresholds ensure the model prioritises **business impact over pure accura
 
 ### Model Output
 
-- Binary prediction: **Converted / Not Converted**  
-- Probability score (0–1)
+After training and fitting the model on the training data, the **model output** is:
+
+- A binary **prediction**: **Converted / Not Converted** (the **label**)
+- A probability score (0–1) representing the likelihood of conversion
 
 The probability score allows the business to:
 
-- Rank leads by likelihood of conversion  
-- Prioritise outreach efforts  
-- Optimise sales resource allocation  
+- Rank leads by predicted conversion likelihood
+- Prioritise outreach efforts based on **model predictions**
+- Optimise sales resource allocation
 
 ---
 
 ### Baseline (Heuristic Comparison)
 
-A naive approach would treat all leads as converters.
+A naive heuristic approach would treat all leads as converters.
 
 - Conversion rate: **87.65%**
 - Baseline accuracy: ~88%
@@ -565,82 +575,104 @@ However, this approach:
 - Provides **no prioritisation capability**
 - Fails to identify the **12.35% of non-converting leads**
 
-The ML model adds value by introducing **predictive prioritisation**.
+The ML model adds value by introducing **predictive prioritisation** beyond the baseline heuristic.
 
 ---
 
 ### Training Data
 
-- Dataset: Digital Marketing Campaign Dataset  
-- Size: 8,000 rows  
-- Target: `Conversion` (binary)  
-- Features: 15 input variables after cleaning  
+The model was **trained** and **fitted** on the following data:
 
-To address class imbalance, **SMOTE (Synthetic Minority Oversampling Technique)**  
-was applied during training.
+- Dataset: Digital Marketing Campaign Dataset
+- Size: 8,000 rows (6,400 train / 1,600 test — 80/20 stratified split)
+- **Target variable**: `Conversion` (binary — 1 = Converted, 0 = Not Converted)
+- **Features**: 15 input **variables** after cleaning
+- **Labels**: 2 classes — Converted (1) and Not Converted (0)
 
----
-
-### Business Impact
-
-The model enables ConvertIQ to prioritise high-value leads,
-significantly improving sales efficiency and reducing wasted outreach.
-
-By focusing on high-probability conversions, the company can:
-
-- Increase marketing ROI  
-- Optimise budget allocation  
-- Improve conversion rates  
-- Reduce acquisition costs  
-
-This transforms raw data into actionable business intelligence.
+To address class imbalance in the **training** data, **SMOTE** was applied
+to oversample the minority **label** during model fitting.
 
 ---
 
-### Model Performance
+### Hyperparameter Optimisation
 
-The model demonstrates strong predictive capability in identifying converting leads, with a high recall and balanced F1-score. Performance was evaluated on both training and test sets to ensure generalisation.
+**RandomizedSearchCV** was used to tune 7 **hyperparameters** with 3+
+values each across 30 iterations and 5-fold cross-validation, optimising
+for F1-score on the positive **label**:
 
----
-
-### Model Evaluation
-
-- Strong performance in identifying converting leads (high recall)  
-- Balanced precision–recall trade-off (high F1-score)  
-- Acceptable generalisation (moderate drop from train to test accuracy)
+| Hyperparameter | Values | Rationale |
+|---|---|---|
+| n_estimators | 100, 200, 300 | More trees improve stability; diminishing returns above 300 |
+| max_depth | 4, 6, 8, 10 | Limits tree depth to prevent memorisation of training data |
+| min_samples_split | 10, 20, 30 | Higher values prevent splitting on noise |
+| min_samples_leaf | 5, 10, 15 | Ensures meaningful leaf nodes, reduces overfitting |
+| max_features | sqrt, log2, 0.5 | Controls feature randomness per split |
+| class_weight | balanced, balanced_subsample, None | Addresses class imbalance in the **target** |
+| criterion | gini, entropy, log_loss | Tests impurity measures for split quality |
 
 ---
 
 ### Results Achieved
 
-- **Test Recall (Converted):** 0.8381 ✅ (≥ 0.75 requirement)  
-- **Test F1-score (Converted):** 0.8762 ✅ (≥ 0.80 target)  
-- **ROC-AUC:** 0.7331 
-- **Train Accuracy:** 0.8528  
+After **fitting** the pipeline on the training set and evaluating **predictions**
+on the held-out test set, the following **model metrics** were recorded:
+
+- **Test Recall (Converted label):** 0.8381 ✅ (≥ 0.75 requirement)
+- **Test F1-score (Converted label):** 0.8762 ✅ (≥ 0.80 target)
+- **ROC-AUC:** 0.7331
+- **Train Accuracy:** 0.8528
 - **Test Accuracy:** 0.7925
 
-The model successfully meets the defined business performance thresholds. 
+The **model** successfully meets the defined business performance thresholds.
+
+---
+
+### Business Impact
+
+The trained **model** enables ConvertIQ to prioritise high-value leads,
+significantly improving sales efficiency and reducing wasted outreach.
+
+By focusing on high-probability **predictions**, the company can:
+
+- Increase marketing ROI
+- Optimise budget allocation
+- Improve conversion rates
+- Reduce acquisition costs
+
+---
+
+### Limitations
+
+- **Moderate overfitting:** train accuracy (0.8528) exceeds test accuracy (0.7925)
+- **Minority label performance:** recall for Not Converted = 0.4697
+- **Model sensitivity:** performance may vary depending on threshold selection
 
 ---
 
 ### Future Improvements
 
-- Adjust classification threshold to optimise business trade-offs  
-- Explore additional feature engineering (e.g., interaction terms)  
-- Test alternative models (e.g., Gradient Boosting, XGBoost)  
-- Improve minority class detection through advanced resampling techniques  
+- Adjust classification threshold to optimise the precision/recall trade-off
+- Explore additional **feature** engineering (e.g., interaction terms)
+- **Train** alternative models (e.g., Gradient Boosting, XGBoost)
+- Improve minority **label** detection through advanced resampling techniques
 
 ---
 
 ### Key ML Terminology
 
-- **Pipeline:** A structured sequence of preprocessing steps and model training  
-- **SMOTE:** Generates synthetic samples of the minority class to balance data  
-- **Recall:** Ability to correctly identify actual positives  
-- **F1-score:** Balance between precision and recall  
-- **ROC-AUC:** Measures the model’s ability to distinguish between classes  
-- **Feature Importance:** Indicates which variables most influence predictions  
-- **Hyperparameter Optimisation:** Process of tuning model parameters to maximise performance
+- **Pipeline:** A structured sequence of preprocessing steps and model training
+- **Features / Variables / Attributes:** The 15 input columns used to train the model
+- **Target:** The `Conversion` column — what the model is trained to predict
+- **Labels:** The two output classes — Converted (1) and Not Converted (0)
+- **Train / Fit:** The process of exposing the model to training data to learn patterns
+- **Prediction:** The model output for a given set of input features
+- **Model Metrics:** Quantitative measures of model performance (Recall, F1, ROC-AUC)
+- **SMOTE:** Generates synthetic samples of the minority label to balance training data
+- **Recall:** Proportion of actual positive labels correctly identified
+- **F1-score:** Harmonic mean of precision and recall
+- **ROC-AUC:** Measures the model's ability to distinguish between labels
+- **Feature Importance:** Indicates which variables most influence predictions
+- **Hyperparameter Optimisation:** Tuning model parameters to maximise performance metrics
 
 ---
 
@@ -1250,18 +1282,20 @@ To clone this repository locally:
 
 | Library | Version | Purpose |
 |---|---|---|
-| numpy | 2.2.4 | Numerical computations |
-| pandas | 2.2.3 | Data manipulation and analysis |
-| matplotlib | 3.10.1 | Static plots (used in notebooks) |
-| seaborn | 0.13.2 | Statistical visualisations (notebooks) |
-| plotly | 5.24.1 | Interactive visualisations in dashboard |
-| scikit-learn | 1.6.1 | ML pipeline, preprocessing, RandomizedSearchCV |
-| feature-engine | 1.8.3 | OrdinalEncoder for categorical features |
-| imbalanced-learn | 0.13.0 | SMOTE for class imbalance |
-| joblib | 1.4.2 | Model serialisation (save/load pipeline) |
-| streamlit | 1.40.2 | Dashboard web application |
-| scipy | 1.15.2 | Statistical tests (chi-square, correlations) |
-| kaleido | 0.2.1 | Plotly image export in notebooks |
+| numpy | 2.2.4 | Numerical computations in data analysis and feature engineering notebooks |
+| pandas | 2.2.3 | Data loading, cleaning, manipulation and feature engineering across all notebooks |
+| matplotlib | 3.10.1 | Static plot rendering backend used in notebooks |
+| seaborn | 0.13.2 | Statistical visualisations in data analysis notebook (box plots, violin plots) |
+| plotly | 5.24.1 | Interactive visualisations in all dashboard pages and notebook exports |
+| scikit-learn | 1.6.1 | ML pipeline, RandomForestClassifier, RandomizedSearchCV, confusion matrix, ROC-AUC |
+| feature-engine | 1.8.3 | OrdinalEncoder for categorical feature encoding in the ML pipeline |
+| imbalanced-learn | 0.13.0 | SMOTE oversampling to address class imbalance during model training |
+| joblib | 1.4.2 | Saving and loading the trained ML pipeline (.pkl files) |
+| streamlit | 1.40.2 | Interactive dashboard web application with 6 pages |
+| scipy | 1.15.2 | Statistical tests — point-biserial correlation and chi-square hypothesis validation |
+| kaleido | 0.2.1 | Plotly static image export (.png) for confusion matrix and ROC curve in notebooks |
+| nbformat | ≥4.2.0 | Jupyter notebook format support for rendering plots in notebooks |
+| openpyxl | 3.1.5 | Excel file creation for data cleaning and feature engineering spreadsheet |
 
 ---
 
