@@ -224,26 +224,59 @@ def page_predictor_body():
                     )
 
             with col_prob:
-  
                 st.markdown("#### Conversion Probability")
-
                 percentage = probability * 100
 
                 if probability >= 0.75:
-                    score_color = "#198754"
+                    score_color = "#065f46"
+                    bar_gradient = "linear-gradient(90deg, #10b981, #059669)"
+                    bar_shadow = " 0 0 4px rgba(16, 185, 129, 0.25)"
+
                     likelihood_label = "🟢 High likelihood to convert"
                     lead_label = "🔥 High-Value Lead"
                     lead_bg = "#d4edda"
+                    lead_text = "#155724"
+
+                    quick_bg = "#d4edda"
+                    quick_text = "#155724"
+
+                    action_bg = "#ecfdf5"
+                    action_border = "#10b981"
+                    action_text = "#065f46"
+
                 elif probability >= 0.40:
-                    score_color = "#b8860b"
+                    score_color = "#92400e"
+                    bar_gradient = "linear-gradient(90deg, #f59e0b, #d97706)"
+                    bar_shadow = "0 0 4px rgba(217, 119, 6, 0.25)"
+
                     likelihood_label = "🟡 Moderate likelihood to convert"
                     lead_label = "⚡ Potential Lead"
-                    lead_bg = "#fff3cd"
+                    lead_bg = "#fef3c7"
+                    lead_text = "#92400e"
+
+                    quick_bg = "#fffbeb"
+                    quick_text = "#92400e"
+
+                    action_bg = "#fffbeb"
+                    action_border = "#f59e0b"
+                    action_text = "#92400e"
+
                 else:
                     score_color = "#dc3545"
+                    bar_gradient = "linear-gradient(90deg, #ef4444, #dc2626)"
+                    bar_shadow = "0 0 4px rgba(220, 38, 38, 0.25)"
+
                     likelihood_label = "🔴 Low likelihood to convert"
                     lead_label = "🧊 Cold Lead"
                     lead_bg = "#e2e3e5"
+                    lead_text = "#4b5563"
+
+                    quick_bg = "#fef2f2"
+                    quick_text = "#991b1b"
+
+                    action_bg = "#fef2f2"
+                    action_border = "#ef4444"
+                    action_text = "#991b1b"
 
                 st.markdown(f"""
                 <div style='
@@ -259,6 +292,19 @@ def page_predictor_body():
 
                 st.markdown(f"""
                 <div style="
+                    text-align:center;
+                    font-size:14px;
+                    color:#475569;  /* 👈 gris profesional */
+                    margin-top:6px;
+                    margin-bottom:12px;
+                    font-weight:500;
+                ">
+                    {probability:.2%} probability
+                </div>
+                """, unsafe_allow_html=True)
+
+                st.markdown(f"""
+                <div style="
                     width:100%;
                     background-color:#e9ecef;
                     border-radius:10px;
@@ -267,15 +313,14 @@ def page_predictor_body():
                 ">
                     <div style="
                         width:{percentage}%;
-                        background-color:{score_color};
+                        background: {bar_gradient};
                         height:14px;
                         border-radius:10px;
                         transition: width 0.5s ease-in-out;
-                        box-shadow: 0 0 8px {score_color};
+                        box-shadow: {bar_shadow};
                     "></div>
                 </div>
                 """, unsafe_allow_html=True)
-                st.markdown("<div style='margin-bottom:10px;'></div>", unsafe_allow_html=True)
 
                 st.markdown(
                     f"<div style='text-align:center; font-size:20px; font-weight:700; color:{score_color}; margin-bottom:12px;'>{likelihood_label}</div>",
@@ -285,6 +330,7 @@ def page_predictor_body():
                 st.markdown(f"""
                 <div style='
                     background-color:{lead_bg};
+                    color:{lead_text};
                     padding:8px 14px;
                     border-radius:20px;
                     display:block;
@@ -295,28 +341,41 @@ def page_predictor_body():
                     {lead_label}
                 </div>
                 """, unsafe_allow_html=True)
-            
+
+                if probability < 0.40:
+                    msg = "Low probability — consider nurturing first."
+                elif probability < 0.75:
+                    msg = "Moderate probability — reinforce engagement."
+                else:
+                    msg = "High probability — prioritise conversion."
+
                 st.markdown(f"""
-                <div style="
+                <div style='
+                    background-color:{quick_bg};
+                    padding:14px;
+                    border-radius:10px;
+                    margin:10px 0 15px 0;
                     text-align:center;
-                    font-size:14px;
-                    color:gray;
-                    margin-top:4px;
-                    margin-bottom:20px;
-                ">
-                    {probability:.2%} probability
+                    font-weight:600;
+                    color:{quick_text};
+                '>
+                    {msg}
                 </div>
                 """, unsafe_allow_html=True)
-                
+
+            st.markdown("### 📌 Interpretation")
             st.markdown("""
             <div style='
-                background-color:#eef2f7;
-                padding:20px;
-                border-radius:12px;
-                margin-bottom:15px;
+                background-color:#f9fafb;
+                padding:22px;
+                border-radius:16px;
+                margin-top:20px;
+                margin-bottom:20px;
+                box-shadow:0 4px 12px rgba(0,0,0,0.05);
+                border:1px solid #e5e7eb;
             '>
-                <h4>🧠 Model Insight</h4>
-                <p>
+                <h4 style='color:#111827; margin-bottom:8px;'>🧠 Model Insight</h4>
+                <p style='color:#374151; font-size:15px; line-height:1.6; margin:0;'>
                     This prediction combines engagement metrics, campaign interaction,
                     and historical conversion patterns to support data-driven decision-making.
                 </p>
@@ -483,16 +542,15 @@ def page_predictor_body():
                 if not risk_factors:
                     st.markdown("- Engagement signals are currently limited or mixed.")
 
-                st.markdown("### Recommended Action")
-                st.markdown("""
-                <div style='background-color:#e7f1ff; padding:15px; border-radius:10px;'>
-                Focus on nurturing first. This profile lacks strong engagement signals. 
-                Prioritise trust-building strategies before attempting conversion.
-                </div>
-                """, unsafe_allow_html=True)
+                action_bg = "#fef2f2"
+                action_border = "#ef4444"
+                action_text = "#991b1b"
+                action_msg = (
+                    "Focus on nurturing first. This profile lacks strong engagement signals. "
+                    "Prioritise trust-building strategies before attempting conversion."
+                )
 
                 if actions:
-
                     st.markdown("""
                     <div style='margin-top:40px;'>
                         <h4 style='margin-bottom:10px; font-weight:700;'>🎯 Suggested Next Best Actions</h4>
@@ -516,22 +574,20 @@ def page_predictor_body():
                 else:
                     st.markdown("- This lead shows a mixed profile with moderate engagement.")
 
-                st.markdown("### Recommended Action")
-                st.markdown("""
-                <div style='background-color:#fff3cd; padding:15px; border-radius:10px;'>
-                This lead shows potential. Reinforce value proposition and remove friction 
-                through personalised messaging or targeted campaigns.
-                </div>
-                """, unsafe_allow_html=True)
+                action_bg = "#fffbeb"
+                action_border = "#f59e0b"
+                action_text = "#92400e"
+                action_msg = (
+                    "This lead shows potential. Reinforce value proposition and remove friction "
+                    "through personalised messaging or targeted campaigns."
+                )
 
                 if actions:
-
                     st.markdown("""
                     <div style='margin-top:40px;'>
                         <h4 style='margin-bottom:10px; font-weight:700;'>🎯 Suggested Next Best Actions</h4>
                     </div>
                     """, unsafe_allow_html=True)
-
                     for action in actions[:3]:
                         st.markdown(f"- {action}")
 
@@ -547,24 +603,38 @@ def page_predictor_body():
                 if not positive_factors:
                     st.markdown("- This lead shows several strong engagement indicators overall.")
 
-                st.markdown("### Recommended Action")
-                st.markdown("""
-                <div style='background-color:#d4edda; padding:15px; border-radius:10px;'>
-                This is a high-value lead. Prioritise immediate conversion actions such as 
-                direct offers, urgency triggers, and fast follow-up.
-                </div>
-                """, unsafe_allow_html=True)
+                action_bg = "#ecfdf5"
+                action_border = "#10b981"
+                action_text = "#065f46"
+                action_msg = (
+                    "This is a high-value lead. Prioritise immediate conversion actions such as "
+                    "direct offers, urgency triggers, and fast follow-up."
+                )
 
                 if actions:
-
                     st.markdown("""
                     <div style='margin-top:40px;'>
                         <h4 style='margin-bottom:10px; font-weight:700;'>🎯 Suggested Next Best Actions</h4>
                     </div>
                     """, unsafe_allow_html=True)
-
                     for action in actions[:3]:
                         st.markdown(f"- {action}")
+
+            st.markdown("### Recommended Action")
+            st.markdown(f"""
+            <div style='
+                background-color:{action_bg};
+                padding:18px;
+                border-radius:14px;
+                margin-top:10px;
+                border-left:6px solid {action_border};
+                line-height:1.7;
+            '>
+                <span style='color:{action_text}; font-size:15px;'>
+                    {action_msg}
+                </span>
+            </div>
+            """, unsafe_allow_html=True)
 
         except Exception as e:
             st.error(f"Prediction failed: {e}")
