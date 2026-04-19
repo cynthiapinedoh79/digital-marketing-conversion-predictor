@@ -283,7 +283,7 @@ categories to support budget allocation decisions.
 
 ## Agile Planning
 
-This project was developed using Agile methodology, organised into Epics and User Stories tracked via GitHub Issues. All 8 User Stories were completed and closed.
+This project was developed using Agile methodology, organised into Epics and User Stories tracked via GitHub Issues. All 10 User Stories were completed and closed.
 
 Full development tracking: https://github.com/cynthiapinedoh79/digital-marketing-conversion-predictor/issues
 
@@ -292,40 +292,104 @@ Full development tracking: https://github.com/cynthiapinedoh79/digital-marketing
 ### Epic 1 — Information Gathering and Data Collection
 
 **Issue #7 — USER STORY: Data Collection and Initial Inspection**
-As a data analyst, I can load and inspect both datasets so that I can confirm they are valid and ready for further processing.
+As a data practitioner, I want to load and inspect both datasets from the raw inputs folder so that I can confirm they are valid and understand their structure before analysis.
+
+**Acceptance Criteria:**
+- AC1: Both datasets load without errors
+- AC2: Shape, dtypes and missing values are documented
+- AC3: Target variable distribution is confirmed
+- AC4: Confidential columns are identified for removal
+- AC5: Conclusions documented in notebook
 
 ---
 
 ### Epic 2 — Data Visualisation, Cleaning and Preparation
 
 **Issue #2 — USER STORY: Customer Behaviour Analysis**
-As a marketing analyst, I can explore interactive visualisations of customer behaviour so that I can identify the key drivers of conversion (BR1).
+As a marketing analyst, I want to see which customer and campaign variables correlate most with conversion so that I can identify the characteristics of a high-quality lead.
+
+**Acceptance Criteria:**
+- AC1: Correlation heatmap shows relationships between all numeric features and Conversion
+- AC2: Box plots compare key features between converted and non-converted leads
+- AC3: Scatter plot shows TimeOnSite vs PagesPerVisit coloured by conversion outcome
+- AC4: Bar charts show conversion rate per CampaignChannel and CampaignType
+- AC5: Written conclusions explain each visualisation
+
+---
 
 **Issue #6 — USER STORY: Project Hypotheses Validation**
-As an evaluator, I can view the project hypotheses and their statistical validation so that I can confirm conclusions are evidence-based.
+As an evaluator reviewing this project, I want to see the project hypotheses and their statistical validation so that I can confirm the analytical conclusions are evidence-based.
+
+**Acceptance Criteria:**
+- AC1: At least 3 hypotheses are stated clearly
+- AC2: Each hypothesis has a validation method described
+- AC3: Statistical results (p-value, correlation) are shown
+- AC4: Each hypothesis is confirmed or rejected with evidence
+- AC5: Recommended actions follow from each conclusion
 
 ---
 
 ### Epic 3 — Model Training, Optimisation and Validation
 
 **Issue #4 — USER STORY: Model Performance**
-As a technical user, I can view model performance metrics, confusion matrices and feature importance so that I can validate the model meets the business success criteria (BR2).
+As a data practitioner, I want to see how well the ML model performs so that I can confirm it meets the business success criteria.
+
+**Acceptance Criteria:**
+- AC1: Confusion matrix shown for both train and test sets
+- AC2: Classification report table displayed
+- AC3: ROC-AUC curve shown for test set
+- AC4: Feature importance chart displayed
+- AC5: Clear statement confirms if model meets success metrics
 
 ---
 
 ### Epic 4 — Dashboard Planning, Design and Development
 
 **Issue #1 — USER STORY: Project Summary Page**
-As a non-technical user, I can view a project summary that describes the business context, datasets and requirements so that I can understand the project at a glance.
+As a data practitioner reviewing this project, I want to see a clear project summary page in the dashboard so that I can quickly understand the business context, dataset, and goals.
+
+**Acceptance Criteria:**
+- AC1: Dashboard displays project title and business context
+- AC2: Dataset description with variable table is shown
+- AC3: Business requirements (BR1, BR2, BR3) are listed clearly
+- AC4: Key terms and jargon are defined
+- AC5: Links to data sources are included
+
+---
 
 **Issue #3 — USER STORY: Conversion Predictor**
-As a sales manager, I can input a lead profile and receive an instant conversion prediction so that my team can prioritise outreach efficiently (BR2).
+As a sales manager, I want to input a lead's profile and receive an instant prediction so that my team can prioritise follow-up with the most likely converters.
+
+**Acceptance Criteria:**
+- AC1: Dashboard has input widgets for all 15 lead features
+- AC2: A Predict button triggers the ML pipeline
+- AC3: Output shows Converted / Not Converted label
+- AC4: Output shows probability score as a progress bar
+- AC5: Interpretation text explains what the prediction means
+
+---
 
 **Issue #5 — USER STORY: Campaign ROI Analysis**
-As a marketing director, I can analyse campaign ROI across categories so that I can make informed budget allocation decisions (BR3).
+As a marketing director, I want to see how marketing spend translates into revenue by campaign category so that I can make informed budget allocation decisions.
+
+**Acceptance Criteria:**
+- AC1: Summary KPIs show total spend, revenue and overall ROI
+- AC2: Scatter plot shows spend vs revenue by campaign category
+- AC3: Bar chart shows average ROI per category
+- AC4: Line chart shows daily revenue trend per category
+- AC5: Conclusions recommend best-performing channel
+
+---
 
 **Issue #8 — USER STORY: Social Media Platform Insight**
-As a marketing analyst, I can see platform-level social media performance data when Social Media is selected so that I can understand which platform delivers the best ROI.
+As a marketing analyst, I want to see platform-level performance data when a Social Media campaign is selected so that I can understand which platform delivers the best ROI and prioritise budget accordingly.
+
+**Acceptance Criteria:**
+- AC1: Social Media insight section only appears when Campaign Channel is set to "Social Media"
+- AC2: Orders by Platform bar chart displays real data from the KPI dataset
+- AC3: ROI (%) by Platform bar chart displays calculated ROI per platform
+- AC4: A summary table shows Orders, Revenue, Spent and ROI per platform
+- AC5: Interpretive text dynamically reflects which platform outperforms the other
 
 ---
 
@@ -334,8 +398,20 @@ As a marketing analyst, I can see platform-level social media performance data w
 **Issue #9 — USER STORY: Live Application Access**
 As a user, I can access the project dashboard on a live deployed Heroku application so that I can interact with it from any browser.
 
+**Acceptance Criteria:**
+- AC1: Application is accessible via a public Heroku URL
+- AC2: All six dashboard pages load correctly
+- AC3: App is tested after deployment to confirm full functionality
+
+---
+
 **Issue #10 — USER STORY: Repository Fork and Clone**
 As a technical user, I can follow the README instructions to fork and clone the repository so that I can deploy the project independently.
+
+**Acceptance Criteria:**
+- AC1: README includes clear forking instructions
+- AC2: README includes clear cloning instructions
+- AC3: Repository is public and accessible
 
 [🔝 Back to Table of Contents](#table-of-contents)
 
