@@ -1,4 +1,4 @@
-# 📊 Digital Marketing Conversion Predictor
+# Digital Marketing Conversion Predictor
 
 **Live Application:** https://digital-marketing-conversion-p-baa19eafc972.herokuapp.com/
 
@@ -6,9 +6,11 @@
 
 👉 **Key Value:** Focus resources on leads most likely to convert, increasing ROI and campaign performance.
 
+<br>
+
 ---
 
-## 🚀 Key Features
+## Key Features
 
 - 📈 **Customer Behaviour Analysis:**  
   Identify behavioural patterns and correlations associated with conversion
@@ -25,9 +27,11 @@
 - 📊 **Interactive Dashboard:**  
   Explore real-time insights and predictions through a Streamlit interface
 
+<br>
+
 ---
 
-## 🚀 How to Use
+## How to Use
 
 1. Open the live application or run the app locally
 2. Navigate through the dashboard pages using the sidebar
@@ -38,9 +42,11 @@
 
 The dashboard is designed to be intuitive and accessible for both technical and non-technical users.
 
+<br>
+
 ---
 
-## 🧩 Technologies Used
+## Technologies Used
 
 ![Python](https://img.shields.io/badge/Python-3.12-blue)
 ![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-purple)
@@ -49,31 +55,33 @@ The dashboard is designed to be intuitive and accessible for both technical and 
 ![Plotly](https://img.shields.io/badge/Plotly-Visualization-blue)
 ![Heroku](https://img.shields.io/badge/Heroku-Deploy-purple)
 
+<br>
+
 ---
 
 ## Table of Contents
 
-1. [Project Overview](#project-overview)
+1. [🏢 Project Overview](#project-overview)
    - [The Problem](#the-problem)
    - [The Solution](#the-solution)
    - [Measurable Business Value](#measurable-business-value)
-2. [Target Users](#target-users)
-3. [Dataset Content](#dataset-content)
-4. [Business Requirements](#business-requirements)
-5. [Agile Planning](#agile-planning)
+2. [🎯 Target Users](#target-users)
+3. [📊 Dataset Content](#dataset-content)
+4. [📋 Business Requirements](#business-requirements)
+5. [🧩 Agile Planning](#agile-planning)
    - [Epic 1 — Information Gathering and Data Collection](#epic-1--information-gathering-and-data-collection)
    - [Epic 2 — Data Visualisation, Cleaning and Preparation](#epic-2--data-visualisation-cleaning-and-preparation)
    - [Epic 3 — Model Training, Optimisation and Validation](#epic-3--model-training-optimisation-and-validation)
    - [Epic 4 — Dashboard Planning, Design and Development](#epic-4--dashboard-planning-design-and-development)
    - [Epic 5 — Deployment and Release](#epic-5--deployment-and-release)
-6. [Data Analysis Overview](#data-analysis-overview)
-7. [Feature Engineering](#feature-engineering)
-8. [Hypothesis and Validation](#hypothesis-and-validation)
+6. [🔍 Data Analysis Overview](#data-analysis-overview)
+7. [⚙️ Feature Engineering](#feature-engineering)
+8. [💡 Hypothesis and Validation](#hypothesis-and-validation)
    - [Hypothesis 1 — Engagement Depth Predicts Conversion](#hypothesis-1--engagement-depth-predicts-conversion)
    - [Hypothesis 2 — Campaign Channel Affects Conversion Rate](#hypothesis-2--campaign-channel-affects-conversion-rate)
    - [Hypothesis 3 — Ad Spend Alone is a Weak Predictor](#hypothesis-3--ad-spend-alone-is-a-weak-predictor)
-9. [Rationale to Map Business Requirements](#rationale-to-map-business-requirements)
-10. [ML Business Case](#ml-business-case)
+9. [🗺️ Rationale to Map Business Requirements](#rationale-to-map-business-requirements)
+10. [🤖 ML Business Case](#ml-business-case)
     - [Learning Method](#learning-method)
     - [Model Selection Rationale](#model-selection-rationale)
     - [Success Metrics](#success-metrics)
@@ -83,16 +91,16 @@ The dashboard is designed to be intuitive and accessible for both technical and 
     - [Hyperparameter Optimisation](#hyperparameter-optimisation)
     - [Results Achieved](#results-achieved)
     - [Key ML Terminology](#key-ml-terminology)
-11. [Ethical Considerations](#ethical-considerations)
-12. [Limitations](#limitations)
-13. [Dashboard Design](#dashboard-design)
+11. [⚖️ Ethical Considerations](#ethical-considerations)
+12. [⚠️ Limitations](#limitations)
+13. [🖥️ Dashboard Design](#dashboard-design)
     - [Page 1 — Project Summary](#page-1--project-summary)
     - [Page 2 — Customer Behaviour Analysis](#page-2--customer-behaviour-analysis)
     - [Page 3 — Conversion Predictor](#page-3--conversion-predictor)
     - [Page 4 — Model Performance](#page-4--model-performance)
     - [Page 5 — Campaign ROI Analysis](#page-5--campaign-roi-analysis)
     - [Page 6 — Project Hypotheses](#page-6--project-hypotheses)
-14. [Testing](#testing)
+14. [🧪 Testing](#testing)
     - [Manual Testing](#manual-testing)
     - [Model Testing](#model-testing)
     - [Data Validation](#data-validation)
@@ -100,27 +108,31 @@ The dashboard is designed to be intuitive and accessible for both technical and 
     - [Lighthouse Testing](#lighthouse-testing)
     - [Edge Case Testing](#edge-case-testing)
     - [Bugs and Fixes](#bugs-and-fixes)
-15. [Additional Documentation](#additional-documentation)
+15. [📁 Additional Documentation](#additional-documentation)
     - [Project Structure](#project-structure)
     - [Code Validation](#code-validation)
     - [Jupyter Notebooks](#jupyter-notebooks)
     - [Data Cleaning and Feature Engineering Spreadsheet](#data-cleaning-and-feature-engineering-spreadsheet)
-16. [Unfixed Bugs](#unfixed-bugs)
-17. [Deployment](#deployment)
-    - [Files Required for Deployment](#files-required-for-deployment)
+16. [🐛 Unfixed Bugs](#unfixed-bugs)
+17. [🚀 Deployment](#deployment)
+    - [Files Required for Deployment](#-files-required-for-deployment)
     - [Deployment Steps](#deployment-steps)
     - [Forking](#forking)
     - [Cloning](#cloning)
-18. [Main Libraries](#main-libraries)
-19. [Conclusion](#conclusion)
-20. [Credits](#credits)
-21. [Acknowledgements](#acknowledgements)
+18. [📚 Main Libraries](#main-libraries)
+19. [📌 Conclusion](#conclusion)
+20. [🙏 Credits](#credits)
+21. [👏 Acknowledgements](#acknowledgements)
+
+<br>
 
 ---
 
 ## Project Overview
 
 **ConvertIQ** is a fictional digital marketing agency that runs campaigns across five channels — Email, SEO, PPC, Social Media, and Referral — for a diverse client base.
+
+---
 
 ### The Problem
 
@@ -129,6 +141,8 @@ Without a data-driven approach, the sales team spends equal time on every lead r
 - **Wasted sales effort:** Representatives contact leads that statistically will not convert
 - **Missed revenue:** High-probability leads do not receive timely follow-up
 - **Poor ROI visibility:** Budget is allocated across campaigns without understanding which channels and types actually deliver returns
+
+---
 
 ### The Solution
 
@@ -155,6 +169,8 @@ Analysis of the marketing KPIs dataset provides budget allocation guidance:
 - **Search campaigns** generate consistent revenue with controlled spend.
 - Monthly revenue trends reveal seasonal patterns that can inform campaign timing decisions.
 
+---
+
 ### Measurable Business Value
 
 | Without the App | With the App |
@@ -168,6 +184,8 @@ Analysis of the marketing KPIs dataset provides budget allocation guidance:
 The final solution is delivered as an interactive Streamlit dashboard, enabling marketing analysts, sales managers, and business directors to explore insights and generate real-time predictions without technical expertise.
 
 [🔝 Back to Table of Contents](#table-of-contents)
+
+<br>
 
 ---
 
@@ -185,6 +203,8 @@ historical analysis, machine learning predictions, and actionable business insig
 
 [🔝 Back to Table of Contents](#table-of-contents)
 
+<br>
+
 ---
 
 ## Dataset Content
@@ -196,6 +216,8 @@ and customer behaviour analysis, and a second one for campaign ROI and platform-
 Together, they support both predictive modelling and business decision-making.
 
 The project uses two datasets sourced from Kaggle:
+
+<br>
 
 ---
 
@@ -235,6 +257,8 @@ both contained only confidential placeholder values with no predictive value.
 **Important note on engagement variables:**  
 Metrics such as `EmailOpens`, `EmailClicks`, and `WebsiteVisits` are recorded as cumulative values per lead in the source dataset. The dataset does not define a fixed time window (e.g. daily, weekly, or monthly). For business interpretation, these variables should therefore be understood as lead-level engagement summaries across the campaign journey. In practice, they are best used within a consistent operational timeframe, such as the first 2–4 weeks after lead acquisition.
 
+<br>
+
 ---
 
 **Dataset 2 — Digital Marketing Metrics & KPIs (SQL)**
@@ -260,6 +284,8 @@ Source: [Kaggle — Sinderpreet](https://www.kaggle.com/datasets/sinderpreet/ana
 
 [🔝 Back to Table of Contents](#table-of-contents)
 
+<br>
+
 ---
 
 ## Business Requirements
@@ -283,6 +309,8 @@ categories to support budget allocation decisions.
 
 [🔝 Back to Table of Contents](#table-of-contents)
 
+<br>
+
 ---
 
 ## Agile Planning
@@ -304,6 +332,8 @@ As a data practitioner, I want to load and inspect both datasets from the raw in
 - AC3: Target variable distribution is confirmed
 - AC4: Confidential columns are identified for removal
 - AC5: Conclusions documented in notebook
+
+<br>
 
 ---
 
@@ -331,6 +361,8 @@ As an evaluator reviewing this project, I want to see the project hypotheses and
 - AC4: Each hypothesis is confirmed or rejected with evidence
 - AC5: Recommended actions follow from each conclusion
 
+<br>
+
 ---
 
 ### Epic 3 — Model Training, Optimisation and Validation
@@ -344,6 +376,8 @@ As a data practitioner, I want to see how well the ML model performs so that I c
 - AC3: ROC-AUC curve shown for test set
 - AC4: Feature importance chart displayed
 - AC5: Clear statement confirms if model meets success metrics
+
+<br>
 
 ---
 
@@ -395,6 +429,8 @@ As a marketing analyst, I want to see platform-level performance data when a Soc
 - AC4: A summary table shows Orders, Revenue, Spent and ROI per platform
 - AC5: Interpretive text dynamically reflects which platform outperforms the other
 
+<br>
+
 ---
 
 ### Epic 5 — Deployment and Release
@@ -419,8 +455,9 @@ As a technical user, I can follow the README instructions to fork and clone the 
 
 [🔝 Back to Table of Contents](#table-of-contents)
 
----
+<br>
 
+---
 
 ## Data Analysis Overview
 
@@ -434,6 +471,8 @@ Key steps included:
 
 Detailed analysis and results are presented in the following sections.
 
+---
+
 ### Key Insights
 
 - Engagement features such as **TimeOnSite** and **PagesPerVisit** show the strongest relationship with conversion
@@ -444,6 +483,8 @@ Detailed analysis and results are presented in the following sections.
 These insights directly informed feature selection and model design.
 
 [🔝 Back to Table of Contents](#table-of-contents)
+
+<br>
 
 ---
 
@@ -462,6 +503,8 @@ Feature engineering decisions were guided by insights obtained during explorator
 
 Feature engineering was implemented as part of a reusable preprocessing pipeline integrated into the machine learning workflow.
 
+---
+
 ### Summary of Transformations
 
 | Step | Technique | Purpose |
@@ -472,6 +515,8 @@ Feature engineering was implemented as part of a reusable preprocessing pipeline
 | Class Imbalance | SMOTE | Improve minority class recall |
 
 [🔝 Back to Table of Contents](#table-of-contents)
+
+<br>
 
 ---
 
@@ -558,6 +603,8 @@ rather than increasing raw advertising spend.
 
 [🔝 Back to Table of Contents](#table-of-contents)
 
+<br>
+
 ---
 
 ## Rationale to Map Business Requirements
@@ -619,6 +666,8 @@ translates into revenue so I can optimise budget allocation.
 - Provide actionable business recommendations
 
 [🔝 Back to Table of Contents](#table-of-contents)
+
+<br>
 
 ---
 
@@ -799,6 +848,8 @@ By focusing on high-probability **predictions**, the company can:
 
 [🔝 Back to Table of Contents](#table-of-contents)
 
+<br>
+
 ---
 
 ## Ethical Considerations
@@ -810,6 +861,8 @@ By focusing on high-probability **predictions**, the company can:
 
 [🔝 Back to Table of Contents](#table-of-contents)
 
+<br>
+
 ---
 
 ## Limitations
@@ -819,10 +872,14 @@ By focusing on high-probability **predictions**, the company can:
 - **Minority class performance:** recall for Not Converted = 0.4697, reflecting the challenge of class imbalance despite SMOTE
 - **Threshold sensitivity:** model performance may vary depending on the classification threshold selected
 
+---
+
 ### Data Limitations
 - Model performance depends on dataset quality and feature representativeness
 - SMOTE generates synthetic samples which may introduce bias and affect real-world generalisation
 - Engagement metrics (EmailOpens, EmailClicks, WebsiteVisits) lack a defined time window, limiting direct business comparability
+
+---
 
 ### Deployment Limitations
 - Real-world performance may vary due to unseen data patterns and distribution shifts over time
@@ -831,6 +888,8 @@ By focusing on high-probability **predictions**, the company can:
 
 [🔝 Back to Table of Contents](#table-of-contents)
 
+<br>
+
 ---
 
 ## Dashboard Design
@@ -838,6 +897,8 @@ By focusing on high-probability **predictions**, the company can:
 The Streamlit dashboard is structured into six interactive pages,
 each designed to address a specific business requirement and guide
 the user from data exploration to actionable insights.
+
+<br>
 
 ---
 
@@ -849,13 +910,19 @@ the user from data exploration to actionable insights.
 - Defines key terminology (Conversion, CTR, ROI, Recall, F1-score)
 - Includes links to original data sources
 
+---
+
 ![Project Summary](docs/screenshots/dashboard/ps-web1.png)
+
+---
 
 ![Project Summary](docs/screenshots/dashboard/ps-web2.png)
 
 ![Project Summary](docs/screenshots/dashboard/ps-web2a.png)
 
 ![Project Summary](docs/screenshots/dashboard/ps-web2b.png)
+
+---
 
 ![Project Summary](docs/screenshots/dashboard/ps-web3.png)
 
@@ -864,6 +931,8 @@ This page satisfies the project's overall context requirement by establishing
 the business problem, datasets and requirements before the user interacts
 with any analysis. It ensures evaluators and non-technical users can
 understand the purpose of the dashboard at a glance.
+
+<br>
 
 ---
 
@@ -879,9 +948,13 @@ understand the purpose of the dashboard at a glance.
 
 ![Customer Behaviour Analysis](docs/screenshots/dashboard/cba-web1.png)
 
+---
+
 ![Customer Behaviour Analysis](docs/screenshots/dashboard/cba-web2a.png)
 
 ![Customer Behaviour Analysis](docs/screenshots/dashboard/cba-web2b.png)
+
+---
 
 ![Customer Behaviour Analysis](docs/screenshots/dashboard/cba-web3.png)
 
@@ -891,6 +964,8 @@ understand the purpose of the dashboard at a glance.
 This page directly satisfies **BR1** because it provides data visualisations
 of the variables most correlated with conversion, enabling marketing analysts
 to identify high-quality leads based on statistical evidence rather than assumptions.
+
+<br>
 
 ---
 
@@ -906,8 +981,13 @@ to identify high-quality leads based on statistical evidence rather than assumpt
 - Social Media platform insight displayed when Social Media channel is selected
 - Explanation of how the model supports decision-making
 
+---
+
 **Lead Profile Input Form**
+
 ![Conversion Predictor - Input Form](docs/screenshots/dashboard/cp-web0.png)
+
+---
 
 **Prediction Example 1 — Not Converted (7% probability)**  
 Low engagement profile: minimal email interaction, low time on site.
@@ -921,23 +1001,26 @@ Model correctly identifies this as a **Cold lead** and recommends a nurture stra
 
 ![Conversion Predictor - Input Form](docs/screenshots/dashboard/cp-web4.png)
 
-![Conversion Predictor - Input Form](docs/screenshots/dashboard/cp-web5.png)
+---
 
 **Prediction Example 2 — Moderate Conversion (73% probability)**  
 Mixed engagement profile: some email clicks, moderate time on site.
 Model identifies this as a **Potential lead** and recommends targeted follow-up.
 
+![Conversion Predictor - Input Form](docs/screenshots/dashboard/cp-web5.png)
+
 ![Conversion Predictor - Not Converted](docs/screenshots/dashboard/cp-web6.png)
 
 ![Conversion Predictor - Not Converted](docs/screenshots/dashboard/cp-web7.png)
 
-![Conversion Predictor - Not Converted](docs/screenshots/dashboard/cp-web8.png)
-
+---
 
 **Prediction Example 3 — High Conversion (85% probability)**  
 Strong engagement profile: high time on site, multiple email clicks, previous purchases.
 Model identifies this as a **High-value lead** and recommends immediate direct outreach.
 Social Media platform insight is displayed showing Instagram vs Facebook ROI.
+
+![Conversion Predictor - Not Converted](docs/screenshots/dashboard/cp-web8.png)
 
 ![Conversion Predictor - Moderate](docs/screenshots/dashboard/cp-web9.png)
 
@@ -945,13 +1028,14 @@ Social Media platform insight is displayed showing Instagram vs Facebook ROI.
 
 ![Conversion Predictor - Not Converted with Social Media Insight](docs/screenshots/dashboard/cp-web11.png)
 
-![Conversion Predictor - Moderate Recommendations](docs/screenshots/dashboard/cp-web12.png)
-
+---
 
 **Business Value:**  
 This page directly satisfies **BR2** because it deploys the trained ML pipeline
 as an interactive tool, enabling the sales team to input a lead profile and
 receive an instant conversion prediction with probability score and recommended action.
+
+<br>
 
 ---
 
@@ -986,6 +1070,8 @@ This page supports **BR2** by providing full transparency into the ML model's
 performance, confirming it meets the defined success criteria (Recall ≥ 0.75,
 F1 ≥ 0.80), and communicating its limitations clearly to build user trust.
 
+<br>
+
 ---
 
 ### Page 5 — Campaign ROI Analysis
@@ -1007,6 +1093,8 @@ F1 ≥ 0.80), and communicating its limitations clearly to build user trust.
 This page directly satisfies **BR3** because it analyses marketing spend
 efficiency across campaign categories, enabling budget owners to make
 ROI-driven allocation decisions backed by real KPI data.
+
+<br>
 
 ---
 
@@ -1032,6 +1120,8 @@ with statistical evidence, ensuring that conclusions about conversion drivers
 are grounded in data rather than assumptions.
 
 [🔝 Back to Table of Contents](#table-of-contents)
+
+<br>
 
 ---
 
@@ -1100,6 +1190,8 @@ The application was tested in:
 - Microsoft Edge  
 
 All core functionalities worked as expected.
+
+<br>
 
 ---
 
@@ -1181,6 +1273,8 @@ Remaining issues are documented in the **Unfixed Bugs** section.
 
 [🔝 Back to Table of Contents](#table-of-contents)
 
+<br>
+
 ---
 
 ## Additional Documentation
@@ -1191,6 +1285,8 @@ The project follows a clear and well-organised folder structure to separate appl
 
 The structure is designed to support both data science workflows and production-ready application deployment. It follows best practices by separating data processing, model development, and application logic, ensuring modularity, scalability, and maintainability.
 
+---
+
 #### Key Components
 
 - `app.py`: main Streamlit entry point  
@@ -1200,6 +1296,8 @@ The structure is designed to support both data science workflows and production-
 - `outputs/`: trained models and processed data  
 - `src/`: reusable data processing and ML logic  
 - `docs/`: project documentation and validation evidence  
+
+---
 
 #### Folder Structure
 
@@ -1260,6 +1358,8 @@ project-root/
 
 This structure ensures clear separation between data processing, model development, application logic, and documentation, improving maintainability and scalability.
 
+<br>
+
 ---
 
 ### Code Validation
@@ -1273,35 +1373,51 @@ https://pep8ci.herokuapp.com/
 
 ![app.py](docs/screenshots/python-linter/pl-app.py.png)
 
+---
+
 **`multipage.py`** — Multipage class that handles page registration and navigation.
 
 ![multipage.py](docs/screenshots/python-linter/app_pages/pl-multipage.py.png)
+
+---
 
 **`page_summary.py`** — Project Summary page. Displays business context, dataset descriptions, key terms and business conclusions.
 
 ![page_summary.py](docs/screenshots/python-linter/app_pages/pl-page_summary.py.png)
 
+---
+
 **`page_data_analysis.py`** — Customer Behaviour Analysis page. Displays correlation heatmap, box plots, scatter plot and conversion rate charts (BR1).
 
 ![page_data_analysis.py](docs/screenshots/python-linter/app_pages/pl-page_data_analysis.py.png)
+
+---
 
 **`page_predictor.py`** — Conversion Predictor page. Loads the trained ML pipeline and returns real-time conversion predictions with probability scores (BR2).
 
 ![page_predictor.py](docs/screenshots/python-linter/app_pages/pl-page_predictor.py.png)
 
+---
+
 **`page_model_performance.py`** — Model Performance page. Displays confusion matrices, ROC curve, feature importance and hyperparameter tuning summary (BR2).
 
 ![page_model_performance.py](docs/screenshots/python-linter/app_pages/pl-page_model_performance.py.png)
 
+---
+
 **`page_roi_analysis.py`** — Campaign ROI Analysis page. Displays spend vs revenue scatter, ROI bar chart and daily revenue trend by category (BR3).
 
 ![page_roi_analysis.py](docs/screenshots/python-linter/app_pages/pl-page_roi_analysis.py.png)
+
+---
 
 **`page_hypothesis.py`** — Project Hypotheses page. Validates three statistical hypotheses using correlation tests and chi-square analysis.
 
 ![page_hypothesis.py](docs/screenshots/python-linter/app_pages/pl-page_hypothesis.py.png)
 
 **Results:** No errors detected. Code follows PEP8 standards for readability and maintainability.
+
+<br>
 
 ---
 
@@ -1344,6 +1460,8 @@ As part of the data preparation workflow, a spreadsheet was created to document 
 
 ![Data Cleaning](docs/screenshots/data_cleaning_spreadsheet.png)
 
+---
+
 **Feature Engineering**
 
 ![Feature Engineering](docs/screenshots/feature_engineering_spreadsheet.png)
@@ -1351,6 +1469,8 @@ As part of the data preparation workflow, a spreadsheet was created to document 
 [📊 Download Spreadsheet](docs/data_cleaning_and_feature_engineering.xlsx)
 
 [🔝 Back to Table of Contents](#table-of-contents)
+
+<br>
 
 ---
 
@@ -1380,6 +1500,8 @@ These issues are environment-specific and do not impact the deployed application
 No functional or user-impacting issues remain in the deployed application.
 
 [🔝 Back to Table of Contents](#table-of-contents)
+
+<br>
 
 ---
 
@@ -1466,6 +1588,8 @@ To clone this repository locally:
 
 [🔝 Back to Table of Contents](#table-of-contents)
 
+<br>
+
 ---
 
 ## Main Libraries
@@ -1489,6 +1613,8 @@ To clone this repository locally:
 
 [🔝 Back to Table of Contents](#table-of-contents)
 
+<br>
+
 ---
 
 ## Conclusion
@@ -1496,6 +1622,8 @@ To clone this repository locally:
 This project demonstrates how machine learning can be applied to real-world business scenarios, transforming raw data into actionable insights that drive measurable outcomes. By combining exploratory data analysis, statistical validation, and a deployed ML pipeline, ConvertIQ can now prioritise high-value leads, optimise campaign spend, and make data-driven decisions in real time.
 
 [🔝 Back to Table of Contents](#table-of-contents)
+
+<br>
 
 ---
 
@@ -1522,6 +1650,8 @@ This project demonstrates how machine learning can be applied to real-world busi
 - [Heroku](https://heroku.com) — cloud deployment
 
 [🔝 Back to Table of Contents](#table-of-contents)
+
+<br>
 
 ---
 
