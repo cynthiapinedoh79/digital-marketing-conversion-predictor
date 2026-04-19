@@ -10,78 +10,32 @@
 
 ---
 
-## Key Features
-
-- 📈 **Customer Behaviour Analysis:**  
-  Identify behavioural patterns and correlations associated with conversion
-
-- 🤖 **Conversion Prediction Model:**  
-  Predict conversion likelihood using a trained Random Forest pipeline to prioritise high-value leads
-
-- 💰 **Campaign ROI Analysis:**  
-  Evaluate marketing efficiency and support budget allocation decisions
-
-- 📱 **Social Media Platform Insight:**  
-  Compare platform-level performance within social media campaigns using KPI data
-
-- 📊 **Interactive Dashboard:**  
-  Explore real-time insights and predictions through a Streamlit interface
-
-<br>
-
----
-
-## How to Use
-
-1. Open the live application or run the app locally
-2. Navigate through the dashboard pages using the sidebar
-3. Review customer behaviour and campaign ROI insights
-4. Use the Conversion Predictor to input a lead profile
-5. Generate a prediction and review the recommended business actions
-6. Use the model performance and hypothesis pages to understand the reliability of the analysis
-
-The dashboard is designed to be intuitive and accessible for both technical and non-technical users.
-
-<br>
-
----
-
-## Technologies Used
-
-![Python](https://img.shields.io/badge/Python-3.12-blue)
-![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-purple)
-![Scikit-learn](https://img.shields.io/badge/Scikit--learn-ML-orange)
-![Streamlit](https://img.shields.io/badge/Streamlit-App-red)
-![Plotly](https://img.shields.io/badge/Plotly-Visualization-blue)
-![Heroku](https://img.shields.io/badge/Heroku-Deploy-purple)
-
-<br>
-
----
-
 ## Table of Contents
 
 1. [🏢 Project Overview](#project-overview)
    - [The Problem](#the-problem)
    - [The Solution](#the-solution)
    - [Measurable Business Value](#measurable-business-value)
-2. [🎯 Target Users](#target-users)
-3. [📊 Dataset Content](#dataset-content)
-4. [📋 Business Requirements](#business-requirements)
-5. [🧩 Agile Planning](#agile-planning)
+2. [🚀 Key Features](#key-features)
+3. [📖 How to Use](#how-to-use)
+4. [🧩 Technologies Used](#technologies-used)
+5. [🎯 Target Users](#target-users)
+6. [📊 Dataset Content](#dataset-content)
+7. [📋 Business Requirements](#business-requirements)
+8. [🧩 Agile Planning](#agile-planning)
    - [Epic 1 — Information Gathering and Data Collection](#epic-1--information-gathering-and-data-collection)
    - [Epic 2 — Data Visualisation, Cleaning and Preparation](#epic-2--data-visualisation-cleaning-and-preparation)
    - [Epic 3 — Model Training, Optimisation and Validation](#epic-3--model-training-optimisation-and-validation)
    - [Epic 4 — Dashboard Planning, Design and Development](#epic-4--dashboard-planning-design-and-development)
    - [Epic 5 — Deployment and Release](#epic-5--deployment-and-release)
-6. [🔍 Data Analysis Overview](#data-analysis-overview)
-7. [⚙️ Feature Engineering](#feature-engineering)
-8. [💡 Hypothesis and Validation](#hypothesis-and-validation)
+9. [🔍 Data Analysis Overview](#data-analysis-overview)
+10. [⚙️ Feature Engineering](#feature-engineering)
+11. [💡 Hypothesis and Validation](#hypothesis-and-validation)
    - [Hypothesis 1 — Engagement Depth Predicts Conversion](#hypothesis-1--engagement-depth-predicts-conversion)
    - [Hypothesis 2 — Campaign Channel Affects Conversion Rate](#hypothesis-2--campaign-channel-affects-conversion-rate)
    - [Hypothesis 3 — Ad Spend Alone is a Weak Predictor](#hypothesis-3--ad-spend-alone-is-a-weak-predictor)
-9. [🗺️ Rationale to Map Business Requirements](#rationale-to-map-business-requirements)
-10. [🤖 ML Business Case](#ml-business-case)
+12. [🗺️ Rationale to Map Business Requirements](#rationale-to-map-business-requirements)
+13. [🤖 ML Business Case](#ml-business-case)
     - [Learning Method](#learning-method)
     - [Model Selection Rationale](#model-selection-rationale)
     - [Success Metrics](#success-metrics)
@@ -91,16 +45,16 @@ The dashboard is designed to be intuitive and accessible for both technical and 
     - [Hyperparameter Optimisation](#hyperparameter-optimisation)
     - [Results Achieved](#results-achieved)
     - [Key ML Terminology](#key-ml-terminology)
-11. [⚖️ Ethical Considerations](#ethical-considerations)
-12. [⚠️ Limitations](#limitations)
-13. [🖥️ Dashboard Design](#dashboard-design)
+14. [⚖️ Ethical Considerations](#ethical-considerations)
+15. [⚠️ Limitations](#limitations)
+16. [🖥️ Dashboard Design](#dashboard-design)
     - [Page 1 — Project Summary](#page-1--project-summary)
     - [Page 2 — Customer Behaviour Analysis](#page-2--customer-behaviour-analysis)
     - [Page 3 — Conversion Predictor](#page-3--conversion-predictor)
     - [Page 4 — Model Performance](#page-4--model-performance)
     - [Page 5 — Campaign ROI Analysis](#page-5--campaign-roi-analysis)
     - [Page 6 — Project Hypotheses](#page-6--project-hypotheses)
-14. [🧪 Testing](#testing)
+17. [🧪 Testing](#testing)
     - [Manual Testing](#manual-testing)
     - [Model Testing](#model-testing)
     - [Data Validation](#data-validation)
@@ -108,21 +62,21 @@ The dashboard is designed to be intuitive and accessible for both technical and 
     - [Lighthouse Testing](#lighthouse-testing)
     - [Edge Case Testing](#edge-case-testing)
     - [Bugs and Fixes](#bugs-and-fixes)
-15. [📁 Additional Documentation](#additional-documentation)
+18. [📁 Additional Documentation](#additional-documentation)
     - [Project Structure](#project-structure)
     - [Code Validation](#code-validation)
     - [Jupyter Notebooks](#jupyter-notebooks)
     - [Data Cleaning and Feature Engineering Spreadsheet](#data-cleaning-and-feature-engineering-spreadsheet)
-16. [🐛 Unfixed Bugs](#unfixed-bugs)
-17. [🚀 Deployment](#deployment)
+19. [🐛 Unfixed Bugs](#unfixed-bugs)
+20. [🚀 Deployment](#deployment)
     - [Files Required for Deployment](#files-required-for-deployment)
     - [Deployment Steps](#deployment-steps)
     - [Forking](#forking)
     - [Cloning](#cloning)
-18. [📚 Main Libraries](#main-libraries)
-19. [📌 Conclusion](#conclusion)
-20. [🙏 Credits](#credits)
-21. [👏 Acknowledgements](#acknowledgements)
+21. [📚 Main Libraries](#main-libraries)
+22. [📌 Conclusion](#conclusion)
+23. [🙏 Credits](#credits)
+24. [👏 Acknowledgements](#acknowledgements)
 
 <br>
 
@@ -182,6 +136,61 @@ Analysis of the marketing KPIs dataset provides budget allocation guidance:
 | 87.65% baseline conversion treated equally | High/medium/low lead segmentation with probability scores |
 
 The final solution is delivered as an interactive Streamlit dashboard, enabling marketing analysts, sales managers, and business directors to explore insights and generate real-time predictions without technical expertise.
+
+[🔝 Back to Table of Contents](#table-of-contents)
+
+<br>
+
+---
+
+## Key Features
+
+- 📈 **Customer Behaviour Analysis:**  
+  Identify behavioural patterns and correlations associated with conversion
+
+- 🤖 **Conversion Prediction Model:**  
+  Predict conversion likelihood using a trained Random Forest pipeline to prioritise high-value leads
+
+- 💰 **Campaign ROI Analysis:**  
+  Evaluate marketing efficiency and support budget allocation decisions
+
+- 📱 **Social Media Platform Insight:**  
+  Compare platform-level performance within social media campaigns using KPI data
+
+- 📊 **Interactive Dashboard:**  
+  Explore real-time insights and predictions through a Streamlit interface
+
+[🔝 Back to Table of Contents](#table-of-contents)
+
+<br>
+
+---
+
+## How to Use
+
+1. Open the live application or run the app locally
+2. Navigate through the dashboard pages using the sidebar
+3. Review customer behaviour and campaign ROI insights
+4. Use the Conversion Predictor to input a lead profile
+5. Generate a prediction and review the recommended business actions
+6. Use the model performance and hypothesis pages to understand the reliability of the analysis
+
+The dashboard is designed to be intuitive and accessible for both technical and non-technical users.
+
+[🔝 Back to Table of Contents](#table-of-contents)
+
+<br>
+
+---
+
+## Technologies Used
+
+![Python](https://img.shields.io/badge/Python-3.12-blue)
+![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-purple)
+![Scikit-learn](https://img.shields.io/badge/Scikit--learn-ML-orange)
+![Streamlit](https://img.shields.io/badge/Streamlit-App-red)
+![Plotly](https://img.shields.io/badge/Plotly-Visualization-blue)
+![Heroku](https://img.shields.io/badge/Heroku-Deploy-purple)
 
 [🔝 Back to Table of Contents](#table-of-contents)
 
