@@ -198,10 +198,12 @@ The project uses two datasets sourced from Kaggle:
 
 ---
 
-**Dataset 1 — Digital Marketing Campaign Dataset**
-Source: [Kaggle](https://www.kaggle.com/datasets/rabieelkharoua/predict-conversion-in-digital-marketing-dataset)
+**Dataset 1 — Predict Conversion in Digital Marketing Dataset**
+Source: [Kaggle — Rabie El Kharoua](https://www.kaggle.com/datasets/rabieelkharoua/predict-conversion-in-digital-marketing-dataset)  
+License: CC BY 4.0 — Synthetic dataset created for educational purposes  
 - 8,000 rows and 20 columns (16 after cleaning)
 - Each row represents a unique lead exposed to a digital marketing campaign
+- Includes demographic data, marketing metrics, customer engagement indicators and historical purchase data
 - Target variable: `Conversion` (1 = converted, 0 = not converted)
 
 | Variable | Type | Description |
@@ -234,11 +236,12 @@ Metrics such as `EmailOpens`, `EmailClicks`, and `WebsiteVisits` are recorded as
 
 ---
 
-**Dataset 2 — Digital Marketing KPIs**
-Source: [Kaggle](https://www.kaggle.com/datasets/sinderpreet/analyze-the-marketing-spending)
+**Dataset 2 — Digital Marketing Metrics & KPIs (SQL)**
+Source: [Kaggle — Sinderpreet](https://www.kaggle.com/datasets/sinderpreet/analyze-the-marketing-spending)  
 - 308 rows and 11 columns (13 after cleaning)
-- Daily campaign performance metrics per campaign
-- Used for supplementary ROI analysis (BR3)
+- Daily campaign performance metrics per campaign across 4 categories: social, search, influencer and media
+- Campaigns include: Facebook Tier 1/2, Instagram Tier 1/2, Google Hot/Wide, YouTube Blogger, Instagram Blogger, Banner Partner
+- Used for supplementary ROI and campaign performance analysis (BR3)
 
 | Variable | Type | Description |
 |---|---|---|
