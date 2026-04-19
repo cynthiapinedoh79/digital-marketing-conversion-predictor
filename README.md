@@ -878,7 +878,9 @@ understand the purpose of the dashboard at a glance.
 
 ![Customer Behaviour Analysis](docs/screenshots/dashboard/cba-web1.png)
 
-![Customer Behaviour Analysis](docs/screenshots/dashboard/cba-web2.png)
+![Customer Behaviour Analysis](docs/screenshots/dashboard/cba-web2a.png)
+
+![Customer Behaviour Analysis](docs/screenshots/dashboard/cba-web2b.png)
 
 ![Customer Behaviour Analysis](docs/screenshots/dashboard/cba-web3.png)
 
