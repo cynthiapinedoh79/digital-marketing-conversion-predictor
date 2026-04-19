@@ -26,9 +26,21 @@ def page_predictor_body():
 
     with st.expander("ℹ️ How to interpret input values"):
         st.markdown("""
-    **Engagement metrics** (Email Opens, Clicks, Website Visits) represent cumulative interactions per lead.
+    **Campaign Channel Guide:**
+    - **Email** — Direct email campaigns sent to leads
+    - **SEO** — Organic search engine traffic and content
+    - **PPC** — Paid search and display advertising (Google Ads, etc.)
+    - **Social Media** — Paid social campaigns (Facebook, Instagram, etc.)
+    - **Referral** — Traffic from partner sites and referral programmes
 
-    These values are not tied to a fixed timeframe. Instead, they reflect engagement across the typical lifecycle of a lead.
+    **Campaign Type Guide:**
+    - **Awareness** — Top-of-funnel campaigns to introduce the brand
+    - **Consideration** — Mid-funnel campaigns to nurture interest
+    - **Conversion** — Bottom-of-funnel campaigns targeting purchase intent
+    - **Retention** — Campaigns targeting existing customers to drive repeat purchases
+
+    **Engagement metrics** (Email Opens, Clicks, Website Visits) represent cumulative interactions per lead.
+    These values are not tied to a fixed timeframe but reflect engagement across the typical campaign lifecycle.
 
     **Business tip:** Compare leads within a consistent campaign window (e.g. first 2–4 weeks).
     """)
