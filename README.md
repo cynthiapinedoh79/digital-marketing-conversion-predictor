@@ -112,8 +112,9 @@ The dashboard is designed to be intuitive and accessible for both technical and 
     - [Forking](#forking)
     - [Cloning](#cloning)
 18. [Main Libraries](#main-libraries)
-19. [Credits](#credits)
-20. [Acknowledgements](#acknowledgements)
+19. [Conclusion](#conclusion)
+20. [Credits](#credits)
+21. [Acknowledgements](#acknowledgements)
 
 ---
 
@@ -1485,6 +1486,14 @@ To clone this repository locally:
 | kaleido | 0.2.1 | Plotly static image export (.png) for confusion matrix and ROC curve in notebooks |
 | nbformat | ≥4.2.0 | Jupyter notebook format support for rendering plots in notebooks |
 | openpyxl | 3.1.5 | Excel file creation for data cleaning and feature engineering spreadsheet |
+
+[🔝 Back to Table of Contents](#table-of-contents)
+
+---
+
+## Conclusion
+
+This project demonstrates how machine learning can be applied to real-world business scenarios, transforming raw data into actionable insights that drive measurable outcomes. By combining exploratory data analysis, statistical validation, and a deployed ML pipeline, ConvertIQ can now prioritise high-value leads, optimise campaign spend, and make data-driven decisions in real time.
 
 [🔝 Back to Table of Contents](#table-of-contents)
 
