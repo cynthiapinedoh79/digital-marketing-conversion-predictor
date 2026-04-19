@@ -919,7 +919,6 @@ the user from data exploration to actionable insights.
 - Defines key terminology (Conversion, CTR, ROI, Recall, F1-score)
 - Includes links to original data sources
 
----
 
 ![Project Summary](docs/screenshots/dashboard/ps-web1.png)
 
@@ -954,6 +953,7 @@ understand the purpose of the dashboard at a glance.
 - Bar charts: conversion rate by `CampaignChannel` and `CampaignType`
 - Interactive feature selection for exploratory analysis
 - Written interpretation provided for each visualisation
+
 
 ![Customer Behaviour Analysis](docs/screenshots/dashboard/cba-web1.png)
 
@@ -1062,6 +1062,7 @@ receive an instant conversion prediction with probability score and recommended 
 - Hyperparameter tuning summary
 - Clear explanation of model limitations
 
+
 ![Model Performance](docs/screenshots/dashboard/mp-web1.png)
 
 ![Model Performance](docs/screenshots/dashboard/mp-web2.png)
@@ -1092,6 +1093,7 @@ F1 ≥ 0.80), and communicating its limitations clearly to build user trust.
 - Daily revenue trend with interactive filters
 - Written insights and budget optimisation recommendations
 
+
 ![Campaign ROI Analysis](docs/screenshots/dashboard/cROIa-web1.png)
 
 ![Campaign ROI Analysis](docs/screenshots/dashboard/cROIa-web2.png)
@@ -1115,6 +1117,7 @@ ROI-driven allocation decisions backed by real KPI data.
 - Each hypothesis confirmed or rejected with evidence
 - Summary table consolidating findings
 - Business recommendations derived from each result
+
 
 ![Project Hypotheses](docs/screenshots/dashboard/ph-web1.png)
 
