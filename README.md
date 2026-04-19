@@ -1,4 +1,4 @@
-# Digital Marketing Conversion Predictor
+# 📊 Digital Marketing Conversion Predictor
 
 **Live Application:** https://digital-marketing-conversion-p-baa19eafc972.herokuapp.com/
 
@@ -115,7 +115,7 @@ The dashboard is designed to be intuitive and accessible for both technical and 
     - [Data Cleaning and Feature Engineering Spreadsheet](#data-cleaning-and-feature-engineering-spreadsheet)
 16. [🐛 Unfixed Bugs](#unfixed-bugs)
 17. [🚀 Deployment](#deployment)
-    - [Files Required for Deployment](#-files-required-for-deployment)
+    - [Files Required for Deployment](#files-required-for-deployment)
     - [Deployment Steps](#deployment-steps)
     - [Forking](#forking)
     - [Cloning](#cloning)
