@@ -1669,6 +1669,12 @@ This project demonstrates how machine learning can be applied to real-world busi
 - [Plotly](https://plotly.com) — interactive visualisations  
 - [Heroku](https://heroku.com) — cloud deployment
 
+---
+
+### AI Assistance
+- AI conversational tools (Claude by Anthropic, ChatGPT by OpenAI) were used 
+  as learning assistants for explanations and concept clarification. **All code was written manually by the developer** in VS Code without any AI code generation extensions or GitHub Copilot.
+
 [🔝 Back to Table of Contents](#table-of-contents)
 
 <br>
